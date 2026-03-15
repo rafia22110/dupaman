@@ -117,6 +117,44 @@ document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape') closeSuccess();
 });
 
+// === SOCIAL LOGIN ===
+function socialLogin(provider) {
+  console.log(`Attempting social login with: ${provider}`);
+  // In a real application, you would redirect to the OAuth provider here.
+  // Example: window.location.href = `/auth/${provider.toLowerCase()}`;
+  
+  // For now, we mock the success after a short delay
+  const mockName = provider === 'Google' ? 'ישראל ישראלי' : 'חבר פייסבוק';
+  const mockEmail = provider === 'Google' ? 'israel@gmail.com' : 'fb_user@example.com';
+  
+  // Show a loading state or just transition to success
+  const btn = event.currentTarget;
+  const originalHtml = btn.innerHTML;
+  btn.disabled = true;
+  btn.innerHTML = '<span>מתחבר...</span>';
+  
+  setTimeout(() => {
+    btn.disabled = false;
+    btn.innerHTML = originalHtml;
+    showSuccess(mockName);
+    
+    // Also trigger the webhook to simulate registration
+    submitForm(mockName, mockEmail);
+  }, 1000);
+}
+
+// Navbar Login Handler
+const navLogin = document.getElementById('navLogin');
+const mobileLogin = document.getElementById('mobileLogin');
+[navLogin, mobileLogin].forEach(btn => {
+  if (btn) {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      socialLogin('Google'); // Default to Google for login button
+    });
+  }
+});
+
 // === SCROLL ANIMATIONS ===
 const observerOptions = {
   threshold: 0.1,
