@@ -1,0 +1,96 @@
+{
+  "name": "SSR News – Subscriber Registration",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "ssr-subscribe",
+        "responseMode": "responseNode",
+        "options": { "allowedOrigins": "*" }
+      },
+      "id": "webhook", "name": "🔔 Webhook – הרשמה", "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1, "position": [180, 300]
+    },
+    {
+      "parameters": {
+        "operation": "lookup",
+        "documentId": { "__rl": true, "value": "PASTE_YOUR_GOOGLE_SHEET_ID_HERE", "mode": "id" },
+        "sheetName":  { "__rl": true, "value": "מנויים", "mode": "name" },
+        "lookupColumn": "מייל",
+        "lookupValue": "={{ $json.body.email }}"
+      },
+      "id": "check", "name": "בדיקת מייל קיים", "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4, "position": [400, 300]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": { "caseSensitive": false },
+          "conditions": [{ "leftValue": "={{ $json.email }}", "rightValue": "", "operator": { "type": "string", "operation": "isEmpty" } }]
+        }
+      },
+      "id": "isnew", "name": "מנוי חדש?", "type": "n8n-nodes-base.if",
+      "typeVersion": 2, "position": [600, 300]
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": { "__rl": true, "value": "PASTE_YOUR_GOOGLE_SHEET_ID_HERE", "mode": "id" },
+        "sheetName":  { "__rl": true, "value": "מנויים", "mode": "name" },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "תאריך הרשמה": "={{ new Date().toLocaleDateString('he-IL') }}",
+            "שם":   "={{ $('🔔 Webhook – הרשמה').item.json.body.name }}",
+            "מייל": "={{ $('🔔 Webhook – הרשמה').item.json.body.email }}",
+            "נושאים": "={{ ($('🔔 Webhook – הרשמה').item.json.body.topics || []).join(', ') }}",
+            "סטטוס": "active",
+            "מזהה": "={{ 'SSR-' + Date.now() }}",
+            "מקור": "website"
+          }
+        }
+      },
+      "id": "save", "name": "💾 שמירה ב-Sheet", "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4, "position": [840, 200]
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $('🔔 Webhook – הרשמה').item.json.body.email }}",
+        "subject": "ברוך הבא ל-SSR News! ✅",
+        "emailType": "html",
+        "message": "={{ `<div dir=\"rtl\" style=\"font-family:Arial;max-width:520px;background:#0d0d0d;color:#fff;border-radius:10px;overflow:hidden\"><div style=\"background:#000;padding:24px;text-align:center;border-bottom:2px solid #00ff88\"><div style=\"font-size:26px;font-weight:900;color:#00ff88\">SSR News</div><div style=\"font-size:12px;color:#666\">ניוזלטר יומי · BETA</div></div><div style=\"padding:24px\"><h2 style=\"color:#00ff88\">שלום ${$('🔔 Webhook – הרשמה').item.json.body.name || 'חבר'}! 👋</h2><p style=\"color:#ccc;line-height:1.8\">נרשמת בהצלחה! תקבל ניוזלטר כל יום ב-7:00 בבוקר.</p><div style=\"background:#1a1a1a;border:1px solid #2a2a2a;border-radius:8px;padding:14px;margin:16px 0\"><div style=\"font-size:11px;color:#555;margin-bottom:8px\">הנושאים שלך</div><div style=\"color:#00ff88\">${($('🔔 Webhook – הרשמה').item.json.body.topics || ['הכל']).join(' · ')}</div></div></div></div>` }}"
+      },
+      "id": "email", "name": "📧 מייל אישור", "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2, "position": [1040, 200]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ JSON.stringify({ success: true, message: 'נרשמת בהצלחה!' }) }}"
+      },
+      "id": "resp-ok", "name": "✅ תגובה – הצלחה", "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1, "position": [1240, 200]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ JSON.stringify({ success: false, error: 'already_subscribed' }) }}"
+      },
+      "id": "resp-dup", "name": "⚠️ תגובה – כבר קיים", "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1, "position": [840, 420]
+    }
+  ],
+  "connections": {
+    "🔔 Webhook – הרשמה":  {"main":[[{"node":"בדיקת מייל קיים","type":"main","index":0}]]},
+    "בדיקת מייל קיים":     {"main":[[{"node":"מנוי חדש?","type":"main","index":0}]]},
+    "מנוי חדש?": {
+      "main": [
+        [{"node":"💾 שמירה ב-Sheet","type":"main","index":0}],
+        [{"node":"⚠️ תגובה – כבר קיים","type":"main","index":0}]
+      ]
+    },
+    "💾 שמירה ב-Sheet": {"main":[[{"node":"📧 מייל אישור","type":"main","index":0}]]},
+    "📧 מייל אישור":     {"main":[[{"node":"✅ תגובה – הצלחה","type":"main","index":0}]]}
+  },
+  "settings": {"executionOrder":"v1"}
+}
