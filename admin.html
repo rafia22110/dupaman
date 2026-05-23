@@ -1,0 +1,1752 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>דופמין — לוח ניהול</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #000;
+    --surface: #0d0d0d;
+    --surface2: #141414;
+    --border: #1e1e1e;
+    --border2: #2a2a2a;
+    --green: #00ff88;
+    --green-dim: rgba(0,255,136,0.12);
+    --green-glow: rgba(0,255,136,0.25);
+    --navy: #0d1117;
+    --text: #f0f0f0;
+    --text-muted: #888;
+    --text-dim: #555;
+    --red: #ff4455;
+    --red-dim: rgba(255,68,85,0.12);
+    --yellow: #ffcc00;
+    --yellow-dim: rgba(255,204,0,0.12);
+    --blue: #4499ff;
+    --blue-dim: rgba(68,153,255,0.12);
+    --sidebar-w: 220px;
+    --radius: 10px;
+    --radius-sm: 6px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    height: 100%;
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Heebo', sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    direction: rtl;
+  }
+
+  /* ─── PASSWORD GATE ─────────────────────────────────────────── */
+  #password-gate {
+    position: fixed; inset: 0; z-index: 9999;
+    background: var(--bg);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .gate-box {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 48px 40px;
+    width: 360px;
+    text-align: center;
+  }
+  .gate-logo {
+    font-size: 28px; font-weight: 900;
+    color: var(--green);
+    letter-spacing: -1px;
+    margin-bottom: 8px;
+  }
+  .gate-subtitle {
+    color: var(--text-muted);
+    font-size: 13px;
+    margin-bottom: 32px;
+  }
+  .gate-input {
+    width: 100%;
+    background: var(--surface2);
+    border: 1px solid var(--border2);
+    border-radius: var(--radius-sm);
+    color: var(--text);
+    font-family: 'Heebo', sans-serif;
+    font-size: 15px;
+    padding: 12px 16px;
+    text-align: center;
+    letter-spacing: 4px;
+    outline: none;
+    transition: border-color .2s;
+  }
+  .gate-input:focus { border-color: var(--green); }
+  .gate-btn {
+    margin-top: 16px;
+    width: 100%;
+    background: var(--green);
+    color: #000;
+    border: none;
+    border-radius: var(--radius-sm);
+    padding: 13px;
+    font-family: 'Heebo', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: opacity .2s;
+  }
+  .gate-btn:hover { opacity: .85; }
+  .gate-error {
+    color: var(--red);
+    font-size: 13px;
+    margin-top: 12px;
+    min-height: 18px;
+  }
+
+  /* ─── LAYOUT ────────────────────────────────────────────────── */
+  #app { display: flex; height: 100vh; overflow: hidden; }
+
+  /* ─── SIDEBAR ───────────────────────────────────────────────── */
+  .sidebar {
+    width: var(--sidebar-w);
+    background: var(--surface);
+    border-left: 1px solid var(--border);
+    display: flex; flex-direction: column;
+    padding: 24px 0;
+    flex-shrink: 0;
+    overflow-y: auto;
+    position: sticky; top: 0; height: 100vh;
+  }
+  .sidebar-logo {
+    padding: 0 20px 24px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 16px;
+  }
+  .sidebar-logo .name {
+    font-size: 20px; font-weight: 900;
+    color: var(--green);
+    letter-spacing: -0.5px;
+  }
+  .sidebar-logo .sub {
+    font-size: 11px; color: var(--text-muted);
+    margin-top: 2px;
+  }
+  .nav-item {
+    display: flex; align-items: center; gap: 12px;
+    padding: 12px 20px;
+    cursor: pointer;
+    border-radius: 0;
+    color: var(--text-muted);
+    font-size: 14px; font-weight: 500;
+    transition: all .15s;
+    border-right: 3px solid transparent;
+    margin: 1px 0;
+    user-select: none;
+  }
+  .nav-item:hover { background: var(--surface2); color: var(--text); }
+  .nav-item.active {
+    background: var(--green-dim);
+    color: var(--green);
+    border-right-color: var(--green);
+  }
+  .nav-icon { font-size: 18px; width: 22px; text-align: center; }
+  .sidebar-footer {
+    margin-top: auto;
+    padding: 16px 20px 0;
+    border-top: 1px solid var(--border);
+    font-size: 12px;
+    color: var(--text-dim);
+  }
+  .sidebar-footer .refresh-info { margin-top: 4px; }
+
+  /* ─── MAIN ──────────────────────────────────────────────────── */
+  .main {
+    flex: 1;
+    overflow-y: auto;
+    padding: 32px;
+    min-width: 0;
+  }
+
+  /* ─── TABS ──────────────────────────────────────────────────── */
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
+
+  /* ─── PAGE HEADER ───────────────────────────────────────────── */
+  .page-header {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 28px;
+    flex-wrap: wrap; gap: 12px;
+  }
+  .page-title {
+    font-size: 22px; font-weight: 800;
+    color: var(--text);
+  }
+  .page-subtitle {
+    font-size: 13px; color: var(--text-muted);
+    margin-top: 2px;
+  }
+
+  /* ─── STAT CARDS ────────────────────────────────────────────── */
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+  .stat-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+  }
+  .stat-card::before {
+    content: '';
+    position: absolute; top: 0; right: 0;
+    width: 3px; height: 100%;
+  }
+  .stat-card.green::before { background: var(--green); }
+  .stat-card.blue::before { background: var(--blue); }
+  .stat-card.yellow::before { background: var(--yellow); }
+  .stat-card.red::before { background: var(--red); }
+  .stat-label {
+    font-size: 12px; color: var(--text-muted);
+    font-weight: 500; text-transform: uppercase; letter-spacing: .5px;
+    margin-bottom: 8px;
+  }
+  .stat-value {
+    font-size: 36px; font-weight: 900;
+    line-height: 1;
+    color: var(--text);
+  }
+  .stat-card.green .stat-value { color: var(--green); }
+  .stat-card.blue .stat-value { color: var(--blue); }
+  .stat-card.yellow .stat-value { color: var(--yellow); }
+  .stat-card.red .stat-value { color: var(--red); }
+  .stat-change {
+    font-size: 12px; color: var(--text-muted);
+    margin-top: 6px;
+  }
+
+  /* ─── CHART ─────────────────────────────────────────────────── */
+  .chart-section {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 24px;
+    margin-bottom: 32px;
+  }
+  .chart-title {
+    font-size: 16px; font-weight: 700;
+    margin-bottom: 20px;
+  }
+  .bar-chart {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .bar-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .bar-label {
+    font-size: 13px; color: var(--text-muted);
+    width: 100px; text-align: right;
+    flex-shrink: 0;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  .bar-track {
+    flex: 1; height: 24px;
+    background: var(--surface2);
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+  }
+  .bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--green), var(--blue));
+    border-radius: 4px;
+    transition: width .6s cubic-bezier(.4,0,.2,1);
+    min-width: 0;
+  }
+  .bar-count {
+    font-size: 13px; font-weight: 600;
+    width: 36px; text-align: left;
+    flex-shrink: 0;
+    color: var(--text);
+  }
+
+  /* ─── BUTTONS ───────────────────────────────────────────────── */
+  .btn {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 9px 18px;
+    border-radius: var(--radius-sm);
+    font-family: 'Heebo', sans-serif;
+    font-size: 13px; font-weight: 600;
+    cursor: pointer;
+    border: none;
+    transition: all .15s;
+    white-space: nowrap;
+  }
+  .btn-primary {
+    background: var(--green);
+    color: #000;
+  }
+  .btn-primary:hover { opacity: .85; }
+  .btn-secondary {
+    background: var(--surface2);
+    color: var(--text);
+    border: 1px solid var(--border2);
+  }
+  .btn-secondary:hover { border-color: var(--green); color: var(--green); }
+  .btn-danger {
+    background: var(--red-dim);
+    color: var(--red);
+    border: 1px solid rgba(255,68,85,.2);
+  }
+  .btn-danger:hover { background: rgba(255,68,85,.2); }
+  .btn-sm { padding: 5px 10px; font-size: 12px; }
+  .btn:disabled { opacity: .4; cursor: not-allowed; }
+
+  /* ─── TABLE ─────────────────────────────────────────────────── */
+  .table-wrapper {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+  .table-toolbar {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--border);
+    flex-wrap: wrap; gap: 12px;
+  }
+  .search-input {
+    background: var(--surface2);
+    border: 1px solid var(--border2);
+    border-radius: var(--radius-sm);
+    color: var(--text);
+    font-family: 'Heebo', sans-serif;
+    font-size: 13px;
+    padding: 8px 14px;
+    outline: none;
+    width: 220px;
+    transition: border-color .2s;
+  }
+  .search-input:focus { border-color: var(--green); }
+  .search-input::placeholder { color: var(--text-dim); }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  th {
+    background: var(--surface2);
+    padding: 12px 16px;
+    text-align: right;
+    font-size: 12px; font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase; letter-spacing: .5px;
+    border-bottom: 1px solid var(--border);
+  }
+  td {
+    padding: 13px 16px;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px;
+    vertical-align: middle;
+  }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: rgba(255,255,255,.02); }
+  .td-actions {
+    display: flex; gap: 6px; align-items: center;
+    justify-content: flex-start;
+  }
+  .badge {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 100px;
+    font-size: 11px; font-weight: 600;
+  }
+  .badge-green { background: var(--green-dim); color: var(--green); }
+  .badge-red { background: var(--red-dim); color: var(--red); }
+  .badge-yellow { background: var(--yellow-dim); color: var(--yellow); }
+  .badge-blue { background: var(--blue-dim); color: var(--blue); }
+
+  /* ─── TOPIC FILTER TABS ─────────────────────────────────────── */
+  .topic-tabs {
+    display: flex; gap: 6px;
+    flex-wrap: wrap;
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--border);
+  }
+  .topic-tab {
+    padding: 5px 14px;
+    border-radius: 100px;
+    font-size: 12px; font-weight: 600;
+    cursor: pointer;
+    background: var(--surface2);
+    color: var(--text-muted);
+    border: 1px solid var(--border);
+    transition: all .15s;
+  }
+  .topic-tab:hover { border-color: var(--green); color: var(--green); }
+  .topic-tab.active { background: var(--green-dim); color: var(--green); border-color: var(--green); }
+
+  /* ─── MODAL ─────────────────────────────────────────────────── */
+  .modal-backdrop {
+    display: none;
+    position: fixed; inset: 0; z-index: 1000;
+    background: rgba(0,0,0,.8);
+    backdrop-filter: blur(4px);
+    align-items: flex-start;
+    justify-content: center;
+    padding: 40px 20px;
+    overflow-y: auto;
+  }
+  .modal-backdrop.open { display: flex; }
+  .modal {
+    background: var(--surface);
+    border: 1px solid var(--border2);
+    border-radius: 16px;
+    width: 100%;
+    max-width: 560px;
+    padding: 32px;
+    position: relative;
+    margin: auto;
+  }
+  .modal-title {
+    font-size: 18px; font-weight: 800;
+    margin-bottom: 24px;
+  }
+  .modal-close {
+    position: absolute; top: 20px; left: 20px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    width: 32px; height: 32px;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; font-size: 18px; color: var(--text-muted);
+    transition: all .15s;
+  }
+  .modal-close:hover { color: var(--text); border-color: var(--green); }
+  .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .form-group { display: flex; flex-direction: column; gap: 6px; }
+  .form-group.full { grid-column: 1/-1; }
+  .form-label {
+    font-size: 12px; font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase; letter-spacing: .5px;
+  }
+  .form-input, .form-select, .form-textarea {
+    background: var(--surface2);
+    border: 1px solid var(--border2);
+    border-radius: var(--radius-sm);
+    color: var(--text);
+    font-family: 'Heebo', sans-serif;
+    font-size: 14px;
+    padding: 10px 14px;
+    outline: none;
+    width: 100%;
+    transition: border-color .2s;
+    direction: rtl;
+  }
+  .form-input:focus, .form-select:focus, .form-textarea:focus {
+    border-color: var(--green);
+  }
+  .form-select { cursor: pointer; }
+  .form-textarea { resize: vertical; min-height: 72px; }
+  .form-actions {
+    display: flex; gap: 10px; justify-content: flex-start;
+    margin-top: 24px; flex-wrap: wrap;
+  }
+
+  /* ─── SEND NEWSLETTER TAB ───────────────────────────────────── */
+  .send-grid {
+    display: grid;
+    grid-template-columns: 1fr 340px;
+    gap: 24px;
+    align-items: start;
+  }
+  .send-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 28px;
+  }
+  .send-hero {
+    text-align: center;
+    padding: 40px 28px;
+  }
+  .send-hero .icon { font-size: 48px; margin-bottom: 16px; }
+  .send-hero h2 { font-size: 20px; font-weight: 800; margin-bottom: 8px; }
+  .send-hero p { color: var(--text-muted); font-size: 14px; margin-bottom: 28px; }
+  .subscriber-count-display {
+    background: var(--green-dim);
+    border: 1px solid rgba(0,255,136,.2);
+    border-radius: var(--radius-sm);
+    padding: 12px 20px;
+    margin-bottom: 24px;
+    font-size: 14px; font-weight: 600;
+    color: var(--green);
+    text-align: center;
+  }
+  .big-send-btn {
+    width: 100%;
+    padding: 16px;
+    font-size: 16px;
+    border-radius: var(--radius);
+    background: var(--green);
+    color: #000;
+    border: none;
+    font-family: 'Heebo', sans-serif;
+    font-weight: 800;
+    cursor: pointer;
+    transition: all .2s;
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+  }
+  .big-send-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 32px var(--green-glow); }
+  .big-send-btn:disabled { opacity: .4; transform: none; box-shadow: none; cursor: not-allowed; }
+  .preview-list { display: flex; flex-direction: column; gap: 10px; }
+  .preview-item {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 12px 14px;
+  }
+  .preview-item .p-title {
+    font-size: 13px; font-weight: 600;
+    margin-bottom: 4px;
+    color: var(--text);
+  }
+  .preview-item .p-meta {
+    font-size: 11px; color: var(--text-muted);
+    display: flex; gap: 8px;
+  }
+  .history-log {
+    display: flex; flex-direction: column; gap: 8px;
+    margin-top: 16px;
+    max-height: 260px; overflow-y: auto;
+  }
+  .history-item {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 10px 14px;
+    font-size: 12px;
+  }
+  .history-item .h-time { color: var(--text-muted); margin-bottom: 2px; }
+  .history-item .h-status { font-weight: 600; }
+  .history-item .h-status.ok { color: var(--green); }
+  .history-item .h-status.err { color: var(--red); }
+  .section-label {
+    font-size: 12px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: .5px;
+    color: var(--text-muted);
+    margin-bottom: 14px;
+  }
+
+  /* ─── TOASTS ────────────────────────────────────────────────── */
+  #toast-container {
+    position: fixed; bottom: 24px; left: 24px;
+    z-index: 9998;
+    display: flex; flex-direction: column; gap: 8px;
+  }
+  .toast {
+    background: var(--surface);
+    border: 1px solid var(--border2);
+    border-radius: var(--radius-sm);
+    padding: 12px 18px;
+    font-size: 13px; font-weight: 500;
+    max-width: 320px;
+    animation: slideIn .2s ease;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .toast.success { border-color: var(--green); color: var(--green); }
+  .toast.error { border-color: var(--red); color: var(--red); }
+  .toast.info { border-color: var(--blue); color: var(--blue); }
+  @keyframes slideIn {
+    from { transform: translateX(-20px); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+  }
+
+  /* ─── SPINNER ───────────────────────────────────────────────── */
+  .spinner {
+    width: 18px; height: 18px;
+    border: 2px solid var(--border2);
+    border-top-color: var(--green);
+    border-radius: 50%;
+    animation: spin .6s linear infinite;
+    display: inline-block;
+    flex-shrink: 0;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .loading-state {
+    display: flex; align-items: center; justify-content: center;
+    gap: 12px; padding: 48px;
+    color: var(--text-muted); font-size: 14px;
+  }
+  .empty-state {
+    text-align: center; padding: 48px;
+    color: var(--text-dim); font-size: 13px;
+  }
+  .empty-state .e-icon { font-size: 36px; margin-bottom: 12px; }
+
+  /* ─── EDIT INLINE ───────────────────────────────────────────── */
+  .editable-title {
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    color: var(--text);
+    font-family: 'Heebo', sans-serif;
+    font-size: 13px;
+    padding: 3px 8px;
+    width: 100%; max-width: 280px;
+    outline: none;
+    transition: border-color .2s;
+  }
+  .editable-title:focus {
+    border-color: var(--green);
+    background: var(--surface2);
+  }
+
+  /* ─── SCROLLBAR ─────────────────────────────────────────────── */
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: #444; }
+
+  /* ─── RESPONSIVE ────────────────────────────────────────────── */
+  @media (max-width: 768px) {
+    :root { --sidebar-w: 60px; }
+    #app { flex-direction: column; }
+    .sidebar {
+      width: 100%; height: auto;
+      flex-direction: row;
+      padding: 10px 0;
+      border-left: none; border-bottom: 1px solid var(--border);
+      overflow-x: auto; overflow-y: hidden;
+      position: sticky; top: 0; z-index: 100;
+    }
+    .sidebar-logo, .sidebar-footer { display: none; }
+    .nav-item {
+      flex-direction: column; gap: 4px;
+      padding: 8px 14px;
+      font-size: 10px;
+      border-right: none; border-bottom: 3px solid transparent;
+      white-space: nowrap;
+    }
+    .nav-item.active { border-bottom-color: var(--green); border-right-color: transparent; }
+    .nav-icon { font-size: 20px; }
+    .main { padding: 20px 16px; }
+    .send-grid { grid-template-columns: 1fr; }
+    .form-grid { grid-template-columns: 1fr; }
+    .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    .table-toolbar { flex-direction: column; align-items: flex-start; }
+    .search-input { width: 100%; }
+    table { font-size: 12px; }
+    th, td { padding: 10px 12px; }
+  }
+
+  /* ─── CONFIRM DIALOG ────────────────────────────────────────── */
+  .confirm-overlay {
+    display: none; position: fixed; inset: 0; z-index: 2000;
+    background: rgba(0,0,0,.7); backdrop-filter: blur(4px);
+    align-items: center; justify-content: center;
+  }
+  .confirm-overlay.open { display: flex; }
+  .confirm-box {
+    background: var(--surface);
+    border: 1px solid var(--border2);
+    border-radius: 14px;
+    padding: 32px;
+    max-width: 360px; width: 90%;
+    text-align: center;
+  }
+  .confirm-box h3 { font-size: 17px; font-weight: 800; margin-bottom: 10px; }
+  .confirm-box p { font-size: 13px; color: var(--text-muted); margin-bottom: 24px; }
+  .confirm-actions { display: flex; gap: 10px; justify-content: center; }
+
+  /* status dot */
+  .dot { display: inline-block; width: 7px; height: 7px; border-radius: 50%; margin-left: 6px; vertical-align: middle; }
+  .dot-green { background: var(--green); }
+  .dot-red { background: var(--red); }
+</style>
+</head>
+<body>
+
+<!-- PASSWORD GATE -->
+<div id="password-gate">
+  <div class="gate-box">
+    <div class="gate-logo">דופמין</div>
+    <div class="gate-subtitle">לוח ניהול — SSR News</div>
+    <input type="password" class="gate-input" id="gate-pwd" placeholder="סיסמה" autofocus>
+    <button class="gate-btn" id="gate-submit">כניסה</button>
+    <div class="gate-error" id="gate-error"></div>
+  </div>
+</div>
+
+<!-- MAIN APP -->
+<div id="app" style="display:none">
+  <!-- SIDEBAR -->
+  <nav class="sidebar">
+    <div class="sidebar-logo">
+      <div class="name">דופמין</div>
+      <div class="sub">לוח ניהול</div>
+    </div>
+    <div class="nav-item active" data-tab="stats">
+      <span class="nav-icon">📊</span>
+      <span>סטטיסטיקות</span>
+    </div>
+    <div class="nav-item" data-tab="articles">
+      <span class="nav-icon">📝</span>
+      <span>מאמרים</span>
+    </div>
+    <div class="nav-item" data-tab="subscribers">
+      <span class="nav-icon">👥</span>
+      <span>מנויים</span>
+    </div>
+    <div class="nav-item" data-tab="send">
+      <span class="nav-icon">🚀</span>
+      <span>שליחה</span>
+    </div>
+    <div class="sidebar-footer">
+      <div id="last-refresh-time" style="direction:ltr;text-align:left">—</div>
+      <div class="refresh-info">רענון כל 60 שניות</div>
+    </div>
+  </nav>
+
+  <!-- MAIN CONTENT -->
+  <main class="main">
+
+    <!-- ── TAB 1: STATS ── -->
+    <div class="tab-panel active" id="tab-stats">
+      <div class="page-header">
+        <div>
+          <div class="page-title">סטטיסטיקות</div>
+          <div class="page-subtitle">סקירה כללית של הניוזלטר</div>
+        </div>
+        <button class="btn btn-secondary" id="stats-refresh-btn">
+          <span>↻</span> רענן
+        </button>
+      </div>
+
+      <div class="stats-grid" id="stats-grid">
+        <div class="stat-card green">
+          <div class="stat-label">סך מנויים</div>
+          <div class="stat-value" id="stat-total-subs">—</div>
+        </div>
+        <div class="stat-card blue">
+          <div class="stat-label">מנויים פעילים</div>
+          <div class="stat-value" id="stat-active-subs">—</div>
+        </div>
+        <div class="stat-card yellow">
+          <div class="stat-label">סך מאמרים</div>
+          <div class="stat-value" id="stat-total-articles">—</div>
+        </div>
+        <div class="stat-card red">
+          <div class="stat-label">מאמרים היום</div>
+          <div class="stat-value" id="stat-today-articles">—</div>
+        </div>
+      </div>
+
+      <div class="chart-section">
+        <div class="chart-title">מאמרים לפי נושא</div>
+        <div class="bar-chart" id="topic-bar-chart">
+          <div class="loading-state"><span class="spinner"></span> טוען נתונים...</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── TAB 2: ARTICLES ── -->
+    <div class="tab-panel" id="tab-articles">
+      <div class="page-header">
+        <div>
+          <div class="page-title">מאמרים</div>
+          <div class="page-subtitle">ניהול כל המאמרים</div>
+        </div>
+        <button class="btn btn-primary" id="add-article-btn">+ הוסף מאמר ידנית</button>
+      </div>
+
+      <div class="table-wrapper">
+        <div class="topic-tabs" id="article-topic-tabs">
+          <div class="topic-tab active" data-topic="all">הכל</div>
+        </div>
+        <div class="table-toolbar">
+          <input type="text" class="search-input" id="article-search" placeholder="חיפוש מאמר...">
+          <div id="article-count" style="font-size:13px;color:var(--text-muted)"></div>
+        </div>
+        <div id="articles-table-container">
+          <div class="loading-state"><span class="spinner"></span> טוען מאמרים...</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── TAB 3: SUBSCRIBERS ── -->
+    <div class="tab-panel" id="tab-subscribers">
+      <div class="page-header">
+        <div>
+          <div class="page-title">מנויים</div>
+          <div class="page-subtitle">ניהול רשימת המנויים</div>
+        </div>
+        <button class="btn btn-secondary" id="export-csv-btn">📥 ייצוא CSV</button>
+      </div>
+
+      <div class="table-wrapper">
+        <div class="table-toolbar">
+          <input type="text" class="search-input" id="subscriber-search" placeholder="חיפוש לפי שם או מייל...">
+          <div style="display:flex;gap:8px;align-items:center">
+            <select class="form-select" id="sub-status-filter" style="width:auto;padding:8px 12px">
+              <option value="all">כל הסטטוסים</option>
+              <option value="active">פעיל</option>
+              <option value="inactive">לא פעיל</option>
+            </select>
+            <div id="subscriber-count" style="font-size:13px;color:var(--text-muted)"></div>
+          </div>
+        </div>
+        <div id="subscribers-table-container">
+          <div class="loading-state"><span class="spinner"></span> טוען מנויים...</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── TAB 4: SEND ── -->
+    <div class="tab-panel" id="tab-send">
+      <div class="page-header">
+        <div>
+          <div class="page-title">שליחת ניוזלטר</div>
+          <div class="page-subtitle">שלח את הניוזלטר לכל המנויים הפעילים</div>
+        </div>
+      </div>
+
+      <div class="send-grid">
+        <!-- Left: Send control -->
+        <div>
+          <div class="send-card send-hero">
+            <div class="icon">📬</div>
+            <h2>שלח ניוזלטר עכשיו</h2>
+            <p>הניוזלטר ייצור ויישלח אוטומטית לכל המנויים הפעילים</p>
+            <div class="subscriber-count-display" id="send-subscriber-count">
+              ⏳ בודק מנויים...
+            </div>
+            <button class="big-send-btn" id="send-now-btn" disabled>
+              <span>🚀</span> שלח ניוזלטר
+            </button>
+          </div>
+
+          <div class="send-card" style="margin-top:20px">
+            <div class="section-label">היסטוריית שליחות</div>
+            <div class="history-log" id="send-history-log">
+              <div class="empty-state"><div class="e-icon">📭</div>אין שליחות עדיין</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Preview -->
+        <div>
+          <div class="send-card">
+            <div class="section-label">תצוגה מקדימה — 5 מאמרים אחרונים</div>
+            <div class="preview-list" id="preview-articles">
+              <div class="loading-state"><span class="spinner"></span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<!-- TOAST CONTAINER -->
+<div id="toast-container"></div>
+
+<!-- ADD ARTICLE MODAL -->
+<div class="modal-backdrop" id="add-article-modal">
+  <div class="modal">
+    <button class="modal-close" id="close-article-modal">✕</button>
+    <div class="modal-title">הוסף מאמר ידנית</div>
+    <form id="add-article-form">
+      <div class="form-grid">
+        <div class="form-group full">
+          <label class="form-label">כותרת *</label>
+          <input type="text" class="form-input" name="title" required placeholder="כותרת המאמר">
+        </div>
+        <div class="form-group">
+          <label class="form-label">נושא *</label>
+          <select class="form-select" name="topic" id="article-topic-select" required>
+            <option value="">בחר נושא</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">תת-נושא</label>
+          <input type="text" class="form-input" name="subtopic" placeholder="תת-נושא">
+        </div>
+        <div class="form-group full">
+          <label class="form-label">מקור *</label>
+          <input type="text" class="form-input" name="source" required placeholder="שם המקור">
+        </div>
+        <div class="form-group full">
+          <label class="form-label">שורה 1</label>
+          <textarea class="form-textarea" name="line1" placeholder="שורה ראשונה של הסיכום"></textarea>
+        </div>
+        <div class="form-group full">
+          <label class="form-label">שורה 2</label>
+          <textarea class="form-textarea" name="line2" placeholder="שורה שנייה של הסיכום"></textarea>
+        </div>
+        <div class="form-group full">
+          <label class="form-label">שורה 3</label>
+          <textarea class="form-textarea" name="line3" placeholder="שורה שלישית של הסיכום"></textarea>
+        </div>
+        <div class="form-group full">
+          <label class="form-label">משפט לחיים</label>
+          <input type="text" class="form-input" name="quote" placeholder='ציטוט או "משפט לחיים"'>
+        </div>
+        <div class="form-group full">
+          <label class="form-label">שאלה</label>
+          <input type="text" class="form-input" name="question" placeholder="שאלה לעיון">
+        </div>
+        <div class="form-group full">
+          <label class="form-label">קישור</label>
+          <input type="url" class="form-input" name="url" placeholder="https://...">
+        </div>
+      </div>
+      <div class="form-actions">
+        <button type="submit" class="btn btn-primary" id="article-submit-btn">שמור מאמר</button>
+        <button type="button" class="btn btn-secondary" id="cancel-article-btn">ביטול</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- EDIT ARTICLE MODAL -->
+<div class="modal-backdrop" id="edit-article-modal">
+  <div class="modal">
+    <button class="modal-close" id="close-edit-modal">✕</button>
+    <div class="modal-title">עריכת כותרת מאמר</div>
+    <div class="form-group" style="margin-bottom:20px">
+      <label class="form-label">כותרת</label>
+      <input type="text" class="form-input" id="edit-title-input">
+    </div>
+    <div class="form-actions">
+      <button class="btn btn-primary" id="save-edit-btn">שמור</button>
+      <button class="btn btn-secondary" id="cancel-edit-btn">ביטול</button>
+    </div>
+  </div>
+</div>
+
+<!-- CONFIRM DIALOG -->
+<div class="confirm-overlay" id="confirm-overlay">
+  <div class="confirm-box">
+    <h3 id="confirm-title">אישור</h3>
+    <p id="confirm-message">האם אתה בטוח?</p>
+    <div class="confirm-actions">
+      <button class="btn btn-danger" id="confirm-yes">אישור</button>
+      <button class="btn btn-secondary" id="confirm-no">ביטול</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ─────────────────────────────────────────────────────────────────
+// CONFIG
+// ─────────────────────────────────────────────────────────────────
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/1rDNenGwZTh539-3V1YYfEVtCG1L4EdJ8yCQE1uK8-Ue6x7zfTALdfcYh/exec';
+const N8N_WEBHOOK = 'https://n8n.alveare-ai.com/webhook/send-newsletter';
+const PASSWORD = 'admin2024';
+const AUTO_REFRESH_MS = 60000;
+
+// ─────────────────────────────────────────────────────────────────
+// STATE
+// ─────────────────────────────────────────────────────────────────
+let allArticles = [];
+let allSubscribers = [];
+let statsData = {};
+let activeTab = 'stats';
+let currentArticleTopicFilter = 'all';
+let editingArticleId = null;
+let refreshTimer = null;
+let confirmCallback = null;
+
+// ─────────────────────────────────────────────────────────────────
+// PASSWORD GATE
+// ─────────────────────────────────────────────────────────────────
+(function initGate() {
+  if (sessionStorage.getItem('admin_auth') === '1') {
+    showApp();
+    return;
+  }
+
+  const gate = document.getElementById('password-gate');
+  const input = document.getElementById('gate-pwd');
+  const btn = document.getElementById('gate-submit');
+  const err = document.getElementById('gate-error');
+
+  function tryLogin() {
+    if (input.value === PASSWORD) {
+      sessionStorage.setItem('admin_auth', '1');
+      gate.style.display = 'none';
+      showApp();
+    } else {
+      err.textContent = 'סיסמה שגויה. נסה שוב.';
+      input.value = '';
+      input.focus();
+    }
+  }
+
+  btn.addEventListener('click', tryLogin);
+  input.addEventListener('keydown', e => { if (e.key === 'Enter') tryLogin(); });
+})();
+
+function showApp() {
+  document.getElementById('app').style.display = 'flex';
+  initApp();
+}
+
+// ─────────────────────────────────────────────────────────────────
+// INIT
+// ─────────────────────────────────────────────────────────────────
+function initApp() {
+  initNav();
+  initModals();
+  initConfirm();
+  loadStats();
+  loadArticles();
+  loadSubscribers();
+  loadSendTab();
+  renderHistory();
+  startAutoRefresh();
+}
+
+// ─────────────────────────────────────────────────────────────────
+// NAV
+// ─────────────────────────────────────────────────────────────────
+function initNav() {
+  document.querySelectorAll('.nav-item').forEach(item => {
+    item.addEventListener('click', () => {
+      const tab = item.dataset.tab;
+      switchTab(tab);
+    });
+  });
+}
+
+function switchTab(tab) {
+  activeTab = tab;
+  document.querySelectorAll('.nav-item').forEach(n =>
+    n.classList.toggle('active', n.dataset.tab === tab));
+  document.querySelectorAll('.tab-panel').forEach(p =>
+    p.classList.toggle('active', p.id === 'tab-' + tab));
+}
+
+// ─────────────────────────────────────────────────────────────────
+// API HELPERS
+// ─────────────────────────────────────────────────────────────────
+async function apiGet(params) {
+  const url = new URL(APPS_SCRIPT_URL);
+  Object.entries(params).forEach(([k, v]) => url.searchParams.set(k, v));
+  const res = await fetch(url.toString());
+  if (!res.ok) throw new Error(`HTTP ${res.status}`);
+  const text = await res.text();
+  try { return JSON.parse(text); } catch { return text; }
+}
+
+async function apiPost(params, body) {
+  const url = new URL(APPS_SCRIPT_URL);
+  Object.entries(params).forEach(([k, v]) => url.searchParams.set(k, v));
+  const res = await fetch(url.toString(), {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(body)
+  });
+  if (!res.ok) throw new Error(`HTTP ${res.status}`);
+  const text = await res.text();
+  try { return JSON.parse(text); } catch { return text; }
+}
+
+// ─────────────────────────────────────────────────────────────────
+// TOAST
+// ─────────────────────────────────────────────────────────────────
+function toast(msg, type = 'info', duration = 3500) {
+  const container = document.getElementById('toast-container');
+  const el = document.createElement('div');
+  const icons = { success: '✓', error: '✕', info: 'ℹ' };
+  el.className = `toast ${type}`;
+  el.innerHTML = `<span>${icons[type] || 'ℹ'}</span><span>${msg}</span>`;
+  container.appendChild(el);
+  setTimeout(() => el.remove(), duration);
+}
+
+// ─────────────────────────────────────────────────────────────────
+// CONFIRM DIALOG
+// ─────────────────────────────────────────────────────────────────
+function initConfirm() {
+  document.getElementById('confirm-yes').addEventListener('click', () => {
+    document.getElementById('confirm-overlay').classList.remove('open');
+    if (confirmCallback) confirmCallback(true);
+  });
+  document.getElementById('confirm-no').addEventListener('click', () => {
+    document.getElementById('confirm-overlay').classList.remove('open');
+    if (confirmCallback) confirmCallback(false);
+  });
+}
+
+function confirmDialog(title, message) {
+  return new Promise(resolve => {
+    confirmCallback = resolve;
+    document.getElementById('confirm-title').textContent = title;
+    document.getElementById('confirm-message').textContent = message;
+    document.getElementById('confirm-overlay').classList.add('open');
+  });
+}
+
+// ─────────────────────────────────────────────────────────────────
+// AUTO REFRESH
+// ─────────────────────────────────────────────────────────────────
+function startAutoRefresh() {
+  clearInterval(refreshTimer);
+  refreshTimer = setInterval(() => {
+    if (activeTab === 'stats') loadStats();
+  }, AUTO_REFRESH_MS);
+}
+
+function updateRefreshTime() {
+  const el = document.getElementById('last-refresh-time');
+  if (el) {
+    const now = new Date();
+    el.textContent = now.toLocaleTimeString('he-IL', { hour: '2-digit', minute: '2-digit' });
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────
+// TAB 1: STATS
+// ─────────────────────────────────────────────────────────────────
+document.getElementById('stats-refresh-btn').addEventListener('click', () => {
+  loadStats();
+  toast('מרענן נתונים...', 'info', 1500);
+});
+
+async function loadStats() {
+  try {
+    const data = await apiGet({ action: 'stats' });
+    statsData = data;
+    renderStats(data);
+    updateRefreshTime();
+  } catch (e) {
+    // Fallback: derive from loaded data
+    const derived = deriveStats();
+    renderStats(derived);
+    updateRefreshTime();
+  }
+}
+
+function deriveStats() {
+  const today = new Date().toISOString().slice(0, 10);
+  const totalSubs = allSubscribers.length;
+  const activeSubs = allSubscribers.filter(s =>
+    (s.status || '').toLowerCase() === 'active' || (s.status || '') === 'פעיל'
+  ).length;
+  const totalArticles = allArticles.length;
+  const todayArticles = allArticles.filter(a => {
+    const d = a.date || a.Date || a.תאריך || '';
+    return String(d).startsWith(today);
+  }).length;
+
+  // byTopic
+  const byTopic = {};
+  allArticles.forEach(a => {
+    const t = a.topic || a.Topic || a.נושא || 'אחר';
+    byTopic[t] = (byTopic[t] || 0) + 1;
+  });
+
+  return { totalSubscribers: totalSubs, activeSubscribers: activeSubs,
+           totalArticles, todayArticles, byTopic };
+}
+
+function renderStats(data) {
+  document.getElementById('stat-total-subs').textContent = data.totalSubscribers ?? '—';
+  document.getElementById('stat-active-subs').textContent = data.activeSubscribers ?? '—';
+  document.getElementById('stat-total-articles').textContent = data.totalArticles ?? '—';
+  document.getElementById('stat-today-articles').textContent = data.todayArticles ?? '—';
+  renderBarChart(data.byTopic || {});
+}
+
+function renderBarChart(byTopic) {
+  const chart = document.getElementById('topic-bar-chart');
+  const entries = Object.entries(byTopic).sort((a, b) => b[1] - a[1]);
+  if (!entries.length) {
+    chart.innerHTML = '<div class="empty-state"><div class="e-icon">📊</div>אין נתונים עדיין</div>';
+    return;
+  }
+  const max = Math.max(...entries.map(e => e[1]), 1);
+  chart.innerHTML = entries.map(([label, count]) => `
+    <div class="bar-row">
+      <div class="bar-label" title="${label}">${label}</div>
+      <div class="bar-track">
+        <div class="bar-fill" style="width:${(count/max*100).toFixed(1)}%"></div>
+      </div>
+      <div class="bar-count">${count}</div>
+    </div>
+  `).join('');
+}
+
+// ─────────────────────────────────────────────────────────────────
+// TAB 2: ARTICLES
+// ─────────────────────────────────────────────────────────────────
+async function loadArticles() {
+  document.getElementById('articles-table-container').innerHTML =
+    '<div class="loading-state"><span class="spinner"></span> טוען מאמרים...</div>';
+  try {
+    const data = await apiGet({ action: 'articles' });
+    allArticles = Array.isArray(data) ? data : (data.articles || data.rows || []);
+    renderArticlesTopicTabs();
+    renderArticlesTable();
+    // Update send tab preview too
+    renderPreviewArticles();
+    // Update stats if needed
+    const derived = deriveStats();
+    renderStats(derived);
+  } catch (e) {
+    document.getElementById('articles-table-container').innerHTML =
+      `<div class="loading-state" style="color:var(--red)">שגיאה בטעינת מאמרים: ${e.message}</div>`;
+    toast('שגיאה בטעינת מאמרים', 'error');
+  }
+}
+
+function getArticleField(a, ...keys) {
+  for (const k of keys) {
+    if (a[k] !== undefined && a[k] !== null && a[k] !== '') return a[k];
+  }
+  return '';
+}
+
+function renderArticlesTopicTabs() {
+  const topics = [...new Set(allArticles.map(a => getArticleField(a, 'topic', 'Topic', 'נושא')).filter(Boolean))];
+  const container = document.getElementById('article-topic-tabs');
+  container.innerHTML = `<div class="topic-tab active" data-topic="all">הכל (${allArticles.length})</div>` +
+    topics.map(t => {
+      const cnt = allArticles.filter(a => getArticleField(a, 'topic', 'Topic', 'נושא') === t).length;
+      return `<div class="topic-tab" data-topic="${escHtml(t)}">${escHtml(t)} (${cnt})</div>`;
+    }).join('');
+
+  // Populate topic dropdown in modal
+  const sel = document.getElementById('article-topic-select');
+  const existingTopics = topics.length ? topics : ['טכנולוגיה', 'עסקים', 'מדע', 'בריאות', 'תרבות'];
+  sel.innerHTML = '<option value="">בחר נושא</option>' +
+    existingTopics.map(t => `<option value="${escHtml(t)}">${escHtml(t)}</option>`).join('') +
+    '<option value="__custom__">אחר (הקלד ידנית)</option>';
+
+  container.querySelectorAll('.topic-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      currentArticleTopicFilter = tab.dataset.topic;
+      container.querySelectorAll('.topic-tab').forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      renderArticlesTable();
+    });
+  });
+}
+
+function getFilteredArticles() {
+  const search = (document.getElementById('article-search')?.value || '').toLowerCase();
+  return allArticles.filter(a => {
+    const topicMatch = currentArticleTopicFilter === 'all' ||
+      getArticleField(a, 'topic', 'Topic', 'נושא') === currentArticleTopicFilter;
+    const title = getArticleField(a, 'title', 'Title', 'כותרת').toLowerCase();
+    const source = getArticleField(a, 'source', 'Source', 'מקור').toLowerCase();
+    const searchMatch = !search || title.includes(search) || source.includes(search);
+    return topicMatch && searchMatch;
+  });
+}
+
+function renderArticlesTable() {
+  const filtered = getFilteredArticles();
+  document.getElementById('article-count').textContent = `${filtered.length} מאמרים`;
+  const container = document.getElementById('articles-table-container');
+  if (!filtered.length) {
+    container.innerHTML = '<div class="empty-state"><div class="e-icon">📄</div>לא נמצאו מאמרים</div>';
+    return;
+  }
+  container.innerHTML = `
+    <table>
+      <thead>
+        <tr>
+          <th>תאריך</th>
+          <th>מקור</th>
+          <th>נושא</th>
+          <th>כותרת</th>
+          <th>פעולות</th>
+        </tr>
+      </thead>
+      <tbody>
+        ${filtered.map(a => {
+          const id = a.id || a.Id || a.ID || a.rowIndex || '';
+          const date = formatDate(getArticleField(a, 'date', 'Date', 'תאריך'));
+          const source = getArticleField(a, 'source', 'Source', 'מקור');
+          const topic = getArticleField(a, 'topic', 'Topic', 'נושא');
+          const title = getArticleField(a, 'title', 'Title', 'כותרת');
+          return `
+          <tr data-id="${escHtml(String(id))}">
+            <td style="white-space:nowrap;color:var(--text-muted)">${escHtml(date)}</td>
+            <td>${escHtml(source)}</td>
+            <td><span class="badge badge-blue">${escHtml(topic)}</span></td>
+            <td>
+              <input type="text"
+                class="editable-title"
+                value="${escHtml(title)}"
+                data-original="${escHtml(title)}"
+                data-id="${escHtml(String(id))}"
+                title="לחץ לעריכה">
+            </td>
+            <td>
+              <div class="td-actions">
+                <button class="btn btn-sm btn-secondary edit-title-btn" data-id="${escHtml(String(id))}" title="עריכת כותרת">✏️</button>
+                <button class="btn btn-sm btn-danger delete-article-btn" data-id="${escHtml(String(id))}" title="מחיקה">🗑️</button>
+              </div>
+            </td>
+          </tr>`;
+        }).join('')}
+      </tbody>
+    </table>`;
+
+  // Events
+  container.querySelectorAll('.delete-article-btn').forEach(btn => {
+    btn.addEventListener('click', () => deleteArticle(btn.dataset.id));
+  });
+  container.querySelectorAll('.edit-title-btn').forEach(btn => {
+    btn.addEventListener('click', () => openEditModal(btn.dataset.id));
+  });
+  container.querySelectorAll('.editable-title').forEach(input => {
+    input.addEventListener('keydown', async (e) => {
+      if (e.key === 'Enter') {
+        e.target.blur();
+        await saveArticleTitle(input.dataset.id, input.value);
+      }
+      if (e.key === 'Escape') {
+        input.value = input.dataset.original;
+        input.blur();
+      }
+    });
+  });
+}
+
+document.getElementById('article-search').addEventListener('input', renderArticlesTable);
+
+async function deleteArticle(id) {
+  const ok = await confirmDialog('מחיקת מאמר', 'האם אתה בטוח שברצונך למחוק את המאמר? פעולה זו אינה הפיכה.');
+  if (!ok) return;
+  try {
+    await apiGet({ action: 'deleteArticle', id });
+    allArticles = allArticles.filter(a =>
+      String(a.id || a.Id || a.ID || a.rowIndex || '') !== String(id));
+    renderArticlesTopicTabs();
+    renderArticlesTable();
+    toast('המאמר נמחק בהצלחה', 'success');
+    renderPreviewArticles();
+  } catch (e) {
+    toast('שגיאה במחיקת המאמר: ' + e.message, 'error');
+  }
+}
+
+function openEditModal(id) {
+  editingArticleId = id;
+  const article = allArticles.find(a =>
+    String(a.id || a.Id || a.ID || a.rowIndex || '') === String(id));
+  if (!article) return;
+  const title = getArticleField(article, 'title', 'Title', 'כותרת');
+  document.getElementById('edit-title-input').value = title;
+  document.getElementById('edit-article-modal').classList.add('open');
+}
+
+async function saveArticleTitle(id, newTitle) {
+  try {
+    await apiGet({ action: 'updateArticle', id, title: newTitle });
+    const article = allArticles.find(a =>
+      String(a.id || a.Id || a.ID || a.rowIndex || '') === String(id));
+    if (article) {
+      ['title', 'Title', 'כותרת'].forEach(k => { if (article[k] !== undefined) article[k] = newTitle; });
+    }
+    toast('הכותרת עודכנה', 'success');
+  } catch (e) {
+    toast('שגיאה בעדכון הכותרת', 'error');
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────
+// MODALS
+// ─────────────────────────────────────────────────────────────────
+function initModals() {
+  // Add article modal
+  document.getElementById('add-article-btn').addEventListener('click', () => {
+    document.getElementById('add-article-form').reset();
+    document.getElementById('add-article-modal').classList.add('open');
+  });
+  document.getElementById('close-article-modal').addEventListener('click', () =>
+    document.getElementById('add-article-modal').classList.remove('open'));
+  document.getElementById('cancel-article-btn').addEventListener('click', () =>
+    document.getElementById('add-article-modal').classList.remove('open'));
+
+  // Handle custom topic
+  document.getElementById('article-topic-select').addEventListener('change', function() {
+    if (this.value === '__custom__') {
+      const custom = prompt('הכנס נושא חדש:');
+      if (custom) {
+        const opt = document.createElement('option');
+        opt.value = custom; opt.textContent = custom;
+        this.insertBefore(opt, this.lastElementChild);
+        this.value = custom;
+      } else {
+        this.value = '';
+      }
+    }
+  });
+
+  document.getElementById('add-article-form').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const btn = document.getElementById('article-submit-btn');
+    btn.disabled = true;
+    btn.textContent = 'שומר...';
+    const fd = new FormData(e.target);
+    const data = Object.fromEntries(fd.entries());
+    try {
+      const result = await apiPost({ action: 'addArticle' }, data);
+      const newId = result?.id || result?.rowIndex || Date.now();
+      allArticles.push({ id: newId, ...data, date: new Date().toISOString() });
+      renderArticlesTopicTabs();
+      renderArticlesTable();
+      renderPreviewArticles();
+      document.getElementById('add-article-modal').classList.remove('open');
+      toast('המאמר נוסף בהצלחה', 'success');
+    } catch (e) {
+      toast('שגיאה בהוספת מאמר: ' + e.message, 'error');
+    } finally {
+      btn.disabled = false;
+      btn.textContent = 'שמור מאמר';
+    }
+  });
+
+  // Edit modal
+  document.getElementById('close-edit-modal').addEventListener('click', () =>
+    document.getElementById('edit-article-modal').classList.remove('open'));
+  document.getElementById('cancel-edit-btn').addEventListener('click', () =>
+    document.getElementById('edit-article-modal').classList.remove('open'));
+  document.getElementById('save-edit-btn').addEventListener('click', async () => {
+    const newTitle = document.getElementById('edit-title-input').value.trim();
+    if (!newTitle || !editingArticleId) return;
+    await saveArticleTitle(editingArticleId, newTitle);
+    // Update in table
+    const input = document.querySelector(`.editable-title[data-id="${editingArticleId}"]`);
+    if (input) { input.value = newTitle; input.dataset.original = newTitle; }
+    document.getElementById('edit-article-modal').classList.remove('open');
+  });
+
+  // Close modals on backdrop click
+  document.querySelectorAll('.modal-backdrop').forEach(modal => {
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) modal.classList.remove('open');
+    });
+  });
+}
+
+// ─────────────────────────────────────────────────────────────────
+// TAB 3: SUBSCRIBERS
+// ─────────────────────────────────────────────────────────────────
+async function loadSubscribers() {
+  document.getElementById('subscribers-table-container').innerHTML =
+    '<div class="loading-state"><span class="spinner"></span> טוען מנויים...</div>';
+  try {
+    const data = await apiGet({ action: 'subscribers' });
+    allSubscribers = Array.isArray(data) ? data : (data.subscribers || data.rows || []);
+    renderSubscribersTable();
+    updateSendSubscriberCount();
+  } catch (e) {
+    document.getElementById('subscribers-table-container').innerHTML =
+      `<div class="loading-state" style="color:var(--red)">שגיאה בטעינת מנויים: ${e.message}</div>`;
+    toast('שגיאה בטעינת מנויים', 'error');
+  }
+}
+
+function getSubField(s, ...keys) {
+  for (const k of keys) {
+    if (s[k] !== undefined && s[k] !== null && s[k] !== '') return s[k];
+  }
+  return '';
+}
+
+function getFilteredSubscribers() {
+  const search = (document.getElementById('subscriber-search')?.value || '').toLowerCase();
+  const statusFilter = document.getElementById('sub-status-filter')?.value || 'all';
+  return allSubscribers.filter(s => {
+    const email = getSubField(s, 'email', 'Email', 'מייל').toLowerCase();
+    const name = getSubField(s, 'name', 'Name', 'שם').toLowerCase();
+    const status = (getSubField(s, 'status', 'Status', 'סטטוס') || '').toLowerCase();
+    const searchMatch = !search || email.includes(search) || name.includes(search);
+    const statusMatch = statusFilter === 'all' ||
+      (statusFilter === 'active' && (status === 'active' || status === 'פעיל')) ||
+      (statusFilter === 'inactive' && (status === 'inactive' || status === 'לא פעיל'));
+    return searchMatch && statusMatch;
+  });
+}
+
+function renderSubscribersTable() {
+  const filtered = getFilteredSubscribers();
+  document.getElementById('subscriber-count').textContent = `${filtered.length} מנויים`;
+  const container = document.getElementById('subscribers-table-container');
+  if (!filtered.length) {
+    container.innerHTML = '<div class="empty-state"><div class="e-icon">👥</div>לא נמצאו מנויים</div>';
+    return;
+  }
+  container.innerHTML = `
+    <table>
+      <thead>
+        <tr>
+          <th>תאריך</th>
+          <th>שם</th>
+          <th>מייל</th>
+          <th>נושאים</th>
+          <th>סטטוס</th>
+          <th>פעולות</th>
+        </tr>
+      </thead>
+      <tbody>
+        ${filtered.map(s => {
+          const id = s.id || s.Id || s.ID || s.rowIndex || s.email || '';
+          const date = formatDate(getSubField(s, 'date', 'Date', 'תאריך', 'createdAt'));
+          const name = getSubField(s, 'name', 'Name', 'שם');
+          const email = getSubField(s, 'email', 'Email', 'מייל');
+          const topics = getSubField(s, 'topics', 'Topics', 'נושאים');
+          const status = getSubField(s, 'status', 'Status', 'סטטוס');
+          const isActive = !status || status.toLowerCase() === 'active' || status === 'פעיל';
+          return `
+          <tr data-id="${escHtml(String(id))}">
+            <td style="white-space:nowrap;color:var(--text-muted)">${escHtml(date)}</td>
+            <td style="font-weight:500">${escHtml(name)}</td>
+            <td style="direction:ltr;text-align:left;color:var(--text-muted)">${escHtml(email)}</td>
+            <td style="max-width:160px;overflow:hidden;text-overflow:ellipsis">${escHtml(topics)}</td>
+            <td>
+              <span class="badge ${isActive ? 'badge-green' : 'badge-red'}">
+                <span class="dot ${isActive ? 'dot-green' : 'dot-red'}"></span>
+                ${isActive ? 'פעיל' : 'לא פעיל'}
+              </span>
+            </td>
+            <td>
+              <div class="td-actions">
+                ${isActive
+                  ? `<button class="btn btn-sm btn-danger unsubscribe-btn" data-id="${escHtml(String(id))}" data-email="${escHtml(email)}" title="הסרת מנוי">🚫</button>`
+                  : `<button class="btn btn-sm btn-secondary reactivate-btn" data-id="${escHtml(String(id))}" data-email="${escHtml(email)}" title="הפעלה מחדש">✅</button>`}
+                <button class="btn btn-sm btn-secondary send-test-btn" data-email="${escHtml(email)}" title="שלח מייל בדיקה">📧</button>
+              </div>
+            </td>
+          </tr>`;
+        }).join('')}
+      </tbody>
+    </table>`;
+
+  container.querySelectorAll('.unsubscribe-btn').forEach(btn => {
+    btn.addEventListener('click', () => toggleSubscriberStatus(btn.dataset.id, btn.dataset.email, false));
+  });
+  container.querySelectorAll('.reactivate-btn').forEach(btn => {
+    btn.addEventListener('click', () => toggleSubscriberStatus(btn.dataset.id, btn.dataset.email, true));
+  });
+  container.querySelectorAll('.send-test-btn').forEach(btn => {
+    btn.addEventListener('click', () => sendTestEmail(btn.dataset.email));
+  });
+}
+
+document.getElementById('subscriber-search').addEventListener('input', renderSubscribersTable);
+document.getElementById('sub-status-filter').addEventListener('change', renderSubscribersTable);
+
+async function toggleSubscriberStatus(id, email, setActive) {
+  const action = setActive ? 'הפעלת' : 'הסרת';
+  const ok = await confirmDialog(`${action} מנוי`, `האם אתה בטוח שברצונך ל${action} את ${email}?`);
+  if (!ok) return;
+  try {
+    await apiGet({ action: 'updateSubscriber', id, status: setActive ? 'active' : 'inactive' });
+    const sub = allSubscribers.find(s =>
+      String(s.id || s.Id || s.ID || s.rowIndex || s.email || '') === String(id));
+    if (sub) {
+      ['status', 'Status', 'סטטוס'].forEach(k => {
+        if (sub[k] !== undefined) sub[k] = setActive ? 'active' : 'inactive';
+      });
+    }
+    renderSubscribersTable();
+    updateSendSubscriberCount();
+    toast(`המנוי ${setActive ? 'הופעל' : 'הוסר'} בהצלחה`, 'success');
+  } catch (e) {
+    toast('שגיאה בעדכון סטטוס: ' + e.message, 'error');
+  }
+}
+
+async function sendTestEmail(email) {
+  try {
+    await apiGet({ action: 'sendTest', email });
+    toast(`מייל בדיקה נשלח ל-${email}`, 'success');
+  } catch (e) {
+    toast('שגיאה בשליחת מייל בדיקה', 'error');
+  }
+}
+
+// Export CSV
+document.getElementById('export-csv-btn').addEventListener('click', () => {
+  if (!allSubscribers.length) { toast('אין מנויים לייצוא', 'info'); return; }
+  const headers = ['תאריך', 'שם', 'מייל', 'נושאים', 'סטטוס'];
+  const rows = allSubscribers.map(s => [
+    getSubField(s, 'date', 'Date', 'תאריך', 'createdAt'),
+    getSubField(s, 'name', 'Name', 'שם'),
+    getSubField(s, 'email', 'Email', 'מייל'),
+    getSubField(s, 'topics', 'Topics', 'נושאים'),
+    getSubField(s, 'status', 'Status', 'סטטוס')
+  ]);
+  const csv = '\uFEFF' + [headers, ...rows].map(r =>
+    r.map(cell => `"${String(cell).replace(/"/g, '""')}"`).join(',')
+  ).join('\n');
+  const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+  const link = document.createElement('a');
+  link.href = URL.createObjectURL(blob);
+  link.download = `subscribers_${new Date().toISOString().slice(0,10)}.csv`;
+  link.click();
+  toast('CSV יוצא בהצלחה', 'success');
+});
+
+// ─────────────────────────────────────────────────────────────────
+// TAB 4: SEND
+// ─────────────────────────────────────────────────────────────────
+function loadSendTab() {
+  renderPreviewArticles();
+  updateSendSubscriberCount();
+  renderHistory();
+}
+
+function renderPreviewArticles() {
+  const container = document.getElementById('preview-articles');
+  const latest = allArticles.slice(-5).reverse();
+  if (!latest.length) {
+    container.innerHTML = '<div class="empty-state"><div class="e-icon">📄</div>אין מאמרים עדיין</div>';
+    return;
+  }
+  container.innerHTML = latest.map(a => {
+    const title = getArticleField(a, 'title', 'Title', 'כותרת');
+    const source = getArticleField(a, 'source', 'Source', 'מקור');
+    const topic = getArticleField(a, 'topic', 'Topic', 'נושא');
+    const date = formatDate(getArticleField(a, 'date', 'Date', 'תאריך'));
+    return `
+    <div class="preview-item">
+      <div class="p-title">${escHtml(title)}</div>
+      <div class="p-meta">
+        <span class="badge badge-blue" style="font-size:10px">${escHtml(topic)}</span>
+        <span>${escHtml(source)}</span>
+        <span style="margin-right:auto">${escHtml(date)}</span>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function updateSendSubscriberCount() {
+  const active = allSubscribers.filter(s => {
+    const status = (getSubField(s, 'status', 'Status', 'סטטוס') || '').toLowerCase();
+    return !status || status === 'active' || status === 'פעיל';
+  }).length;
+
+  const el = document.getElementById('send-subscriber-count');
+  const btn = document.getElementById('send-now-btn');
+
+  if (allSubscribers.length === 0) {
+    el.textContent = '⏳ טוען מנויים...';
+  } else {
+    el.textContent = `ישלח ל-${active} מנויים פעילים`;
+    btn.disabled = active === 0;
+  }
+}
+
+document.getElementById('send-now-btn').addEventListener('click', async () => {
+  const active = allSubscribers.filter(s => {
+    const status = (getSubField(s, 'status', 'Status', 'סטטוס') || '').toLowerCase();
+    return !status || status === 'active' || status === 'פעיל';
+  }).length;
+
+  const ok = await confirmDialog('שליחת ניוזלטר', `בטוח לשלוח את הניוזלטר ל-${active} מנויים?`);
+  if (!ok) return;
+
+  const btn = document.getElementById('send-now-btn');
+  btn.disabled = true;
+  btn.innerHTML = '<span class="spinner" style="border-top-color:#000"></span> שולח...';
+
+  const logEntry = {
+    time: new Date().toISOString(),
+    subscribers: active,
+    status: 'pending'
+  };
+
+  try {
+    const res = await fetch(N8N_WEBHOOK, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ trigger: 'manual', timestamp: new Date().toISOString() })
+    });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    logEntry.status = 'success';
+    toast('הניוזלטר נשלח בהצלחה! 🎉', 'success', 5000);
+  } catch (e) {
+    logEntry.status = 'error';
+    logEntry.error = e.message;
+    toast('שגיאה בשליחת הניוזלטר: ' + e.message, 'error');
+  } finally {
+    btn.disabled = false;
+    btn.innerHTML = '<span>🚀</span> שלח ניוזלטר';
+    addToHistory(logEntry);
+    renderHistory();
+  }
+});
+
+function addToHistory(entry) {
+  const history = JSON.parse(localStorage.getItem('send_history') || '[]');
+  history.unshift(entry);
+  if (history.length > 20) history.length = 20;
+  localStorage.setItem('send_history', JSON.stringify(history));
+}
+
+function renderHistory() {
+  const history = JSON.parse(localStorage.getItem('send_history') || '[]');
+  const container = document.getElementById('send-history-log');
+  if (!history.length) {
+    container.innerHTML = '<div class="empty-state"><div class="e-icon">📭</div>אין שליחות עדיין</div>';
+    return;
+  }
+  container.innerHTML = history.map(h => {
+    const date = new Date(h.time).toLocaleString('he-IL', {
+      day: '2-digit', month: '2-digit', year: 'numeric',
+      hour: '2-digit', minute: '2-digit'
+    });
+    const statusLabel = h.status === 'success' ? 'נשלח בהצלחה' : h.status === 'error' ? 'שגיאה' : 'ממתין';
+    const cls = h.status === 'success' ? 'ok' : h.status === 'error' ? 'err' : '';
+    return `
+    <div class="history-item">
+      <div class="h-time">${date} · ${h.subscribers || 0} מנויים</div>
+      <div class="h-status ${cls}">${statusLabel}${h.error ? ': ' + h.error : ''}</div>
+    </div>`;
+  }).join('');
+}
+
+// ─────────────────────────────────────────────────────────────────
+// UTILS
+// ─────────────────────────────────────────────────────────────────
+function escHtml(str) {
+  return String(str || '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
+function formatDate(val) {
+  if (!val) return '—';
+  try {
+    const d = new Date(val);
+    if (isNaN(d.getTime())) return String(val);
+    return d.toLocaleDateString('he-IL', { day: '2-digit', month: '2-digit', year: '2-digit' });
+  } catch { return String(val); }
+}
+</script>
+</body>
+</html>

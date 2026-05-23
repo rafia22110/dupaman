@@ -1,0 +1,185 @@
+{
+  "name": "SSR News – Daily Newsletter Send",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "hours",
+              "triggerAtHour": 7
+            }
+          ]
+        }
+      },
+      "id": "trigger",
+      "name": "🕖 כל יום 7:00",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        180,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "readAllRows",
+        "documentId": {
+          "__rl": true,
+          "value": "1ypSdymFV-oufB1YEKzNii9uvm05FwdmzN8K0fBkZxKI",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "מנויים",
+          "mode": "name"
+        },
+        "options": {}
+      },
+      "id": "get_subs",
+      "name": "📋 קבלת מנויים",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4,
+      "position": [
+        400,
+        200
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "conditions": [
+            {
+              "leftValue": "={{ $json[\"סטטוס\"] }}",
+              "rightValue": "active",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ]
+        }
+      },
+      "id": "filter_active",
+      "name": "מנויים פעילים",
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 2,
+      "position": [
+        600,
+        200
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "readAllRows",
+        "documentId": {
+          "__rl": true,
+          "value": "1ypSdymFV-oufB1YEKzNii9uvm05FwdmzN8K0fBkZxKI",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "מאמרים",
+          "mode": "name"
+        },
+        "options": {}
+      },
+      "id": "get_articles",
+      "name": "📰 כתבות היום",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4,
+      "position": [
+        400,
+        420
+      ]
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "send-newsletter",
+        "responseMode": "lastNode",
+        "options": {
+          "allowedOrigins": "*"
+        }
+      },
+      "id": "manual_webhook",
+      "name": "🔔 Webhook – שליחה ידנית",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        180,
+        500
+      ]
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $json[\"מייל\"] }}",
+        "subject": "☀️ דופמין – הניוזלטר היומי שלך",
+        "emailType": "html",
+        "message": "={{ $json.emailHtml || 'שלום! הניוזלטר היומי שלך מדופמין.' }}"
+      },
+      "id": "send_email",
+      "name": "📧 שליחת Newsletter",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2,
+      "position": [
+        840,
+        200
+      ]
+    }
+  ],
+  "connections": {
+    "🕖 כל יום 7:00": {
+      "main": [
+        [
+          {
+            "node": "📋 קבלת מנויים",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "📰 כתבות היום",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "📋 קבלת מנויים": {
+      "main": [
+        [
+          {
+            "node": "מנויים פעילים",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "מנויים פעילים": {
+      "main": [
+        [
+          {
+            "node": "📧 שליחת Newsletter",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "🔔 Webhook – שליחה ידנית": {
+      "main": [
+        [
+          {
+            "node": "📋 קבלת מנויים",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  }
+}
