@@ -14,7 +14,7 @@
     {
       "parameters": {
         "operation": "lookup",
-        "documentId": { "__rl": true, "value": "PASTE_YOUR_GOOGLE_SHEET_ID_HERE", "mode": "id" },
+        "documentId": { "__rl": true, "value": "1ypSdymFV-oufB1YEKzNii9uvm05FwdmzN8K0fBkZxKI", "mode": "id" },
         "sheetName":  { "__rl": true, "value": "מנויים", "mode": "name" },
         "lookupColumn": "מייל",
         "lookupValue": "={{ $json.body.email }}"
@@ -35,7 +35,7 @@
     {
       "parameters": {
         "operation": "append",
-        "documentId": { "__rl": true, "value": "PASTE_YOUR_GOOGLE_SHEET_ID_HERE", "mode": "id" },
+        "documentId": { "__rl": true, "value": "1ypSdymFV-oufB1YEKzNii9uvm05FwdmzN8K0fBkZxKI", "mode": "id" },
         "sheetName":  { "__rl": true, "value": "מנויים", "mode": "name" },
         "columns": {
           "mappingMode": "defineBelow",

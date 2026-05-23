@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SSR News – הניוזלטר היומי שלך בעברית</title>
+  <meta name="description" content="SSR News – קבל כל יום ב-7:00 בבוקר מאמרים מסוכמים בעברית, משפט לחיים, ושאלה לחשיבה ישירות למייל שלך." />
+  <meta property="og:title" content="SSR News – הניוזלטר היומי שלך" />
+  <meta property="og:description" content="הניוזלטר היומי בעברית – מאמרים, השראה, ושאלות לחשיבה כל בוקר ב-7:00" />
+  <meta property="og:type" content="website" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800;900&family=Assistant:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <div class="nav-logo">
+        <span class="logo-icon">✦</span>
+        <span class="logo-text">SSR <span class="logo-accent">News</span></span>
+      </div>
+      <div class="nav-links">
+        <a href="#about">אודות</a>
+        <a href="#features">מה תקבל</a>
+        <a href="#samples">דוגמאות</a>
+        <a href="#subscribe" class="nav-cta">הרשמה חינם</a>
+      </div>
+      <button class="hamburger" id="hamburger" aria-label="תפריט">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="#about">אודות</a>
+      <a href="#features">מה תקבל</a>
+      <a href="#samples">דוגמאות</a>
+      <a href="#subscribe">הרשמה חינם</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="hero-bg">
+      <div class="orb orb-1"></div>
+      <div class="orb orb-2"></div>
+      <div class="orb orb-3"></div>
+      <div class="grid-lines"></div>
+    </div>
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span class="badge-dot"></span>
+        שידור חי • כל יום ב-7:00 ☀️
+      </div>
+      <h1 class="hero-title">
+        הניוזלטר שמכניס<br/>
+        <span class="gradient-text">את העולם לתוך הבוקר</span><br/>
+        שלך
+      </h1>
+      <p class="hero-subtitle">
+        מאמרים מסוכמים בעברית, משפט השראה, ושאלה לחשיבה —<br/>
+        ישירות למייל שלך, כל יום ב-7:00 בבוקר. בחינם.
+      </p>
+      <div class="hero-actions">
+        <form class="hero-form" id="heroForm">
+          <input type="text" id="heroName" placeholder="השם שלך" required />
+          <input type="email" id="heroEmail" placeholder="כתובת המייל שלך" required />
+          <button type="submit" class="btn-primary">
+            <span>הצטרף עכשיו</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+        </form>
+        <p class="hero-note">✓ חינם לחלוטין &nbsp;|&nbsp; ✓ ביטול בכל עת &nbsp;|&nbsp; ✓ ללא ספאם</p>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><span class="stat-num">5,000+</span><span class="stat-label">מנויים פעילים</span></div>
+        <div class="stat-divider"></div>
+        <div class="stat"><span class="stat-num">365</span><span class="stat-label">גיליונות בשנה</span></div>
+        <div class="stat-divider"></div>
+        <div class="stat"><span class="stat-num">7:00</span><span class="stat-label">כל בוקר</span></div>
+      </div>
+    </div>
+    <div class="scroll-indicator">
+      <div class="scroll-wheel"></div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about" id="about">
+    <div class="container">
+      <div class="section-tag">מי אנחנו</div>
+      <h2 class="section-title">הניוזלטר שחיכית לו</h2>
+      <p class="section-subtitle">
+        SSR News נוצר עבור אנשים עסוקים שרוצים להישאר מעודכנים — בלי לבזבז שעות על סקרולינג.
+        אנחנו עושים את העבודה עבורך.
+      </p>
+      <div class="about-grid">
+        <div class="about-card">
+          <div class="about-icon">🌍</div>
+          <h3>חדשות עולמיות</h3>
+          <p>בוחרים את הסיפורים הכי חשובים מהעולם ומביאים אותם אליך מסוכמים וברורים.</p>
+        </div>
+        <div class="about-card">
+          <div class="about-icon">🧠</div>
+          <h3>תוכן מעמיק</h3>
+          <p>לא רק כותרות — אנחנו מספקים הקשר, ניתוח, ותובנות שיעזרו לך להבין את התמונה הגדולה.</p>
+        </div>
+        <div class="about-card">
+          <div class="about-icon">⚡</div>
+          <h3>מהיר ויעיל</h3>
+          <p>10 דקות קריאה בלבד. פרפקט לקפה הבוקר שלך — בדיוק כשאתה צריך אותו.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="features" id="features">
+    <div class="container">
+      <div class="section-tag">מה בניוזלטר</div>
+      <h2 class="section-title">כל מה שצריך, <span class="gradient-text">בגיליון אחד</span></h2>
+      <div class="features-layout">
+        <div class="feature-main">
+          <div class="feature-card featured">
+            <div class="feature-num">01</div>
+            <div class="feature-icon big">📰</div>
+            <h3>מאמרים מסוכמים בעברית</h3>
+            <p>3–5 סיפורים חשובים מהעולם, מסוכמים בצורה ברורה ותמציתית. תמיד בעברית, תמיד עם הקונטקסט שחסר.</p>
+          </div>
+        </div>
+        <div class="feature-side">
+          <div class="feature-card">
+            <div class="feature-num">02</div>
+            <div class="feature-icon">💬</div>
+            <h3>משפט לחיים</h3>
+            <p>ציטוט יומי שיניע, יעורר מחשבה, ויצבע את היום שלך בצבע אחר.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-num">03</div>
+            <div class="feature-icon">❓</div>
+            <h3>שאלה לחשיבה</h3>
+            <p>שאלה אחת שתגרום לך לעצור, לחשוב, ולגדול — בדיוק מה שהבוקר הטוב צריך.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-num">04</div>
+            <div class="feature-icon">☀️</div>
+            <h3>כל יום ב-7:00</h3>
+            <p>עקבי, מדויק, ותמיד בזמן. כמו שעון מעורר — רק הרבה יותר נעים.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SAMPLE -->
+  <section class="samples" id="samples">
+    <div class="container">
+      <div class="section-tag">דוגמה</div>
+      <h2 class="section-title">ככה נראה הניוזלטר שלך</h2>
+      <div class="email-preview">
+        <div class="email-window">
+          <div class="email-header">
+            <div class="window-dots">
+              <span class="dot red"></span>
+              <span class="dot yellow"></span>
+              <span class="dot green"></span>
+            </div>
+            <div class="email-address-bar">📧 SSR News • גיליון יומי</div>
+          </div>
+          <div class="email-body">
+            <div class="email-logo">✦ SSR News</div>
+            <div class="email-date">יום חמישי, 12 במרץ 2026 • 7:00 בבוקר</div>
+            <h2 class="email-greeting">שלום <span class="highlight-name">אריאל</span>! 👋</h2>
+            <p class="email-intro">הנה הגיליון הבוקרי שלך — 3 סיפורים, משפט ושאלה. קדימה! ☕</p>
+            
+            <div class="email-section">
+              <div class="section-label">📰 מה קורה בעולם</div>
+              <div class="news-item">
+                <h4>הבינה המלאכותית שוברת שיאים חדשים</h4>
+                <p>מודלים חדשים הודגמו השבוע עם יכולות שלא נראו קודם לכן — ממשק פשוט לציבור הרחב עשוי להגיע כבר ברבעון הבא.</p>
+              </div>
+              <div class="news-item">
+                <h4>שינויי אקלים: עוד נתונים מדאיגים</h4>
+                <p>דוח חדש מציג עלייה בטמפרטורות הממוצעות הגלובליות — המדענים קוראים לפעולה מיידית.</p>
+              </div>
+            </div>
+
+            <div class="email-section quote-section">
+              <div class="section-label">💬 משפט לחיים</div>
+              <blockquote>"ההזדמנות הגדולה ביותר בחייך היא הרגע הנוכחי."</blockquote>
+              <cite>— לאו צה</cite>
+            </div>
+
+            <div class="email-section think-section">
+              <div class="section-label">❓ שאלה לחשיבה</div>
+              <p class="think-q">מה דבר אחד שאתה יכול לעשות היום שיגרום לגרסה העתידית שלך להגיד תודה?</p>
+            </div>
+
+            <div class="email-footer-inner">
+              <p>שיהיה לך יום מדהים! 🌟</p>
+              <p class="small">לביטול הרשמה <a href="#">לחץ כאן</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="testimonials" id="testimonials">
+    <div class="container">
+      <div class="section-tag">מה אומרים המנויים</div>
+      <h2 class="section-title">אלפים כבר מנויים</h2>
+      <div class="testimonials-grid">
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <p>"הניוזלטר הכי טוב שאני מקבלת. מתחיל את הבוקר שלי בצורה מושלמת — מידע + השראה."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">ר</div>
+            <div>
+              <strong>רועי כהן</strong>
+              <span>מנהל מוצר, תל אביב</span>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card featured-testimonial">
+          <div class="stars">★★★★★</div>
+          <p>"סוף סוף ניוזלטר שאני מחכה לו כל בוקר! הסיכומים מדויקים, הציטוטים מעוררי השראה. ממליץ בחום!"</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">נ</div>
+            <div>
+              <strong>נועה לוי</strong>
+              <span>יזמת, ירושלים</span>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <p>"חסכתי לפחות שעה ביום על חדשות. SSR News נותן לי הכל בעשר דקות קריאה."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">א</div>
+            <div>
+              <strong>אמיר ישראלי</strong>
+              <span>מהנדס תוכנה, חיפה</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SUBSCRIBE -->
+  <section class="subscribe" id="subscribe">
+    <div class="subscribe-bg">
+      <div class="orb orb-4"></div>
+      <div class="orb orb-5"></div>
+    </div>
+    <div class="container">
+      <div class="subscribe-box">
+        <div class="sub-badge">🎁 חינם לחלוטין</div>
+        <h2>מוכן להתחיל את הבוקר<br/><span class="gradient-text">בצורה אחרת?</span></h2>
+        <p>הצטרף ל-5,000+ מנויים שמקבלים את הגיליון כל יום ב-7:00 בבוקר.</p>
+        <form class="subscribe-form" id="subscribeForm">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="subName">השם שלך</label>
+              <input type="text" id="subName" placeholder="אריאל" required />
+            </div>
+            <div class="form-group">
+              <label for="subEmail">כתובת המייל</label>
+              <input type="email" id="subEmail" placeholder="ariel@example.com" required />
+            </div>
+          </div>
+          <button type="submit" class="btn-primary big">
+            <span>הרשמה חינם</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+          <p class="form-note">✓ ללא כרטיס אשראי &nbsp;|&nbsp; ✓ ביטול בכל עת &nbsp;|&nbsp; ✓ ללא ספאם</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- SUCCESS MESSAGE -->
+  <div class="success-overlay" id="successOverlay">
+    <div class="success-modal">
+      <div class="success-icon">🎉</div>
+      <h3 id="successTitle">שלום, חבר!</h3>
+      <p>נרשמת בהצלחה ל-SSR News – הניוזלטר היומי שלך.<br/>תקבל ניוזלטר כל יום ב-7:00 בבוקר עם מאמרים מסוכמים בעברית, משפט לחיים, ושאלה לחשיבה.</p>
+      <button class="btn-primary" onclick="closeSuccess()">מעולה! 🚀</button>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="nav-logo">
+            <span class="logo-icon">✦</span>
+            <span class="logo-text">SSR <span class="logo-accent">News</span></span>
+          </div>
+          <p>הניוזלטר היומי בעברית שיעשה לך את הבוקר. חינם, מדויק, ומעורר השראה.</p>
+        </div>
+        <div class="footer-links">
+          <h4>ניווט</h4>
+          <a href="#home">בית</a>
+          <a href="#about">אודות</a>
+          <a href="#features">מה תקבל</a>
+          <a href="#samples">דוגמאות</a>
+        </div>
+        <div class="footer-links">
+          <h4>מדיניות</h4>
+          <a href="privacy.html">מדיניות פרטיות</a>
+          <a href="terms.html">תנאי שימוש</a>
+          <a href="unsubscribe.html">ביטול הרשמה</a>
+        </div>
+        <div class="footer-contact">
+          <h4>צור קשר</h4>
+          <p>📧 hello@alveare-ai.com</p>
+          <div class="social-links">
+            <a href="#" class="social-btn" aria-label="Twitter">𝕏</a>
+            <a href="#" class="social-btn" aria-label="LinkedIn">in</a>
+            <a href="#" class="social-btn" aria-label="Instagram">📷</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 SSR News by Alveare AI · כל הזכויות שמורות</p>
+        <p>נבנה באהבה 🇮🇱</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- SUCCESS PAGE -->
+  <script src="script.js"></script>
+</body>
+</html>
