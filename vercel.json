@@ -1,5 +1,7 @@
 {
+  "outputDirectory": ".",
+  "cleanUrls": true,
   "rewrites": [
-    { "source": "/api/sheets", "destination": "/api/sheets/index.js" }
+    { "source": "/a/:id", "destination": "/api/article?id=:id" }
   ]
 }
