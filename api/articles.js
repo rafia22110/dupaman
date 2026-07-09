@@ -36,6 +36,32 @@ const SOURCES = [
   { name: 'New Scientist',        topic: 'science',      topicHe: 'מדע',          sub: 'New Scientist',    url: 'https://www.newscientist.com/feed/home/' },
   { name: 'Quanta Magazine',      topic: 'science',      topicHe: 'מדע',          sub: 'Quanta',           url: 'https://api.quantamagazine.org/feed/' },
   { name: 'Reddit r/science',     topic: 'science',      topicHe: 'מדע',          sub: 'Reddit',           url: 'https://www.reddit.com/r/science/.rss' },
+
+  // ─── Education ──────────────────────────────────────────────
+  { name: 'Edutopia',             topic: 'education',    topicHe: 'חינוך',        sub: 'Edutopia',         url: 'https://www.edutopia.org/feed' },
+  { name: 'OECD Education',       topic: 'education',    topicHe: 'חינוך',        sub: 'OECD',             url: 'https://oecdedutoday.com/feed/' },
+  { name: 'Harvard EdCast',       topic: 'education',    topicHe: 'חינוך',        sub: 'Harvard',          url: 'https://www.gse.harvard.edu/rss.xml' },
+  { name: 'EdWeek',               topic: 'education',    topicHe: 'חינוך',        sub: 'Education Week',   url: 'https://www.edweek.org/feed' },
+
+  // ─── Health ─────────────────────────────────────────────────
+  { name: 'Harvard Health',       topic: 'health',       topicHe: 'בריאות',       sub: 'Harvard',          url: 'https://www.health.harvard.edu/blog/feed' },
+  { name: 'NIH Research',         topic: 'health',       topicHe: 'בריאות',       sub: 'NIH',              url: 'https://www.nih.gov/news-releases/feed.xml' },
+  { name: 'WHO News',             topic: 'health',       topicHe: 'בריאות',       sub: 'WHO',              url: 'https://www.who.int/rss-feeds/news-english.xml' },
+  { name: 'New Scientist Health', topic: 'health',       topicHe: 'בריאות',       sub: 'בריאות',           url: 'https://www.newscientist.com/subject/health/feed/' },
+
+  // ─── Guides / Practical ─────────────────────────────────────
+  { name: 'FreeCodeCamp',         topic: 'guides',       topicHe: 'מדריכים',      sub: 'FreeCodeCamp',     url: 'https://www.freecodecamp.org/news/rss/' },
+  { name: 'Dev.to',               topic: 'guides',       topicHe: 'מדריכים',      sub: 'Dev.to',           url: 'https://dev.to/feed' },
+  { name: 'HackerNews',           topic: 'guides',       topicHe: 'מדריכים',      sub: 'HN',               url: 'https://hnrss.org/frontpage' },
+
+  // ─── AI Sub-topics ──────────────────────────────────────────
+  { name: 'Hugging Face Blog',    topic: 'ai',           topicHe: 'AI',           sub: 'HuggingFace',      url: 'https://huggingface.co/blog/feed.xml' },
+  { name: 'LangChain Blog',       topic: 'ai',           topicHe: 'AI',           sub: 'LangChain',        url: 'https://blog.langchain.dev/rss/' },
+  { name: 'Anthropic Blog',       topic: 'ai',           topicHe: 'AI',           sub: 'Anthropic',        url: 'https://www.anthropic.com/feed.xml' },
+
+  // ─── LLM / Agents / RAG ─────────────────────────────────────
+  { name: 'MLOps.community',      topic: 'guides',       topicHe: 'MLOps',        sub: 'MLOps',            url: 'https://mlops.community/feed/' },
+  { name: 'Weights & Biases',     topic: 'guides',       topicHe: 'MLOps',        sub: 'W&B',              url: 'https://wandb.ai/company/blog/feed.xml' },
 ];
 
 // Timeout per source

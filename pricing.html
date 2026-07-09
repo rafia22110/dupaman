@@ -189,6 +189,16 @@ function renderPlans() {
 }
 
 async function subscribe(tier) {
+  // Ask for email if not saved
+  const user = JSON.parse(localStorage.getItem('dupaman_user') || '{}');
+  if (!user.email) {
+    const email = prompt('הכנס אימייל לקבלת הקורסים:');
+    if (!email) return;
+    user.email = email;
+    localStorage.setItem('dupaman_user', JSON.stringify(user));
+    localStorage.setItem('dupaman_email', email);
+  }
+
   // Show PayPal hosted button
   const btn = event.target
   btn.style.display = 'none'
