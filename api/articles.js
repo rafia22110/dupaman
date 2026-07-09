@@ -38,14 +38,11 @@ const SOURCES = [
   { name: 'Reddit r/science',     topic: 'science',      topicHe: 'מדע',          sub: 'Reddit',           url: 'https://www.reddit.com/r/science/.rss' },
 
   // ─── Education ──────────────────────────────────────────────
-  { name: 'Edutopia',             topic: 'education',    topicHe: 'חינוך',        sub: 'Edutopia',         url: 'https://www.edutopia.org/feed' },
+  { name: 'Edutopia',             topic: 'education',    topicHe: 'חינוך',        sub: 'Edutopia',         url: 'https://www.edutopia.org/rss.xml' },
   { name: 'OECD Education',       topic: 'education',    topicHe: 'חינוך',        sub: 'OECD',             url: 'https://oecdedutoday.com/feed/' },
-  { name: 'Harvard EdCast',       topic: 'education',    topicHe: 'חינוך',        sub: 'Harvard',          url: 'https://www.gse.harvard.edu/rss.xml' },
   { name: 'EdWeek',               topic: 'education',    topicHe: 'חינוך',        sub: 'Education Week',   url: 'https://www.edweek.org/feed' },
 
   // ─── Health ─────────────────────────────────────────────────
-  { name: 'Harvard Health',       topic: 'health',       topicHe: 'בריאות',       sub: 'Harvard',          url: 'https://www.health.harvard.edu/blog/feed' },
-  { name: 'NIH Research',         topic: 'health',       topicHe: 'בריאות',       sub: 'NIH',              url: 'https://www.nih.gov/news-releases/feed.xml' },
   { name: 'WHO News',             topic: 'health',       topicHe: 'בריאות',       sub: 'WHO',              url: 'https://www.who.int/rss-feeds/news-english.xml' },
   { name: 'New Scientist Health', topic: 'health',       topicHe: 'בריאות',       sub: 'בריאות',           url: 'https://www.newscientist.com/subject/health/feed/' },
 
