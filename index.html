@@ -257,6 +257,9 @@
       <button class="lang-btn" data-lang="fr" title="Français">FR</button>
       <button class="lang-btn" data-lang="es" title="Español">ES</button>
     </div>
+    <a class="nav-item" href="/pricing.html">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><span data-i18n="nav-pricing">מנויים</span>
+    </a>
     <button class="modern-btn" popovertarget="info-modal" title="HTML מודרני">⚡ HTML מודרני</button>
     <div id="nav-auth-area">
       <button class="nav-auth nav-item" onclick="openAuth('register')" data-i18n="nav-auth">כניסה / הרשמה</button>
@@ -711,7 +714,7 @@ function toggleCheck(el) {
   el.querySelector('input').checked = el.classList.contains('checked');
 }
 
-function handleRegister() {
+async function handleRegister() {
   const name = document.getElementById('reg-name').value.trim();
   const email = document.getElementById('reg-email').value.trim();
   const errEl = document.getElementById('reg-error');
@@ -725,14 +728,47 @@ function handleRegister() {
     errEl.style.display = 'block'; return;
   }
 
-  // No backend — this is a static site. Just show a friendly thank-you.
   const topics = [...document.querySelectorAll('#topics-grid input:checked')].map(i => i.value);
-  currentUser = { name, email, topics };
-  updateNavAuth();
-  sucEl.textContent = `✅ תודה${name ? ', ' + name : ''}! נרשמת בהצלחה.`;
-  sucEl.style.display = 'block';
-  btn.style.display = 'none';
-  setTimeout(closeAuth, 3000);
+
+  try {
+    const res = await fetch('/api/subscribe', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name, email, topics }),
+    });
+    const data = await res.json();
+
+    if (data.ok) {
+      currentUser = { name, email, topics };
+      localStorage.setItem('dupaman_user', JSON.stringify(currentUser));
+      updateNavAuth();
+      sucEl.textContent = '✅ ' + (data.message || 'נרשמת בהצלחה!');
+      sucEl.style.display = 'block';
+      btn.style.display = 'none';
+      setTimeout(closeAuth, 3000);
+    } else if (data.alreadyRegistered) {
+      // Re-activate
+      currentUser = { name, email, topics };
+      localStorage.setItem('dupaman_user', JSON.stringify(currentUser));
+      updateNavAuth();
+      sucEl.textContent = '✅ ' + (data.message || 'ברוך שובך!');
+      sucEl.style.display = 'block';
+      btn.style.display = 'none';
+      setTimeout(closeAuth, 3000);
+    } else {
+      errEl.textContent = data.error || 'שגיאה בהרשמה. נסה שוב.';
+      errEl.style.display = 'block';
+    }
+  } catch (e) {
+    // Offline fallback — register locally
+    currentUser = { name, email, topics };
+    localStorage.setItem('dupaman_user', JSON.stringify(currentUser));
+    updateNavAuth();
+    sucEl.textContent = '✅ תודה' + (name ? ', ' + name : '') + '! נרשמת בהצלחה.';
+    sucEl.style.display = 'block';
+    btn.style.display = 'none';
+    setTimeout(closeAuth, 3000);
+  }
 }
 
 function handleLogin() {
@@ -770,6 +806,7 @@ const I18N = {
     'logo-beta': 'BETA · ניוזלטר יומי',
     'nav-feed': 'פיד',
     'nav-saved': 'שמורים',
+    'nav-pricing': 'מנויים',
     'nav-auth': 'כניסה / הרשמה',
     'search-placeholder': 'חפש מאמרים, נושאים, מקורות...',
     'sub-label': 'סנן לפי תת-נושא',
@@ -804,6 +841,7 @@ const I18N = {
     'logo-beta': 'BETA · Daily Newsletter',
     'nav-feed': 'Feed',
     'nav-saved': 'Saved',
+    'nav-pricing': 'Pricing',
     'nav-auth': 'Sign In / Sign Up',
     'search-placeholder': 'Search articles, topics, sources...',
     'sub-label': 'Filter by sub-topic',
@@ -838,6 +876,7 @@ const I18N = {
     'logo-beta': 'BETA · Newsletter Quotidienne',
     'nav-feed': 'Fil',
     'nav-saved': 'Sauvegardés',
+    'nav-pricing': 'Tarifs',
     'nav-auth': 'Connexion / Inscription',
     'search-placeholder': 'Rechercher articles, sujets, sources...',
     'sub-label': 'Filtrer par sous-thème',
@@ -872,6 +911,7 @@ const I18N = {
     'logo-beta': 'BETA · Newsletter Diario',
     'nav-feed': 'Feed',
     'nav-saved': 'Guardados',
+    'nav-pricing': 'Precios',
     'nav-auth': 'Entrar / Registrarse',
     'search-placeholder': 'Buscar artículos, temas, fuentes...',
     'sub-label': 'Filtrar por subtema',

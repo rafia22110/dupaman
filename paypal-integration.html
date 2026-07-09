@@ -1,0 +1,51 @@
+<script src="https://www.paypal.com/sdk/js?client-id=PAYPAL_CLIENT_ID_HERE&vault=true&intent=subscription" data-sdk-integration-source="button-factory"></script>
+<script>
+// PayPal Subscription Buttons for dupaman
+document.addEventListener('DOMContentLoaded', function() {
+    // Monthly subscription button
+    const monthlyContainer = document.getElementById('paypal-monthly');
+    if (monthlyContainer && typeof paypal !== 'undefined') {
+        paypal.Buttons({
+            style: { shape: 'rect', color: 'gold', layout: 'vertical', label: 'subscribe' },
+            createSubscription: function(data, actions) {
+                return actions.subscription.create({ plan_id: 'PAYPAL_PLAN_MONTHLY_ID' });
+            },
+            onApprove: function(data, actions) {
+                fetch('/api/subscribe', {
+                    method: 'POST',
+                    headers: {'Content-Type':'application/json'},
+                    body: JSON.stringify({
+                        email: localStorage.getItem('dupaman_email') || '',
+                        subscription_id: data.subscriptionID,
+                        plan: 'premium',
+                        provider: 'paypal'
+                    })
+                }).then(() => window.location.href = '/success.html');
+            }
+        }).render('#paypal-monthly');
+    }
+
+    // Yearly subscription button  
+    const yearlyContainer = document.getElementById('paypal-yearly');
+    if (yearlyContainer && typeof paypal !== 'undefined') {
+        paypal.Buttons({
+            style: { shape: 'rect', color: 'gold', layout: 'vertical', label: 'subscribe' },
+            createSubscription: function(data, actions) {
+                return actions.subscription.create({ plan_id: 'PAYPAL_PLAN_YEARLY_ID' });
+            },
+            onApprove: function(data, actions) {
+                fetch('/api/subscribe', {
+                    method: 'POST',
+                    headers: {'Content-Type':'application/json'},
+                    body: JSON.stringify({
+                        email: localStorage.getItem('dupaman_email') || '',
+                        subscription_id: data.subscriptionID,
+                        plan: 'annual',
+                        provider: 'paypal'
+                    })
+                }).then(() => window.location.href = '/success.html');
+            }
+        }).render('#paypal-yearly');
+    }
+});
+</script>

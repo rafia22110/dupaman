@@ -1,0 +1,438 @@
+{
+  "description": "מקורות ידע מאומתים לפי נושאים — דופמין ניוזלטר",
+  "lastUpdated": "2026-07-09",
+  "topics": {
+    "ai": {
+      "label": "בינה מלאכותית",
+      "color": "#00ff88",
+      "sources": [
+        {
+          "name": "MIT Technology Review — AI",
+          "url": "https://www.technologyreview.com/topic/artificial-intelligence/",
+          "description": "סקירה טכנולוגית מבית MIT, מהמקורות האמינים בעולם לחדשות AI",
+          "category": "journalism",
+          "lang": "en"
+        },
+        {
+          "name": "Google AI Blog",
+          "url": "https://ai.googleblog.com/",
+          "description": "הבלוג הרשמי של Google AI — מחקר, מוצרים ופריצות דרך",
+          "category": "research",
+          "lang": "en"
+        },
+        {
+          "name": "OpenAI Blog",
+          "url": "https://openai.com/blog/",
+          "description": "עדכונים רשמיים מ-OpenAI, כולל GPT, DALL·E ו-Sora",
+          "category": "research",
+          "lang": "en"
+        },
+        {
+          "name": "DeepMind Blog",
+          "url": "https://deepmind.google/blog/",
+          "description": "מחקר מתקדם בבינה מלאכותית מ-Google DeepMind",
+          "category": "research",
+          "lang": "en"
+        },
+        {
+          "name": "Stanford AI Lab (SAIL)",
+          "url": "https://ai.stanford.edu/",
+          "description": "מעבדת הבינה המלאכותית של אוניברסיטת סטנפורד",
+          "category": "academic",
+          "lang": "en"
+        },
+        {
+          "name": "arXiv — AI (cs.AI)",
+          "url": "https://arxiv.org/list/cs.AI/recent",
+          "description": "מאגר המחקרים המוביל בעולם — מאמרי AI חדשים מדי יום",
+          "category": "academic",
+          "lang": "en"
+        },
+        {
+          "name": "Nature Machine Intelligence",
+          "url": "https://www.nature.com/natmachineintell/",
+          "description": "כתב עת מדעי מוביל בנושא בינה מלאכותית ולמידת מכונה",
+          "category": "academic",
+          "lang": "en"
+        }
+      ]
+    },
+    "psychology": {
+      "label": "פסיכולוגיה",
+      "color": "#a855f7",
+      "sources": [
+        {
+          "name": "American Psychological Association (APA)",
+          "url": "https://www.apa.org/news",
+          "description": "הארגון המקצועי המוביל בעולם לפסיכולוגיה — מחקרים, סטנדרטים ומדיניות",
+          "category": "professional",
+          "lang": "en"
+        },
+        {
+          "name": "PsyPost",
+          "url": "https://www.psypost.org/",
+          "description": "כלי תקשורת המסכם מחקרים פסיכולוגיים עדכניים",
+          "category": "journalism",
+          "lang": "en"
+        },
+        {
+          "name": "Frontiers in Psychology",
+          "url": "https://www.frontiersin.org/journals/psychology",
+          "description": "כתב עת אקדמי בגישה פתוחה לפסיכולוגיה",
+          "category": "academic",
+          "lang": "en"
+        },
+        {
+          "name": "PubMed — Psychology",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/",
+          "description": "מאגר המאמרים הרפואי הלאומי של ארה\"ב — כולל פסיכולוגיה ומדעי המוח",
+          "category": "academic",
+          "lang": "en"
+        },
+        {
+          "name": "Greater Good Magazine (UC Berkeley)",
+          "url": "https://greatergood.berkeley.edu/",
+          "description": "כתב עת מאוניברסיטת ברקלי על חמלה, אושר וקיימות חברתית",
+          "category": "journalism",
+          "lang": "en"
+        },
+        {
+          "name": "Psychology Today",
+          "url": "https://www.psychologytoday.com/",
+          "description": "כתב עת פופולרי לפסיכולוגיה מבוססת מחקר",
+          "category": "journalism",
+          "lang": "en"
+        }
+      ]
+    },
+    "neuroscience": {
+      "label": "מדעי המוח",
+      "color": "#ec4899",
+      "sources": [
+        {
+          "name": "Neuroscience News",
+          "url": "https://neurosciencenews.com/",
+          "description": "כלי תקשורת המסכם מחקרים נוירולוגיים מהאוניברסיטאות המובילות",
+          "category": "journalism",
+          "lang": "en"
+        },
+        {
+          "name": "Nature Neuroscience",
+          "url": "https://www.nature.com/neuro/",
+          "description": "כתב העת המוביל בעולם למדעי המוח מטעם Nature",
+          "category": "academic",
+          "lang": "en"
+        },
+        {
+          "name": "Journal of Neuroscience (JNeurosci)",
+          "url": "https://www.jneurosci.org/",
+          "description": "כתב העת הרשמי של Society for Neuroscience",
+          "category": "academic",
+          "lang": "en"
+        },
+        {
+          "name": "The BRAIN Initiative",
+          "url": "https://braininitiative.nih.gov/",
+          "description": "פרויקט המוח הלאומי של ארה\"ב — מידע ומחקרים פורצי דרך",
+          "category": "government",
+          "lang": "en"
+        },
+        {
+          "name": "Max Planck Institute for Brain Research",
+          "url": "https://brain.mpg.de/",
+          "description": "מכון מקס פלאנק לחקר המוח — מחקר בסיסי ומתקדם",
+          "category": "academic",
+          "lang": "en"
+        }
+      ]
+    },
+    "education": {
+      "label": "חינוך",
+      "color": "#fbbf24",
+      "sources": [
+        {
+          "name": "Edutopia",
+          "url": "https://www.edutopia.org/",
+          "description": "פלטפורמה חינוכית מבית George Lucas Educational Foundation",
+          "category": "journalism",
+          "lang": "en"
+        },
+        {
+          "name": "OECD Education",
+          "url": "https://www.oecd.org/en/topics/education.html",
+          "description": "מחקרים ונתוני חינוך בינלאומיים מה-OECD",
+          "category": "government",
+          "lang": "en"
+        },
+        {
+          "name": "Harvard Graduate School of Education",
+          "url": "https://www.gse.harvard.edu/",
+          "description": "בית הספר לחינוך של הרווארד — USABLE Knowledge Lab",
+          "category": "academic",
+          "lang": "en"
+        },
+        {
+          "name": "Education Week",
+          "url": "https://www.edweek.org/",
+          "description": "כלי תקשורת מוביל על חדשות ומדיניות חינוך בארה\"ב",
+          "category": "journalism",
+          "lang": "en"
+        },
+        {
+          "name": "International Journal of Educational Technology",
+          "url": "https://www.edtechjournal.org/",
+          "description": "כתב עת אקדמי על טכנולוגיה בחינוך",
+          "category": "academic",
+          "lang": "en"
+        },
+        {
+          "name": "משרד החינוך — ישראל",
+          "url": "https://edu.gov.il/",
+          "description": "האתר הרשמי של משרד החינוך הישראלי — תוכניות, רפורמות ועדכונים",
+          "category": "government",
+          "lang": "he"
+        }
+      ]
+    },
+    "health": {
+      "label": "בריאות",
+      "color": "#ef4444",
+      "sources": [
+        {
+          "name": "Harvard Health Publishing",
+          "url": "https://www.health.harvard.edu/",
+          "description": "מידע בריאותי מבית הספר לרפואה של הרווארד",
+          "category": "academic",
+          "lang": "en"
+        },
+        {
+          "name": "World Health Organization (WHO)",
+          "url": "https://www.who.int/news",
+          "description": "ארגון הבריאות העולמי — מידע רשמי מבוסס מחקר",
+          "category": "government",
+          "lang": "en"
+        },
+        {
+          "name": "Mayo Clinic",
+          "url": "https://www.mayoclinic.org/",
+          "description": "אחד המרכזים הרפואיים המובילים בעולם — מידע מהימן",
+          "category": "medical",
+          "lang": "en"
+        },
+        {
+          "name": "NIH — National Institutes of Health",
+          "url": "https://www.nih.gov/news-events",
+          "description": "המכונים הלאומיים לבריאות של ארה\"ב",
+          "category": "government",
+          "lang": "en"
+        },
+        {
+          "name": "The Lancet",
+          "url": "https://www.thelancet.com/",
+          "description": "כתב העת הרפואי המוביל בעולם",
+          "category": "academic",
+          "lang": "en"
+        },
+        {
+          "name": "New England Journal of Medicine (NEJM)",
+          "url": "https://www.nejm.org/",
+          "description": "כתב העת הרפואי הוותיק והמוביל בארה\"ב",
+          "category": "academic",
+          "lang": "en"
+        }
+      ]
+    },
+    "science": {
+      "label": "מדע",
+      "color": "#22d3ee",
+      "sources": [
+        {
+          "name": "Nature",
+          "url": "https://www.nature.com/",
+          "description": "כתב העת המדעי המוביל בעולם",
+          "category": "academic",
+          "lang": "en"
+        },
+        {
+          "name": "Science Magazine",
+          "url": "https://www.science.org/",
+          "description": "כתב העת של AAAS — מהחשובים במדע",
+          "category": "academic",
+          "lang": "en"
+        },
+        {
+          "name": "Quanta Magazine",
+          "url": "https://www.quantamagazine.org/",
+          "description": "כתב עת מדעי פופולרי מבית Simons Foundation — סיקור מעמיק של פיזיקה, ביולוגיה ומתמטיקה",
+          "category": "journalism",
+          "lang": "en"
+        },
+        {
+          "name": "Live Science",
+          "url": "https://www.livescience.com/",
+          "description": "כלי תקשורת מדעי פופולרי",
+          "category": "journalism",
+          "lang": "en"
+        },
+        {
+          "name": "New Scientist",
+          "url": "https://www.newscientist.com/",
+          "description": "כתב עת מדעי פופולרי בריטי",
+          "category": "journalism",
+          "lang": "en"
+        },
+        {
+          "name": "PubMed Central (PMC)",
+          "url": "https://www.ncbi.nlm.nih.gov/pmc/",
+          "description": "מאגר המאמרים המדעיים החופשי של NIH",
+          "category": "academic",
+          "lang": "en"
+        }
+      ]
+    },
+    "physics": {
+      "label": "פיזיקה",
+      "color": "#6366f1",
+      "sources": [
+        {
+          "name": "Phys.org — Physics News",
+          "url": "https://phys.org/rss-feed/physics-news/",
+          "description": "כלי תקשורת המסקר פיזיקה עדכנית",
+          "category": "journalism",
+          "lang": "en"
+        },
+        {
+          "name": "CERN Courier",
+          "url": "https://cerncourier.com/",
+          "description": "כתב העת הרשמי של CERN — פיזיקת חלקיקים",
+          "category": "research",
+          "lang": "en"
+        },
+        {
+          "name": "Physics Today (AIP)",
+          "url": "https://physicstoday.scitation.org/",
+          "description": "כתב עת של המכון האמריקאי לפיזיקה",
+          "category": "academic",
+          "lang": "en"
+        },
+        {
+          "name": "arXiv — Physics",
+          "url": "https://arxiv.org/archive/physics",
+          "description": "מאגר המחקרים המוביל — פיזיקה בתצוגה מוקדמת",
+          "category": "academic",
+          "lang": "en"
+        },
+        {
+          "name": "APS Physics (American Physical Society)",
+          "url": "https://physics.aps.org/",
+          "description": "חדשות ומחקרים מהחברה האמריקאית לפיזיקה",
+          "category": "academic",
+          "lang": "en"
+        }
+      ]
+    },
+    "astronomy": {
+      "label": "אסטרונומיה",
+      "color": "#ff8c42",
+      "sources": [
+        {
+          "name": "NASA — News & Releases",
+          "url": "https://www.nasa.gov/news/",
+          "description": "המקור הרשמי לחדשות חלל מנאס\"א",
+          "category": "government",
+          "lang": "en"
+        },
+        {
+          "name": "ESA — European Space Agency",
+          "url": "https://www.esa.int/",
+          "description": "סוכנות החלל האירופית — חדשות, תמונות ומחקרים",
+          "category": "government",
+          "lang": "en"
+        },
+        {
+          "name": "Space.com",
+          "url": "https://www.space.com/",
+          "description": "כלי תקשורת מוביל לחדשות חלל ואסטרונומיה",
+          "category": "journalism",
+          "lang": "en"
+        },
+        {
+          "name": "Sky & Telescope",
+          "url": "https://skyandtelescope.org/",
+          "description": "כתב עת ותיק לאסטרונומיה חובבנית ומקצועית",
+          "category": "journalism",
+          "lang": "en"
+        },
+        {
+          "name": "NASA APOD (Astronomy Picture of the Day)",
+          "url": "https://apod.nasa.gov/apod/astropix.html",
+          "description": "תמונת היום של נאס\"א — אסטרונומיה ביופי",
+          "category": "educational",
+          "lang": "en"
+        },
+        {
+          "name": "Space Telescope Science Institute (STScI/Webb)",
+          "url": "https://webbtelescope.org/",
+          "description": "תמונות ומחקרים מטלסקופ החלל ג'יימס ווב",
+          "category": "government",
+          "lang": "en"
+        }
+      ]
+    },
+    "jewish-philosophy": {
+      "label": "פילוסופיה יהודית",
+      "color": "#14b8a6",
+      "sources": [
+        {
+          "name": "ספריא (Sefaria)",
+          "url": "https://www.sefaria.org.il/",
+          "description": "הספרייה היהודית הדיגיטלית הגדולה בעולם — תורה, משנה, גמרא, רמב\"ם, זוהר ועוד",
+          "category": "library",
+          "lang": "he"
+        },
+        {
+          "name": "מכון שלום הרטמן",
+          "url": "https://www.hartman.org.il/",
+          "description": "מכון מחקר ומנהיגות יהודית בירושלים",
+          "category": "academic",
+          "lang": "he"
+        },
+        {
+          "name": "My Jewish Learning",
+          "url": "https://www.myjewishlearning.com/",
+          "description": "מאמרים ומשאבים על פילוסופיה, הלכה ומסורת יהודית",
+          "category": "educational",
+          "lang": "en"
+        },
+        {
+          "name": "כולל עוז והדר — שיעורים",
+          "url": "https://www.ozvehadar.org/",
+          "description": "שיעורי תורה, גמרא וחסידות מהיישוב הישראלי",
+          "category": "educational",
+          "lang": "he"
+        },
+        {
+          "name": "צור ישעו — תנ\"ך עם פירושים",
+          "url": "https://www.zuryeshua.com/",
+          "description": "לימוד תנ\"ך ומחשבת ישראל",
+          "category": "educational",
+          "lang": "he"
+        },
+        {
+          "name": "Jewish Virtual Library",
+          "url": "https://www.jewishvirtuallibrary.org/",
+          "description": "הספרייה הווירטואלית היהודית — אנציקלופדיה למחשבת ישראל",
+          "category": "library",
+          "lang": "en"
+        },
+        {
+          "name": "הקתדרה לחקר תולדות עם ישראל (יד יצחק בן-צבי)",
+          "url": "https://www.ybz.org.il/",
+          "description": "מחקרים בתולדות עם ישראל ומחשבת ישראל",
+          "category": "academic",
+          "lang": "he"
+        }
+      ]
+    }
+  }
+}

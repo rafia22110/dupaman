@@ -5,5 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vercel dev"
+  },
+  "devDependencies": {
+    "supabase": "^2.109.1"
   }
 }

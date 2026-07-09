@@ -3,5 +3,10 @@
   "cleanUrls": true,
   "rewrites": [
     { "source": "/a/:id", "destination": "/api/article?id=:id" }
-  ]
+  ],
+  "functions": {
+    "api/*.js": {
+      "maxDuration": 30
+    }
+  }
 }
