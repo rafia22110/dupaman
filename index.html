@@ -1,0 +1,1009 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="he" id="html-root">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>דופמין – ניוזלטר יומי</title>
+  <style>
+    :root {
+      --bg:#000;--bg2:#0d0d0d;--bg3:#141414;--bg4:#1a1a1a;--bg5:#222;
+      --border:#1e1e1e;--border2:#2a2a2a;--border3:#333;
+      --green:#00ff88;--green-dim:#00cc6a;
+      --white:#fff;--gray1:#ccc;--gray2:#888;--gray3:#444;
+      --orange:#ff8c42;--blue:#4a9eff;--purple:#a855f7;--yellow:#fbbf24;
+      --red:#ef4444;--pink:#ec4899;--cyan:#22d3ee;--teal:#14b8a6;--indigo:#6366f1;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:-apple-system,'Segoe UI',Arial,sans-serif;background:var(--bg);color:var(--white);direction:rtl;min-height:100vh}
+
+    /* ─── VIEW TRANSITIONS ─── */
+    @view-transition { navigation: auto; }
+    ::view-transition-group(*) { animation-duration: .35s; }
+
+    /* ─── SCROLL PROGRESS BAR ─── */
+    #scroll-progress{position:fixed;top:0;right:0;left:0;height:3px;background:var(--green);transform-origin:right;z-index:400;animation:scrollprogress linear;animation-timeline:scroll(root);}
+    @keyframes scrollprogress{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+
+    /* ─── HEADER ─── */
+    header{background:var(--bg);border-bottom:1px solid var(--border2);padding:0 20px;position:sticky;top:0;z-index:200;display:flex;align-items:center;justify-content:space-between;height:52px}
+    .logo{display:flex;align-items:center;gap:8px;text-decoration:none}
+    .logo-icon{width:26px;height:26px;background:var(--green);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:900;color:#000}
+    .logo-name{font-size:15px;font-weight:700;color:var(--white);letter-spacing:-.3px}
+    .logo-beta{font-size:9px;color:var(--gray3);letter-spacing:1px;display:block}
+    nav{display:flex;align-items:center;gap:2px}
+    .nav-item{display:flex;align-items:center;gap:5px;padding:5px 10px;border-radius:6px;color:var(--gray2);font-size:12px;cursor:pointer;transition:all .15s;border:none;background:transparent;text-decoration:none;white-space:nowrap}
+    .nav-item:hover{background:var(--bg4);color:var(--white)}
+    .nav-item.active{color:var(--green)}
+    .nav-auth{background:var(--green);color:#000;font-weight:700;padding:5px 14px;border-radius:6px;font-size:12px}
+    .nav-auth:hover{background:var(--green-dim);color:#000}
+
+    /* ─── LANG SWITCHER ─── */
+    .lang-switcher{display:flex;align-items:center;gap:2px;margin-left:6px}
+    .lang-btn{padding:3px 8px;border-radius:5px;font-size:11px;font-weight:600;cursor:pointer;border:1px solid var(--border2);background:transparent;color:var(--gray3);transition:all .15s;letter-spacing:.3px}
+    .lang-btn:hover{border-color:var(--gray2);color:var(--white)}
+    .lang-btn.active{background:var(--bg4);border-color:var(--green);color:var(--green)}
+
+    /* ─── SEARCH ─── */
+    .search-wrap{padding:14px 20px 0;display:flex;gap:8px}
+    .search-box{flex:1;position:relative}
+    .search-box svg{position:absolute;right:10px;top:50%;transform:translateY(-50%);color:var(--gray3);pointer-events:none}
+    .search-input{width:100%;background:var(--bg3);border:1px solid var(--border2);border-radius:7px;padding:9px 34px 9px 12px;color:var(--white);font-size:13px;outline:none;transition:border-color .15s}
+    .search-input:focus{border-color:var(--green)}
+    .search-input::placeholder{color:var(--gray3)}
+    select.flt{background:var(--bg3);border:1px solid var(--border2);border-radius:7px;padding:9px 12px;color:var(--gray1);font-size:12px;cursor:pointer;outline:none}
+    select.flt:focus{border-color:var(--green)}
+
+    /* ─── TOPIC TABS ─── */
+    .topic-row{display:flex;gap:0;padding:0 20px;border-bottom:1px solid var(--border2);overflow-x:auto;scrollbar-width:none;margin-top:12px}
+    .topic-row::-webkit-scrollbar{display:none}
+    .ttab{display:flex;align-items:center;gap:5px;padding:9px 14px;font-size:12px;font-weight:500;cursor:pointer;border:none;background:transparent;color:var(--gray3);white-space:nowrap;transition:all .15s;border-bottom:2px solid transparent}
+    .ttab:hover{color:var(--white)}
+    .ttab.active{color:var(--white)}
+    .ttab[data-t="all"].active{border-bottom-color:#fff}
+    .ttab[data-t="ai"].active{border-bottom-color:var(--green)}
+    .ttab[data-t="psychology"].active{border-bottom-color:var(--purple)}
+    .ttab[data-t="neuroscience"].active{border-bottom-color:var(--pink)}
+    .ttab[data-t="education"].active{border-bottom-color:var(--yellow)}
+    .ttab[data-t="health"].active{border-bottom-color:var(--red)}
+    .ttab[data-t="science"].active{border-bottom-color:var(--cyan)}
+    .ttab[data-t="physics"].active{border-bottom-color:var(--indigo)}
+    .ttab[data-t="astronomy"].active{border-bottom-color:var(--orange)}
+    .ttab[data-t="tutorials"].active{border-bottom-color:var(--teal)}
+    .tdot{width:7px;height:7px;border-radius:50%;display:inline-block;flex-shrink:0}
+    .tcnt{font-size:10px;background:var(--bg4);border-radius:10px;padding:1px 5px;color:var(--gray3)}
+
+    /* ─── PILLS ─── */
+    .sub-bar{padding:10px 20px;background:var(--bg2);border-bottom:1px solid var(--border)}
+    .sub-label{font-size:10px;color:var(--gray3);letter-spacing:.8px;text-transform:uppercase;margin-bottom:7px}
+    .pills{display:flex;flex-wrap:wrap;gap:5px}
+    .pill{padding:3px 11px;border-radius:20px;font-size:11px;cursor:pointer;border:1px solid var(--border2);color:var(--gray2);background:transparent;transition:all .15s;white-space:nowrap}
+    .pill:hover{border-color:var(--gray2);color:var(--white)}
+    .pill.on{background:var(--green);border-color:var(--green);color:#000;font-weight:700}
+
+    /* ─── STATS ─── */
+    .stats{display:flex;align-items:center;justify-content:space-between;padding:8px 20px;border-bottom:1px solid var(--border)}
+    .stats-l{font-size:11px;color:var(--gray3)}
+    .stats-l span{color:var(--green);font-weight:600}
+    .vtgl{display:flex;gap:3px}
+    .vb{width:28px;height:28px;border-radius:5px;border:1px solid var(--border2);background:transparent;color:var(--gray3);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .15s}
+    .vb.on,.vb:hover{border-color:var(--green);color:var(--green)}
+
+    /* ─── LAYOUT ─── */
+    .layout{display:grid;grid-template-columns:1fr 260px}
+    .main-col{min-height:80vh}
+    #grid-wrap{container-type:inline-size;container-name:grid-wrap}
+    .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1px;background:var(--border)}
+    .grid.lv{grid-template-columns:1fr}
+    /* :has() demo — dim non-hovered cards when any card is hovered */
+    .grid:has(.card:hover) .card:not(:hover){opacity:.7}
+    @container grid-wrap (max-width:500px){
+      .grid{grid-template-columns:1fr}
+      .card{padding:14px}
+      .card h3{font-size:13px}
+    }
+    @container grid-wrap (min-width:900px){
+      .card h3{font-size:15px}
+    }
+
+    /* ─── CARD ─── */
+    .card{background:var(--bg);padding:18px;cursor:pointer;transition:background .15s;display:block;text-decoration:none;color:inherit}
+    .card:hover{background:var(--bg2)}
+    .card-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:10px}
+    .card-meta{display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+    .card-date{font-size:10px;color:var(--gray3);font-family:monospace}
+    .card-src{font-size:10px;font-weight:700}
+    .bkm{width:26px;height:26px;border-radius:5px;border:1px solid var(--border2);background:transparent;color:var(--gray3);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .15s;flex-shrink:0}
+    .bkm:hover,.bkm.saved{border-color:var(--yellow);color:var(--yellow)}
+    .bkm.saved{background:rgba(251,191,36,.1)}
+    .badges{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:10px}
+    .badge{padding:2px 9px;border-radius:20px;font-size:10px;font-weight:700;letter-spacing:.2px}
+    .card h3{font-size:14px;font-weight:600;line-height:1.55;color:var(--white);margin-bottom:10px;text-wrap:balance}
+    .card:hover h3{color:var(--green)}
+    .sumlines{list-style:none;margin-bottom:10px}
+    .sumlines li{font-size:12px;color:var(--gray2);padding:2px 14px 2px 0;position:relative;line-height:1.5;text-wrap:pretty}
+    .sumlines li::before{content:"▸";position:absolute;right:0;color:var(--gray3);font-size:9px;top:4px}
+    .life-box{background:rgba(74,158,255,.07);border:1px solid rgba(74,158,255,.18);border-radius:5px;padding:7px 10px;font-size:11px;color:var(--blue);margin-bottom:7px;line-height:1.5}
+    .q-box{background:rgba(251,191,36,.06);border:1px solid rgba(251,191,36,.18);border-radius:5px;padding:7px 10px;font-size:11px;color:var(--yellow);margin-bottom:12px;line-height:1.5}
+    .card-foot{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:6px}
+    .clink{
+      font-size:10px;font-weight:600;letter-spacing:.02em;
+      color:#0a0a0a;text-decoration:none;
+      display:inline-flex;align-items:center;gap:5px;
+      padding:4px 9px;border-radius:999px;
+      background:linear-gradient(135deg,#00ff88 0%,#00d4ff 100%);
+      box-shadow:0 0 0 1px rgba(0,255,136,.35), 0 0 12px rgba(0,255,136,.18);
+      transition:transform .18s ease, box-shadow .18s ease, filter .18s ease;
+      white-space:nowrap;
+    }
+    .clink svg{transition:transform .18s ease}
+    .clink:hover{
+      transform:translateY(-1px);
+      filter:brightness(1.08);
+      box-shadow:0 0 0 1px rgba(0,255,136,.6), 0 0 18px rgba(0,255,136,.35);
+    }
+    .clink:hover svg{transform:translateX(-2px)}
+    [dir="rtl"] .clink:hover svg, html[lang="he"] .clink:hover svg{transform:translateX(2px)}
+    .clink:active{transform:translateY(0)}
+    .reacts{display:flex;gap:7px}
+    .react{font-size:10px;color:var(--gray3);display:flex;align-items:center;gap:2px}
+
+    /* ─── TOPIC COLORS ─── */
+    .c-ai{background:rgba(0,255,136,.12);color:var(--green);border:1px solid rgba(0,255,136,.25)}
+    .c-psychology{background:rgba(168,85,247,.12);color:var(--purple);border:1px solid rgba(168,85,247,.25)}
+    .c-neuroscience{background:rgba(236,72,153,.12);color:var(--pink);border:1px solid rgba(236,72,153,.25)}
+    .c-education{background:rgba(251,191,36,.12);color:var(--yellow);border:1px solid rgba(251,191,36,.25)}
+    .c-health{background:rgba(239,68,68,.12);color:var(--red);border:1px solid rgba(239,68,68,.25)}
+    .c-science{background:rgba(34,211,238,.12);color:var(--cyan);border:1px solid rgba(34,211,238,.25)}
+    .c-physics{background:rgba(99,102,241,.12);color:var(--indigo);border:1px solid rgba(99,102,241,.25)}
+    .c-astronomy{background:rgba(255,140,66,.12);color:var(--orange);border:1px solid rgba(255,140,66,.25)}
+    .c-tutorials{background:rgba(20,184,166,.12);color:var(--teal);border:1px solid rgba(20,184,166,.25)}
+    .c-sub{background:var(--bg5);color:var(--gray2);border:1px solid var(--border2)}
+
+    /* ─── SIDEBAR ─── */
+    .sidebar{border-right:1px solid var(--border);padding:16px;position:sticky;top:52px;height:calc(100vh - 52px);overflow-y:auto;scrollbar-width:thin}
+    .sb-sec{margin-bottom:20px}
+    .sb-title{font-size:10px;color:var(--gray3);letter-spacing:.8px;text-transform:uppercase;margin-bottom:8px;font-weight:600}
+    .sb-item{display:flex;align-items:center;justify-content:space-between;padding:5px 7px;border-radius:5px;font-size:12px;color:var(--gray2);cursor:pointer;transition:all .15s}
+    .sb-item:hover{background:var(--bg3);color:var(--white)}
+    .sb-cnt{font-size:10px;color:var(--gray3);background:var(--bg4);padding:1px 5px;border-radius:8px}
+
+    /* ─── EMPTY / LOADING ─── */
+    .empty{text-align:center;padding:60px 20px;color:var(--gray3)}
+    .empty h3{font-size:16px;margin-bottom:6px;color:var(--gray2)}
+    .loading-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1px;background:var(--border)}
+    .skel{background:var(--bg);padding:18px;animation:pulse 1.5s infinite}
+    .skel-line{background:var(--bg4);border-radius:4px;margin-bottom:8px}
+    @keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
+
+    /* ─── AUTH POPOVER (native) ─── */
+    [popover]{background:var(--bg2);border:1px solid var(--border2);border-radius:12px;width:100%;padding:28px;max-height:92vh;overflow-y:auto;color:var(--white);margin:auto}
+    [popover]::backdrop{background:rgba(0,0,0,.92)}
+    #auth-modal{max-width:460px}
+    #info-modal{max-width:420px}
+    [popover]{opacity:0;transform:scale(.94) translateY(10px);transition:opacity .2s ease,transform .2s ease,overlay .2s ease allow-discrete,display .2s ease allow-discrete}
+    [popover]:popover-open{opacity:1;transform:scale(1) translateY(0)}
+    @starting-style{
+      [popover]:popover-open{opacity:0;transform:scale(.94) translateY(10px)}
+    }
+    .mclose{position:absolute;top:16px;left:16px;background:var(--bg4);border:1px solid var(--border2);color:var(--gray1);width:28px;height:28px;border-radius:5px;cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center}
+    .modal-inner{position:relative}
+
+    /* AUTH TABS */
+    .auth-tabs{display:flex;border-bottom:1px solid var(--border2);margin-bottom:24px}
+    .auth-tab{flex:1;padding:10px;text-align:center;font-size:13px;color:var(--gray2);cursor:pointer;border-bottom:2px solid transparent;transition:all .15s}
+    .auth-tab.active{color:var(--green);border-bottom-color:var(--green)}
+
+    /* FORM */
+    .form-group{margin-bottom:16px}
+    .form-label{font-size:12px;color:var(--gray2);margin-bottom:6px;display:block}
+    .form-input{width:100%;background:var(--bg3);border:1px solid var(--border2);border-radius:7px;padding:10px 14px;color:var(--white);font-size:13px;outline:none;transition:border-color .15s;direction:rtl}
+    .form-input:focus{border-color:var(--green)}
+    .form-input::placeholder{color:var(--gray3)}
+    .topics-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:6px}
+    .topic-check{display:flex;align-items:center;gap:8px;padding:8px 10px;border:1px solid var(--border2);border-radius:7px;cursor:pointer;transition:all .15s;font-size:12px;color:var(--gray2)}
+    .topic-check:hover{border-color:var(--gray2);color:var(--white)}
+    .topic-check input{display:none}
+    .topic-check.checked{border-color:var(--green);color:var(--white);background:rgba(0,255,136,.06)}
+    .topic-check .chk-icon{width:16px;height:16px;border-radius:4px;border:1px solid var(--border2);display:flex;align-items:center;justify-content:center;font-size:10px;flex-shrink:0;transition:all .15s}
+    .topic-check.checked .chk-icon{background:var(--green);border-color:var(--green);color:#000}
+    .btn-primary{width:100%;background:var(--green);color:#000;font-weight:700;font-size:14px;padding:12px;border-radius:8px;border:none;cursor:pointer;transition:background .15s;margin-top:4px}
+    .btn-primary:hover{background:var(--green-dim)}
+    .btn-primary:disabled{opacity:.5;cursor:not-allowed}
+    .form-error{font-size:12px;color:var(--red);margin-top:8px;display:none}
+    .form-success{font-size:13px;color:var(--green);margin-top:8px;display:none;text-align:center;padding:12px;background:rgba(0,255,136,.08);border-radius:6px;border:1px solid rgba(0,255,136,.2)}
+    .divider{display:flex;align-items:center;gap:10px;margin:16px 0;color:var(--gray3);font-size:11px}
+    .divider::before,.divider::after{content:'';flex:1;height:1px;background:var(--border2)}
+    .user-badge{display:flex;align-items:center;gap:8px;padding:5px 10px;border-radius:6px;background:var(--bg3);border:1px solid var(--border2);font-size:12px;color:var(--gray1);cursor:pointer}
+    .user-badge .u-dot{width:8px;height:8px;border-radius:50%;background:var(--green)}
+
+    /* ─── INFO POPOVER CONTENT ─── */
+    .info-list{list-style:none;margin:14px 0;display:flex;flex-direction:column;gap:10px}
+    .info-list li{font-size:12px;color:var(--gray2);line-height:1.6;padding-right:18px;position:relative}
+    .info-list li::before{content:"✓";position:absolute;right:0;color:var(--green);font-weight:700}
+    .modern-btn{background:transparent;border:1px solid var(--border2);color:var(--gray2);font-size:12px;padding:5px 10px;border-radius:6px;cursor:pointer;transition:all .15s}
+    .modern-btn:hover{border-color:var(--green);color:var(--green)}
+
+    /* ─── RESPONSIVE ─── */
+    @media(max-width:900px){.layout{grid-template-columns:1fr}.sidebar{display:none}.grid{grid-template-columns:1fr}}
+    @media(max-width:600px){header{padding:0 10px}.search-wrap{padding:10px;flex-wrap:wrap}select.flt{flex:1}.topics-grid{grid-template-columns:1fr}}
+    ::-webkit-scrollbar{width:3px;height:3px}
+    ::-webkit-scrollbar-track{background:transparent}
+    ::-webkit-scrollbar-thumb{background:var(--border2);border-radius:3px}
+  </style>
+</head>
+<body>
+
+<div id="scroll-progress"></div>
+
+<!-- ══ HEADER ══ -->
+<header>
+  <a href="#" class="logo" onclick="return false">
+    <div class="logo-icon">D</div>
+    <div>
+      <span class="logo-name" data-i18n="logo-name">דופמין</span>
+      <span class="logo-beta" data-i18n="logo-beta">BETA · ניוזלטר יומי</span>
+    </div>
+  </a>
+  <nav>
+    <a class="nav-item active" href="#" onclick="return false">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg><span data-i18n="nav-feed">פיד</span>
+    </a>
+    <a class="nav-item" href="#" onclick="return false">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 012-2h10a2 2 0 012 2z"/></svg><span data-i18n="nav-saved">שמורים</span>
+    </a>
+    <div class="lang-switcher" id="lang-switcher">
+      <button class="lang-btn active" data-lang="he" title="עברית">HE</button>
+      <button class="lang-btn" data-lang="en" title="English">EN</button>
+      <button class="lang-btn" data-lang="fr" title="Français">FR</button>
+      <button class="lang-btn" data-lang="es" title="Español">ES</button>
+    </div>
+    <a class="nav-item" href="pricing.html">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><span data-i18n="nav-pricing">מנויים</span>
+    </a>
+    <button class="modern-btn" popovertarget="info-modal" title="HTML מודרני">⚡ HTML מודרני</button>
+    <div id="nav-auth-area">
+      <button class="nav-auth nav-item" onclick="openAuth('register')" data-i18n="nav-auth">כניסה / הרשמה</button>
+    </div>
+  </nav>
+</header>
+
+<!-- ══ SEARCH ══ -->
+<div class="search-wrap">
+  <div class="search-box">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+    <input class="search-input" type="text" id="q" oninput="doFilter()" data-i18n-placeholder="search-placeholder" placeholder="חפש מאמרים, נושאים, מקורות...">
+  </div>
+  <select class="flt" id="sort" onchange="doFilter()">
+    <option value="new" data-i18n="sort-new">החדשים קודם</option>
+    <option value="old" data-i18n="sort-old">הישנים קודם</option>
+    <option value="popular" data-i18n="sort-popular">הפופולריים</option>
+  </select>
+  <select class="flt" id="srcflt" onchange="doFilter()">
+    <option value="">כל המקורות</option>
+    <option>PsyPost</option>
+    <option>MIT Tech Review</option>
+    <option>MarkTechPost</option>
+    <option>Edutopia</option>
+    <option>Harvard Health</option>
+    <option>Live Science</option>
+    <option>Neuroscience News</option>
+    <option>Google Blog</option>
+  </select>
+</div>
+
+<!-- ══ TOPIC TABS ══ -->
+<div class="topic-row" id="topic-row"></div>
+
+<!-- ══ PILLS ══ -->
+<div class="sub-bar">
+  <div class="sub-label" data-i18n="sub-label">סנן לפי תת-נושא</div>
+  <div class="pills" id="pills"></div>
+</div>
+
+<!-- ══ STATS ══ -->
+<div class="stats">
+  <div class="stats-l"><span data-i18n="showing">מציג</span> <span id="cnt">0</span> <span data-i18n="articles">מאמרים</span>
+    <span id="data-src" style="margin-right:8px;font-size:10px;color:var(--gray3)"></span>
+  </div>
+  <div style="display:flex;align-items:center;gap:8px">
+    <button onclick="loadArticles({force:true})" style="font-size:11px;color:var(--green);background:transparent;border:1px solid rgba(0,255,136,.3);border-radius:5px;padding:3px 8px;cursor:pointer" data-i18n="refresh">⟳ רענן</button>
+    <div class="vtgl">
+      <button class="vb on" onclick="setView('grid',this)" title="גריד">
+        <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><rect x="3" y="3" width="8" height="8" rx="1"/><rect x="13" y="3" width="8" height="8" rx="1"/><rect x="3" y="13" width="8" height="8" rx="1"/><rect x="13" y="13" width="8" height="8" rx="1"/></svg>
+      </button>
+      <button class="vb" onclick="setView('list',this)" title="רשימה">
+        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><circle cx="3" cy="6" r="1.5" fill="currentColor"/><circle cx="3" cy="12" r="1.5" fill="currentColor"/><circle cx="3" cy="18" r="1.5" fill="currentColor"/></svg>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ══ LAYOUT ══ -->
+<div class="layout">
+  <div class="main-col">
+    <div id="grid-wrap"></div>
+  </div>
+  <div class="sidebar" id="sidebar"></div>
+</div>
+
+<!-- ══ AUTH POPOVER (native popover API) ══ -->
+<div id="auth-modal" popover="auto">
+  <div class="modal-inner">
+    <button class="mclose" popovertarget="auth-modal" popovertargetaction="hide">✕</button>
+    <div style="text-align:center;margin-bottom:20px">
+      <div style="font-size:22px;font-weight:900;color:var(--green)">דופמין</div>
+      <div style="font-size:12px;color:var(--gray3);margin-top:3px" data-i18n="modal-subtitle">ניוזלטר יומי · BETA</div>
+    </div>
+    <div class="auth-tabs">
+      <div class="auth-tab active" onclick="switchTab('register',this)" id="tab-register" data-i18n="tab-register">הרשמה</div>
+      <div class="auth-tab" onclick="switchTab('login',this)" id="tab-login" data-i18n="tab-login">כניסה</div>
+    </div>
+
+    <!-- REGISTER FORM -->
+    <div id="form-register">
+      <div class="form-group">
+        <label class="form-label" data-i18n="label-name">שם מלא</label>
+        <input class="form-input" type="text" id="reg-name" data-i18n-placeholder="placeholder-name" placeholder="ישראל ישראלי">
+      </div>
+      <div class="form-group">
+        <label class="form-label" data-i18n="label-email">כתובת מייל</label>
+        <input class="form-input" type="email" id="reg-email" placeholder="you@example.com">
+      </div>
+      <div class="form-group">
+        <label class="form-label" data-i18n="label-topics">בחר נושאים (ניתן לבחור כמה)</label>
+        <div class="topics-grid" id="topics-grid"></div>
+      </div>
+      <div class="form-error" id="reg-error"></div>
+      <div class="form-success" id="reg-success"></div>
+      <button class="btn-primary" id="reg-btn" onclick="handleRegister()" data-i18n="btn-register">הרשם לניוזלטר היומי ✉️</button>
+      <p style="font-size:11px;color:var(--gray3);text-align:center;margin-top:12px" data-i18n="register-note">תקבל ניוזלטר כל יום ב-7:00 בבוקר. ניתן לבטל בכל עת.</p>
+    </div>
+
+    <!-- LOGIN FORM -->
+    <div id="form-login" style="display:none">
+      <div class="form-group">
+        <label class="form-label" data-i18n="label-email">כתובת מייל</label>
+        <input class="form-input" type="email" id="login-email" placeholder="you@example.com">
+      </div>
+      <div class="form-error" id="login-error"></div>
+      <div class="form-success" id="login-success"></div>
+      <button class="btn-primary" onclick="handleLogin()" data-i18n="btn-login">כניסה עם Magic Link 🔗</button>
+      <p style="font-size:11px;color:var(--gray3);text-align:center;margin-top:12px" data-i18n="login-note">ישלח אליך קישור כניסה חד-פעמי למייל.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ══ "MODERN HTML" INFO POPOVER ══ -->
+<div id="info-modal" popover="auto">
+  <div class="modal-inner">
+    <button class="mclose" popovertarget="info-modal" popovertargetaction="hide">✕</button>
+    <div style="font-size:18px;font-weight:800;color:var(--green);margin-bottom:10px">⚡ נבנה עם HTML מודרני</div>
+    <p style="font-size:12px;color:var(--gray2);line-height:1.6">האתר הזה משתמש בפיצ'רים נטיביים של הדפדפן — בלי frameworks, בלי JS מיותר:</p>
+    <ul class="info-list">
+      <li>View Transitions API — מעברים חלקים בין הפיד לעמודי המאמר</li>
+      <li>Popover API — הפאנל הזה והרשמה נטיביים, ללא ספריות מודל</li>
+      <li>CSS :has() — כרטיסים מגיבים זה לזה בהעברת עכבר</li>
+      <li>Container Queries — פריסה שמגיבה לרוחב הקונטיינר שלה</li>
+      <li>animation-timeline: scroll(root) — פס ההתקדמות למעלה</li>
+      <li>text-wrap: balance / pretty — עימוד טקסט חכם</li>
+    </ul>
+  </div>
+</div>
+
+<script>
+// ══════════════════════════════════════════════
+// CONFIG – LIVE RSS aggregator
+// ══════════════════════════════════════════════
+const API_URL = 'data/articles.json';
+
+// dummy — kept only to avoid touching every place
+const FALLBACK_ARTICLES_UNUSED = [ /* removed */ ];
+const _OLD_FALLBACK = [ /* removed */ ]; if(false){ const FALLBACK_ARTICLES = [
+  {id:1,topic:'ai',sub:'LLMs',src:'MIT Tech Review',date:'12/03/2026',title:'GPT-5 עם זיכרון ארוך-טווח – מה זה משנה?',lines:['OpenAI הכריזה על GPT-5 עם חלון הקשר של מיליון טוקנים.','המודל יכול לזכור שיחות מלפני שבועות.','מאפשר שימוש כסוכן אישי לאורך זמן.'],life:'AI שזוכר אותך לאורך זמן הוא כלי שונה מהיסוד.',question:'אילו החלטות יומיומיות היית מוכן לאצול ל-AI?',link:'https://www.technologyreview.com',r:{v:142,s:38}},
+  {id:2,topic:'ai',sub:'סוכני AI',src:'MarkTechPost',date:'12/03/2026',title:'סוכני AI ביצעו 10,000 משימות עסקיות ריאליות',lines:['מחקר מ-Stanford בדק סוכני AI על משימות ריאליות.','הצלחה של 78% ללא התערבות.','הכישלונות היו בגלל אי-הבנת הקשר חברתי.'],life:'הסוכנים טובים בביצוע – לא בהבנת "מה אתה באמת מתכוון".',question:'מה המשימה שלעולם לא תאצול ל-AI?',link:'https://www.marktechpost.com',r:{v:231,s:67}},
+  {id:3,topic:'psychology',sub:'נוירולוגיה',src:'PsyPost',date:'12/03/2026',title:'המוח מתגמל אותנו על חמלה לאחרים',lines:['מחקר מברקלי מראה שחמלה מפעילה אזורי תגמול.','משתתפים שסייעו לאחרים דיווחו על שביעות רצון גבוהה.','האבולוציה עיצבה אותנו להיות יצורים חברתיים.'],life:'כשאתה עוזר לאחר – אתה גם עוזר לעצמך.',question:'מה מנע ממך היום לסייע למישהו?',link:'https://www.psypost.org',r:{v:98,s:29}},
+  {id:4,topic:'neuroscience',sub:'מוח',src:'Neuroscience News',date:'12/03/2026',title:'גילוי: תאי מוח חדשים נוצרים גם בגיל מבוגר',lines:['מחקר חדש מאתגר את הדעה שנוירוגנזה עוצרת אחרי ילדות.','נמצאו תאי מוח חדשים בהיפוקמפוס של בני 70+.','גורמים מסייעים: פעילות גופנית, שינה, למידה.'],life:'המוח שלך לא קפוא – אתה יכול לגדל תאי מוח חדשים.',question:'מה הדבר האחרון שלמדת לגמרי מאפס?',link:'https://neurosciencenews.com',r:{v:287,s:93}},
+  {id:5,topic:'education',sub:'EdTech',src:'Edutopia',date:'12/03/2026',title:'AI בכיתה: מה עובד ומה שיווק ריק?',lines:['רק 12% מכלי ה-AI בכיתה משפרים ציונים.','הכלים האפקטיביים עוזרים לתלמיד לדעת מה הוא לא יודע.','הצלחת EdTech תלויה בהטמעה – לא בטכנולוגיה.'],life:'הכלי הכי יקר לא יעזור אם המורה לא מאמין בו.',question:'מה כלי EdTech שייכשל ולמה?',link:'https://www.edutopia.org',r:{v:178,s:51}},
+  {id:6,topic:'health',sub:'שינה',src:'Harvard Health',date:'12/03/2026',title:'שינה פחות מ-6 שעות מגדילה סיכון לדיכאון ב-30%',lines:['מחקר מהרווארד עם 50,000 משתתפים.','אפילו לילה אחד משפיע על מצב הרוח.','הגדלת שינה ב-45 דקות שיפרה תסמינים.'],life:'השינה שלך הלילה תקבע את מצב הרוח שלך מחר.',question:'מה מונע ממך לישון שעה נוספת הלילה?',link:'https://www.health.harvard.edu',r:{v:312,s:94}},
+  {id:7,topic:'science',sub:'גנטיקה',src:'Live Science',date:'12/03/2026',title:'CRISPR ריפא לראשונה מחלת דם גנטית בבני אדם',lines:['עריכת גנים ריפאה חולי אנמיה חרמשית.','12 חולים טופלו – 11 חיים ללא תסמינים.','הטיפול הגנטי הראשון שמאושר לשימוש קליני.'],life:'הרפואה של הדור הבא כאן – גנים ניתנים לעריכה.',question:'האם תסכים לעריכת גנים בעצמך?',link:'https://www.livescience.com',r:{v:421,s:134}},
+  {id:8,topic:'physics',sub:'מכניקת הקוונטים',src:'Live Science',date:'12/03/2026',title:'מחשב קוונטי של Google פתר תוך שניות בעיה שלוקחת קוואדריליון שנה',lines:['Willow שבר את כל שיאי העיבוד הקוונטי.','170 קוביטים בטמפרטורה קרובה לאפס מוחלט.','פותח פתח לקריפטוגרפיה עמידה קוונטית.'],life:'הצפנות שמגנות על הבנק שלך עלולות להיות מיושנות תוך עשור.',question:'האם אתה מוכן לעולם שבו הצפנה לא מגינה?',link:'https://www.livescience.com',r:{v:502,s:167}},
+  {id:9,topic:'astronomy',sub:'אקסופלנטות',src:'Live Science',date:'11/03/2026',title:'JWST מצא עדויות לאטמוספרה של חמצן על כוכב לכת חיצוני',lines:['James Webb זיהה ספקטרום של O2 מחוץ למערכת השמש.','הפעם הראשונה שחמצן מולקולרי נצפה מחוץ לכדור הארץ.','לא ניתן לשלול חיים ביולוגיים – אך לא לאשר.'],life:'אנחנו עשויים לא להיות לבד.',question:'האם ידיעה שיש חיים אחרים ביקום תשנה דבר אצלך?',link:'https://www.livescience.com',r:{v:634,s:211}},
+  {id:10,topic:'tutorials',sub:'Agents',src:'MarkTechPost',date:'12/03/2026',title:'מדריך מלא: בניית Multi-Agent System עם LangGraph',lines:['מדריך צעד-אחר-צעד לבניית מערכת סוכנים מרובים.','LangGraph עם TypedSchema לתקשורת מובנית.','קוד מלא: Planner, Executor, Critic agents.'],life:'סוכנים מרובים הם העתיד של אוטומציה.',question:'מה הפרוצס בעסק שלך שמתאים ביותר לאוטומציה?',link:'https://www.marktechpost.com/category/tutorials/',r:{v:245,s:87}},
+]; }
+
+// ══════════════════════════════════════════════
+// TOPIC CONFIG
+// ══════════════════════════════════════════════
+const TOPICS = [
+  {id:'all',        label:'הכל',             dot:'#fff'},
+  {id:'ai',         label:'בינה מלאכותית',   dot:'#00ff88'},
+  {id:'psychology', label:'פסיכולוגיה',       dot:'#a855f7'},
+  {id:'neuroscience',label:'מדעי המוח',       dot:'#ec4899'},
+  {id:'education',  label:'חינוך',            dot:'#fbbf24'},
+  {id:'health',     label:'בריאות',           dot:'#ef4444'},
+  {id:'science',    label:'מדע',             dot:'#22d3ee'},
+  {id:'physics',    label:'פיזיקה',          dot:'#6366f1'},
+  {id:'astronomy',  label:'אסטרונומיה',       dot:'#ff8c42'},
+  {id:'tutorials',  label:'מדריכים',          dot:'#14b8a6'},
+];
+
+const SUBTOPICS = {
+  all:['הכל','LLMs','מוח','למידה','חלל','פיזיקה','תזונה','שינה','RL','AGI'],
+  ai:['הכל','LLMs','סוכני AI','ראייה ממוחשבת','עיבוד שפה טבעי','רובוטיקה','מחקר','כלים','אתיקה','קוד פתוח','API','Google AI','Generative AI','Enterprise AI'],
+  psychology:['הכל','נוירולוגיה','רגשות','קוגניציה','טיפול','ילדים','מוטיבציה','זיכרון','דיכאון','חרדה','PTSD','אוטיזם','אושר'],
+  neuroscience:['הכל','מוח','נוירולוגיה','AI ומוח','בריאות נפשית','נוירוטק','הפרעות נוירולוגיות','קוגניציה','רובוטיקה'],
+  education:['הכל','הוראה בכיתה','EdTech','צרכים מיוחדים','SEL','אוריינות','הערכה','חשיבה ביקורתית','גיל הרך','חינוך גבוה'],
+  health:['הכל','תזונה','כושר','שינה','בריאות נפשית','לב וכלי דם','מחקר רפואי','מניעה','מחלות כרוניות','ביוטכנולוגיה'],
+  science:['הכל','ביולוגיה','כימיה','גנטיקה','אקלים','ארכיאולוגיה','אבולוציה','מדע הסביבה'],
+  physics:['הכל','מכניקת הקוונטים','יחסות','פיזיקת חלקיקים','אנרגיה','גל כבידה','מוליכים'],
+  astronomy:['הכל','חורים שחורים','מערכת השמש','אקסופלנטות','חקר חלל','כוכבים','טלסקופ ג\'ימס ווב','SpaceX'],
+  tutorials:['הכל','LLM','Agents','Python','RAG','פיין-טיון','RL','Computer Vision','MLOps'],
+};
+
+const SRC_COLORS = {
+  'PsyPost':'#a855f7','MIT Tech Review':'#00ff88','MarkTechPost':'#22d3ee',
+  'Edutopia':'#fbbf24','Harvard Health':'#ef4444','Live Science':'#22d3ee',
+  'Neuroscience News':'#ec4899','Google Blog':'#4a9eff',
+};
+
+// ══════════════════════════════════════════════
+// STATE
+// ══════════════════════════════════════════════
+let ALL_ARTICLES = [];
+let curTopic = 'all', curSub = 'הכל', curView = 'grid';
+let currentUser = JSON.parse(null);
+
+// ══════════════════════════════════════════════
+// LOAD ARTICLES — LIVE from data/articles.json
+// ══════════════════════════════════════════════
+let LAST_UPDATED = null;
+let FEED_META = { errors: [], sources: [] };
+
+async function loadArticles(opts) {
+  showSkeleton();
+  const dsrc = document.getElementById('data-src');
+  dsrc.textContent = 'טוען…';
+
+  const force = opts && opts.force ? '?force=1' : '';
+
+  try {
+    const res = await fetch(`${API_URL}${force}`, { cache: 'no-store' });
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    const data = await res.json();
+
+    ALL_ARTICLES = (data.articles || []).map(a => ({
+      ...a,
+      // Compat with existing UI expectations
+      src: a.source,           // card uses a.src
+      date: a.age,             // card uses a.date — show "לפני X דק'" instead
+      pubIso: a.pubDateIso,
+      lines: buildLines(a),
+      life: '',
+      question: '',
+      r: { v: 0, s: 0 },
+    }));
+
+    LAST_UPDATED = data.updated || new Date().toISOString();
+    FEED_META = { errors: data.errors || [], sources: data.sources || [] };
+
+    const okCount = (data.sources || []).filter(s => s.status && s.status.ok).length;
+    const totalSrc = (data.sources || []).length;
+    const t = new Date(LAST_UPDATED);
+    dsrc.innerHTML = `עודכן: <b style="color:var(--green)">${t.toLocaleTimeString('he-IL',{hour:'2-digit',minute:'2-digit',second:'2-digit'})}</b> · ${data.total || 0} מאמרים · ${okCount}/${totalSrc} מקורות פעילים${(data.errors && data.errors.length) ? ` · <span style="color:var(--gray3)">${data.errors.length} לא זמינים</span>` : ''}`;
+  } catch (e) {
+    ALL_ARTICLES = [];
+    dsrc.innerHTML = `<span style="color:var(--red)">שגיאה בטעינת מאמרים: ${e.message}</span> · <button onclick="loadArticles({force:true})" style="background:var(--green);color:#000;border:none;padding:2px 8px;border-radius:4px;cursor:pointer;font-weight:600">נסה שוב</button>`;
+  }
+  buildAll();
+}
+
+function buildLines(a) {
+  // Break the description into 2-3 short bullet lines for the card body
+  const desc = (a.description || '').trim();
+  if (!desc) return [];
+  // Split on sentence-ending punctuation, keep short pieces
+  const parts = desc
+    .split(/(?<=[\.!?״])\s+|(?<=\.)\s{1,3}/)
+    .map(s => s.replace(/\s+/g, ' ').trim())
+    .filter(s => s.length >= 20 && s.length <= 180);
+  if (parts.length) return parts.slice(0, 3);
+  return [desc.slice(0, 180)];
+}
+
+function showSkeleton() {
+  document.getElementById('grid-wrap').innerHTML = `
+    <div class="loading-grid">
+      ${Array(6).fill(`
+        <div class="skel">
+          <div class="skel-line" style="height:10px;width:40%"></div>
+          <div class="skel-line" style="height:16px;width:90%;margin-top:12px"></div>
+          <div class="skel-line" style="height:16px;width:75%"></div>
+          <div class="skel-line" style="height:12px;width:95%;margin-top:10px"></div>
+          <div class="skel-line" style="height:12px;width:80%"></div>
+          <div class="skel-line" style="height:12px;width:70%"></div>
+          <div class="skel-line" style="height:40px;border-radius:5px;margin-top:10px"></div>
+          <div class="skel-line" style="height:40px;border-radius:5px;margin-top:8px"></div>
+        </div>`).join('')}
+    </div>`;
+}
+
+// ══════════════════════════════════════════════
+// BUILD UI
+// ══════════════════════════════════════════════
+function buildAll() {
+  buildTabs();
+  buildPills();
+  buildSidebar();
+  doFilter();
+}
+
+function buildTabs() {
+  const counts = {};
+  TOPICS.forEach(t => {
+    counts[t.id] = t.id === 'all' ? ALL_ARTICLES.length : ALL_ARTICLES.filter(a => a.topic === t.id).length;
+  });
+  document.getElementById('topic-row').innerHTML = TOPICS.map(t => `
+    <button class="ttab ${t.id === curTopic ? 'active' : ''}" data-t="${t.id}" onclick="pickTopic('${t.id}',this)">
+      <span class="tdot" style="background:${t.dot}"></span>${t.label}
+      <span class="tcnt">${counts[t.id]}</span>
+    </button>`).join('');
+}
+
+function buildPills() {
+  const subs = SUBTOPICS[curTopic] || SUBTOPICS.all;
+  document.getElementById('pills').innerHTML = subs.map(s =>
+    `<button class="pill ${s === curSub ? 'on' : ''}" onclick="pickSub('${s}',this)">#${s}</button>`
+  ).join('');
+}
+
+function buildSidebar() {
+  const topicHtml = TOPICS.map(t => {
+    const n = t.id === 'all' ? ALL_ARTICLES.length : ALL_ARTICLES.filter(a => a.topic === t.id).length;
+    return `<div class="sb-item" onclick="pickTopic('${t.id}',null)">
+      <span><span class="tdot" style="background:${t.dot};display:inline-block;width:7px;height:7px;border-radius:50%;margin-left:7px"></span>${t.label}</span>
+      <span class="sb-cnt">${n}</span></div>`;
+  }).join('');
+
+  const subs = SUBTOPICS[curTopic] || SUBTOPICS.all;
+  const subHtml = subs.filter(s => s !== 'הכל').slice(0, 10).map(s => {
+    const n = ALL_ARTICLES.filter(a => a.sub === s).length;
+    return `<div class="sb-item" onclick="pickSub('${s}',null)">${s}<span class="sb-cnt">${n}</span></div>`;
+  }).join('');
+
+  const t = I18N[curLang];
+  document.getElementById('sidebar').innerHTML = `
+    <div class="sb-sec"><div class="sb-title">${t['sb-topics']}</div>${topicHtml}</div>
+    <div class="sb-sec"><div class="sb-title">${t['sb-subtopics']}</div>${subHtml}</div>`;
+}
+
+function pickTopic(t, el) {
+  curTopic = t; curSub = 'הכל';
+  if (el) { document.querySelectorAll('.ttab').forEach(b => b.classList.remove('active')); el.classList.add('active'); }
+  else buildTabs();
+  buildPills(); buildSidebar(); doFilter();
+}
+
+function pickSub(s, el) {
+  curSub = s;
+  document.querySelectorAll('.pill').forEach(p => p.classList.remove('on'));
+  if (el) el.classList.add('on');
+  else buildPills();
+  doFilter();
+}
+
+function doFilter() {
+  const q = document.getElementById('q').value.toLowerCase();
+  const src = document.getElementById('srcflt').value;
+  let arr = ALL_ARTICLES.filter(a => {
+    const mt = curTopic === 'all' || a.topic === curTopic;
+    const ms = curSub === 'הכל' || a.sub === curSub;
+    const mq = !q || a.title.toLowerCase().includes(q) || (a.lines||[]).join(' ').toLowerCase().includes(q);
+    const msrc = !src || a.src === src;
+    return mt && ms && mq && msrc;
+  });
+  const sort = document.getElementById('sort').value;
+  if (sort === 'popular') arr.sort((a,b) => (b.r?.v||0) - (a.r?.v||0));
+  renderGrid(arr);
+  document.getElementById('cnt').textContent = arr.length;
+}
+
+function esc(s) {
+  return String(s || '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+
+function srcColor(src) {
+  if (SRC_COLORS[src]) return SRC_COLORS[src];
+  // Deterministic pastel from name
+  let h = 0; for (let i = 0; i < src.length; i++) h = (h * 31 + src.charCodeAt(i)) & 0xffffffff;
+  const hue = Math.abs(h) % 360;
+  return `hsl(${hue}, 70%, 65%)`;
+}
+
+function renderGrid(arr) {
+  const wrap = document.getElementById('grid-wrap');
+  const tl = I18N[curLang];
+  if (!arr.length) {
+    wrap.innerHTML = `<div class="empty"><h3>${tl['empty-h']}</h3><p>${tl['empty-p']}</p></div>`;
+    return;
+  }
+  const tc = t => TOPICS.find(x => x.id === t) || {};
+  const g = document.createElement('div');
+  g.className = 'grid' + (curView === 'list' ? ' lv' : '');
+  g.innerHTML = arr.map(a => {
+    const color = srcColor(a.src || '');
+    const lines = (a.lines || []).map(l => `<li>${esc(l)}</li>`).join('');
+    const hasImg = !!a.image;
+    return `<a class="card" href="a/${escapeHtml(a.id)}.html" style="view-transition-name:card-${a.id}">
+      <div class="card-top">
+        <div class="card-meta">
+          <span class="card-date">${esc(a.date || '')}</span>
+          <span class="card-src" style="color:${color}">${esc(a.src || '')}</span>
+        </div>
+        <button class="bkm" onclick="event.preventDefault();event.stopPropagation();this.classList.toggle('saved')" title="שמור">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 012-2h10a2 2 0 012 2z"/></svg>
+        </button>
+      </div>
+      <div class="badges">
+        <span class="badge c-${a.topic}">${esc(tc(a.topic).label || a.topicHe || a.topic)}</span>
+        <span class="badge c-sub">#${esc(a.sub || '')}</span>
+      </div>
+      <h3>${esc(a.title || '')}</h3>
+      ${hasImg ? `<div class="card-img" style="aspect-ratio:16/9;background:#0a0a0a;border-radius:6px;margin:8px 0;overflow:hidden"><img src="${esc(a.image)}" alt="" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block" onerror="this.parentElement.style.display='none'"></div>` : ''}
+      ${lines ? `<ul class="sumlines">${lines}</ul>` : ''}
+      <div class="card-foot">
+        <a class="clink" href="${esc(a.link || '#')}" target="_blank" rel="noopener" onclick="event.stopPropagation()">
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>${tl['read-src']}
+        </a>
+        <div class="reacts">
+          <span class="react" title="פורסם">🕒 ${esc(a.date || '')}</span>
+        </div>
+      </div>
+    </a>`;
+  }).join('');
+  wrap.innerHTML = '';
+  wrap.appendChild(g);
+}
+
+function setView(v, btn) {
+  curView = v;
+  document.querySelectorAll('.vb').forEach(b => b.classList.remove('on'));
+  btn.classList.add('on');
+  doFilter();
+}
+
+// ══════════════════════════════════════════════
+// ARTICLE NAVIGATION — real static pages now live at /article/{id}.html
+// (openArticle/closeArticle modal functions removed; cards are <a href>
+// elements with view-transition-name so the browser morphs into the page.)
+// ══════════════════════════════════════════════
+
+// ══════════════════════════════════════════════
+// AUTH POPOVER (native popover API)
+// ══════════════════════════════════════════════
+function openAuth(tab = 'register') {
+  buildTopicsGrid();
+  document.getElementById('auth-modal').showPopover();
+  switchTab(tab, document.getElementById('tab-' + tab));
+}
+function closeAuth() {
+  const el = document.getElementById('auth-modal');
+  if (el.matches(':popover-open')) el.hidePopover();
+}
+
+function switchTab(tab, el) {
+  document.querySelectorAll('.auth-tab').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById('form-register').style.display = tab === 'register' ? '' : 'none';
+  document.getElementById('form-login').style.display = tab === 'login' ? '' : 'none';
+}
+
+function buildTopicsGrid() {
+  const grid = document.getElementById('topics-grid');
+  if (grid.innerHTML) return; // already built
+  grid.innerHTML = TOPICS.filter(t => t.id !== 'all').map(t => `
+    <label class="topic-check" onclick="toggleCheck(this)">
+      <input type="checkbox" value="${t.id}">
+      <span class="chk-icon">✓</span>
+      <span class="tdot" style="background:${t.dot}"></span>
+      ${t.label}
+    </label>`).join('');
+}
+
+function toggleCheck(el) {
+  el.classList.toggle('checked');
+  el.querySelector('input').checked = el.classList.contains('checked');
+}
+
+async function handleRegister() {
+  const name = document.getElementById('reg-name').value.trim();
+  const email = document.getElementById('reg-email').value.trim();
+  const errEl = document.getElementById('reg-error');
+  const sucEl = document.getElementById('reg-success');
+  const btn = document.getElementById('reg-btn');
+  errEl.style.display = 'none';
+  sucEl.style.display = 'none';
+
+  if (!email || !email.includes('@')) {
+    errEl.textContent = 'נא להזין כתובת מייל תקינה';
+    errEl.style.display = 'block'; return;
+  }
+
+  const topics = [...document.querySelectorAll('#topics-grid input:checked')].map(i => i.value);
+
+  try {
+    const res = await fetch('/api/subscribe', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name, email, topics }),
+    });
+    const data = await res.json();
+
+    if (data.ok) {
+      currentUser = { name, email, topics };
+      localStorage.setItem('dupaman_user', JSON.stringify(currentUser));
+      updateNavAuth();
+      sucEl.textContent = '✅ ' + (data.message || 'נרשמת בהצלחה!');
+      sucEl.style.display = 'block';
+      btn.style.display = 'none';
+      setTimeout(closeAuth, 3000);
+    } else if (data.alreadyRegistered) {
+      // Re-activate
+      currentUser = { name, email, topics };
+      localStorage.setItem('dupaman_user', JSON.stringify(currentUser));
+      updateNavAuth();
+      sucEl.textContent = '✅ ' + (data.message || 'ברוך שובך!');
+      sucEl.style.display = 'block';
+      btn.style.display = 'none';
+      setTimeout(closeAuth, 3000);
+    } else {
+      errEl.textContent = data.error || 'שגיאה בהרשמה. נסה שוב.';
+      errEl.style.display = 'block';
+    }
+  } catch (e) {
+    // Offline fallback — register locally
+    currentUser = { name, email, topics };
+    localStorage.setItem('dupaman_user', JSON.stringify(currentUser));
+    updateNavAuth();
+    sucEl.textContent = '✅ תודה' + (name ? ', ' + name : '') + '! נרשמת בהצלחה.';
+    sucEl.style.display = 'block';
+    btn.style.display = 'none';
+    setTimeout(closeAuth, 3000);
+  }
+}
+
+function handleLogin() {
+  const email = document.getElementById('login-email').value.trim();
+  const err = document.getElementById('login-error');
+  const suc = document.getElementById('login-success');
+  err.style.display = 'none'; suc.style.display = 'none';
+  if (!email || !email.includes('@')) {
+    err.textContent = 'נא להזין כתובת מייל תקינה';
+    err.style.display = 'block'; return;
+  }
+  suc.textContent = `📧 שלחנו קישור כניסה ל-${email}`;
+  suc.style.display = 'block';
+}
+
+function updateNavAuth() {
+  const area = document.getElementById('nav-auth-area');
+  if (currentUser) {
+    area.innerHTML = `<div class="user-badge" onclick="openAuth('login')">
+      <span class="u-dot"></span>
+      ${currentUser.name || currentUser.email}
+    </div>`;
+  } else {
+    area.innerHTML = `<button class="nav-auth nav-item" onclick="openAuth('register')">כניסה / הרשמה</button>`;
+  }
+}
+
+// ══════════════════════════════════════════════
+// I18N – LANGUAGE SWITCHER
+// ══════════════════════════════════════════════
+const I18N = {
+  he: {
+    dir: 'rtl', lang: 'he',
+    'logo-name': 'דופמין',
+    'logo-beta': 'BETA · ניוזלטר יומי',
+    'nav-feed': 'פיד',
+    'nav-saved': 'שמורים',
+    'nav-pricing': 'מנויים',
+    'nav-auth': 'כניסה / הרשמה',
+    'search-placeholder': 'חפש מאמרים, נושאים, מקורות...',
+    'sub-label': 'סנן לפי תת-נושא',
+    'sort-new': 'החדשים קודם',
+    'sort-old': 'הישנים קודם',
+    'sort-popular': 'הפופולריים',
+    'showing': 'מציג',
+    'articles': 'מאמרים',
+    'refresh': '⟳ רענן',
+    'modal-subtitle': 'ניוזלטר יומי · BETA',
+    'tab-register': 'הרשמה',
+    'tab-login': 'כניסה',
+    'label-name': 'שם מלא',
+    'label-email': 'כתובת מייל',
+    'label-topics': 'בחר נושאים (ניתן לבחור כמה)',
+    'placeholder-name': 'ישראל ישראלי',
+    'btn-register': 'הרשם לניוזלטר היומי ✉️',
+    'register-note': 'תקבל ניוזלטר כל יום ב-7:00 בבוקר. ניתן לבטל בכל עת.',
+    'btn-login': 'כניסה עם Magic Link 🔗',
+    'login-note': 'ישלח אליך קישור כניסה חד-פעמי למייל.',
+    'sb-topics': 'נושאים',
+    'sb-subtopics': 'תתי-נושאים',
+    'empty-h': 'לא נמצאו מאמרים',
+    'empty-p': 'נסה לשנות את הסינון',
+    'read-src': 'קרא מקור',
+    'demo-data': '(נתוני הדגמה)',
+    'demo-api': '(נתוני הדגמה – API לא מוגדר)',
+  },
+  en: {
+    dir: 'ltr', lang: 'en',
+    'logo-name': 'Dopamine',
+    'logo-beta': 'BETA · Daily Newsletter',
+    'nav-feed': 'Feed',
+    'nav-saved': 'Saved',
+    'nav-pricing': 'Pricing',
+    'nav-auth': 'Sign In / Sign Up',
+    'search-placeholder': 'Search articles, topics, sources...',
+    'sub-label': 'Filter by sub-topic',
+    'sort-new': 'Newest first',
+    'sort-old': 'Oldest first',
+    'sort-popular': 'Most popular',
+    'showing': 'Showing',
+    'articles': 'articles',
+    'refresh': '⟳ Refresh',
+    'modal-subtitle': 'Daily Newsletter · BETA',
+    'tab-register': 'Sign Up',
+    'tab-login': 'Sign In',
+    'label-name': 'Full name',
+    'label-email': 'Email address',
+    'label-topics': 'Choose topics (multiple allowed)',
+    'placeholder-name': 'John Doe',
+    'btn-register': 'Subscribe to Daily Newsletter ✉️',
+    'register-note': 'You will receive a newsletter every day at 7:00 AM. Cancel anytime.',
+    'btn-login': 'Sign In with Magic Link 🔗',
+    'login-note': 'A one-time login link will be sent to your email.',
+    'sb-topics': 'Topics',
+    'sb-subtopics': 'Sub-topics',
+    'empty-h': 'No articles found',
+    'empty-p': 'Try changing the filter',
+    'read-src': 'Read source',
+    'demo-data': '(Demo data)',
+    'demo-api': '(Demo data – API not configured)',
+  },
+  fr: {
+    dir: 'ltr', lang: 'fr',
+    'logo-name': 'Dopamine',
+    'logo-beta': 'BETA · Newsletter Quotidienne',
+    'nav-feed': 'Fil',
+    'nav-saved': 'Sauvegardés',
+    'nav-pricing': 'Tarifs',
+    'nav-auth': 'Connexion / Inscription',
+    'search-placeholder': 'Rechercher articles, sujets, sources...',
+    'sub-label': 'Filtrer par sous-thème',
+    'sort-new': 'Les plus récents',
+    'sort-old': 'Les plus anciens',
+    'sort-popular': 'Les plus populaires',
+    'showing': 'Affichage',
+    'articles': 'articles',
+    'refresh': '⟳ Actualiser',
+    'modal-subtitle': 'Newsletter Quotidienne · BETA',
+    'tab-register': 'Inscription',
+    'tab-login': 'Connexion',
+    'label-name': 'Nom complet',
+    'label-email': 'Adresse e-mail',
+    'label-topics': 'Choisir des sujets (plusieurs possibles)',
+    'placeholder-name': 'Jean Dupont',
+    'btn-register': "S'abonner à la Newsletter ✉️",
+    'register-note': 'Vous recevrez une newsletter chaque jour à 7h00. Annulable à tout moment.',
+    'btn-login': 'Connexion avec Magic Link 🔗',
+    'login-note': 'Un lien de connexion unique sera envoyé à votre e-mail.',
+    'sb-topics': 'Sujets',
+    'sb-subtopics': 'Sous-sujets',
+    'empty-h': 'Aucun article trouvé',
+    'empty-p': 'Essayez de changer le filtre',
+    'read-src': 'Lire la source',
+    'demo-data': '(Données de démo)',
+    'demo-api': "(Données de démo – API non configurée)",
+  },
+  es: {
+    dir: 'ltr', lang: 'es',
+    'logo-name': 'Dopamina',
+    'logo-beta': 'BETA · Newsletter Diario',
+    'nav-feed': 'Feed',
+    'nav-saved': 'Guardados',
+    'nav-pricing': 'Precios',
+    'nav-auth': 'Entrar / Registrarse',
+    'search-placeholder': 'Buscar artículos, temas, fuentes...',
+    'sub-label': 'Filtrar por subtema',
+    'sort-new': 'Más recientes',
+    'sort-old': 'Más antiguos',
+    'sort-popular': 'Más populares',
+    'showing': 'Mostrando',
+    'articles': 'artículos',
+    'refresh': '⟳ Actualizar',
+    'modal-subtitle': 'Newsletter Diario · BETA',
+    'tab-register': 'Registrarse',
+    'tab-login': 'Entrar',
+    'label-name': 'Nombre completo',
+    'label-email': 'Correo electrónico',
+    'label-topics': 'Elige temas (puedes elegir varios)',
+    'placeholder-name': 'Juan García',
+    'btn-register': 'Suscribirse al Newsletter Diario ✉️',
+    'register-note': 'Recibirás un newsletter cada día a las 7:00. Cancela cuando quieras.',
+    'btn-login': 'Entrar con Magic Link 🔗',
+    'login-note': 'Se enviará un enlace de acceso único a tu correo.',
+    'sb-topics': 'Temas',
+    'sb-subtopics': 'Subtemas',
+    'empty-h': 'No se encontraron artículos',
+    'empty-p': 'Intenta cambiar el filtro',
+    'read-src': 'Leer fuente',
+    'demo-data': '(Datos de demo)',
+    'demo-api': '(Datos de demo – API no configurada)',
+  },
+};
+
+let curLang = 'he';
+
+function setLang(lang, btn) {
+  curLang = lang;
+  const t = I18N[lang] || I18N['he'];  // fallback
+  // Update html dir + lang
+  const html = document.getElementById('html-root');
+  html.setAttribute('dir', t.dir);
+  html.setAttribute('lang', t.lang);
+  // Update body direction
+  document.body.style.direction = t.dir;
+  // Update form inputs direction
+  document.querySelectorAll('.form-input').forEach(el => el.style.direction = t.dir);
+  // Update all data-i18n elements
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (t[key]) el.textContent = t[key];
+  });
+  // Update placeholders
+  document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+    const key = el.getAttribute('data-i18n-placeholder');
+    if (t[key]) el.setAttribute('placeholder', t[key]);
+  });
+  // Update sort options
+  ['sort-new','sort-old','sort-popular'].forEach((key,i) => {
+    const opts = document.getElementById('sort').options;
+    if (opts[i] && t[key]) opts[i].text = t[key];
+  });
+  // Update active lang button
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+  const activeLangBtn = btn || document.querySelector(`.lang-btn[data-lang="${lang}"]`);
+  if (activeLangBtn) activeLangBtn.classList.add('active');
+  // Rebuild UI with new language
+  buildSidebar();
+  renderGrid(ALL_ARTICLES.filter(a => {
+    const q = document.getElementById('q').value.toLowerCase();
+    const src = document.getElementById('srcflt').value;
+    const mt = curTopic === 'all' || a.topic === curTopic;
+    const ms = curSub === 'הכל' || a.sub === curSub;
+    const mq = !q || a.title.toLowerCase().includes(q) || (a.lines||[]).join(' ').toLowerCase().includes(q);
+    const msrc = !src || a.src === src;
+    return mt && ms && mq && msrc;
+  }));
+}
+
+// ══════════════════════════════════════════════
+// KEYBOARD + INIT
+// ══════════════════════════════════════════════
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') { closeAuth(); }
+});
+
+// Wire up lang switcher via addEventListener (works in sandboxed iframes)
+document.getElementById('lang-switcher').addEventListener('click', function(e) {
+  const btn = e.target.closest('.lang-btn');
+  if (!btn) return;
+  const lang = btn.getAttribute('data-lang');
+  if (lang) setLang(lang, btn);
+});
+
+updateNavAuth();
+loadArticles();
+</script>
+</body>
+</html>

@@ -1,0 +1,1521 @@
+{
+  "articles": [
+    {
+      "id": "nwp49g",
+      "title": "Swift Boost Mission",
+      "description": "Swift Boost Mission",
+      "link": "https://apod.nasa.gov/apod/ap260708.html",
+      "pubDate": "",
+      "timestamp": 1783648911174,
+      "author": "",
+      "image": null,
+      "source": "APOD",
+      "sourceUrl": "https://apod.nasa.gov/apod.rss",
+      "topic": "astronomy",
+      "topicHe": "חלל",
+      "sub": "תמונת יום",
+      "age": "עכשיו",
+      "pubDateIso": "2026-07-10T02:01:51.174Z"
+    },
+    {
+      "id": "2qzg0a",
+      "title": "The 10 Docker Errors That Waste the Most Time (and the One-Line Fix)",
+      "description": "Docker is fantastic right up until it throws one of its greasy, context-free error messages at you and you lose twenty minutes to a thing that has a one-line fix. I've been collecting these — the exact strings, and the first thing to check for each. Here are the ten that eat the most time. 1. Cannot connect to the Docker daemon at unix:///var/run/docker.sock The engine isn't reachable. In order of likelihood: the daemon isn't running ( systemctl status docker ), you're not in the docker group ( ",
+      "link": "https://dev.to/devopsaitoolkit/the-10-docker-errors-that-waste-the-most-time-and-the-one-line-fix-45mg",
+      "pubDate": "Fri, 10 Jul 2026 01:54:11 +0000",
+      "timestamp": 1783648451000,
+      "author": "James Joyner",
+      "image": null,
+      "source": "Dev.to",
+      "sourceUrl": "https://dev.to/feed",
+      "topic": "guides",
+      "topicHe": "מדריכים",
+      "sub": "Dev.to",
+      "age": "לפני 7 דק׳",
+      "pubDateIso": "2026-07-10T01:54:11.000Z"
+    },
+    {
+      "id": "ds2oub",
+      "title": "Azure Service Bus: Topics, Subscriptions, and Dead Letter Queues",
+      "description": "Azure Service Bus is an enterprise-grade cloud messaging service. It decouples applications so they do not need to be online at the same time to communicate. Instead of calling each other directly, services send messages to Service Bus and other services pick them up when ready. Service Bus was used extensively at Blue Yonder to connect Logic Apps, Function Apps, and external systems like Salesforce and ServiceNow - it was the backbone of every reliable integration built there. Why Messaging Ins",
+      "link": "https://dev.to/manoharij/azure-service-bus-topics-subscriptions-and-dead-letter-queues-m4a",
+      "pubDate": "Fri, 10 Jul 2026 01:41:32 +0000",
+      "timestamp": 1783647692000,
+      "author": "Manohari Jayachandran",
+      "image": null,
+      "source": "Dev.to",
+      "sourceUrl": "https://dev.to/feed",
+      "topic": "guides",
+      "topicHe": "מדריכים",
+      "sub": "Dev.to",
+      "age": "לפני 20 דק׳",
+      "pubDateIso": "2026-07-10T01:41:32.000Z"
+    },
+    {
+      "id": "l6smjk",
+      "title": "Comment j'ai conçu EagleCheck, un SIRH pour l'Afrique francophone",
+      "description": "Dans la plupart des entreprises que je côtoie en Afrique francophone, la gestion RH tient encore sur des fichiers Excel, des cahiers de présence et des groupes WhatsApp. Résultat : des retards non suivis, des bulletins de paie faits à la main, et zéro visibilité pour la direction. J'ai construit EagleCheck pour changer ça. Le problème Les SIRH classiques (Systèmes d'Information des Ressources Humaines) sont souvent : trop chers pour une PME africaine, pensés pour d'autres réalités (pas de gestio",
+      "link": "https://dev.to/speedboy1/comment-jai-concu-eaglecheck-un-sirh-pour-lafrique-francophone-4ppg",
+      "pubDate": "Fri, 10 Jul 2026 01:37:55 +0000",
+      "timestamp": 1783647475000,
+      "author": "ROBERT KOUKOU AZIAKESSE",
+      "image": null,
+      "source": "Dev.to",
+      "sourceUrl": "https://dev.to/feed",
+      "topic": "guides",
+      "topicHe": "מדריכים",
+      "sub": "Dev.to",
+      "age": "לפני 24 דק׳",
+      "pubDateIso": "2026-07-10T01:37:55.000Z"
+    },
+    {
+      "id": "7trvor",
+      "title": "We need to think about Programming in 2026!",
+      "description": "Introducing PERSONAL: The Language 70 Million Devs Already Speak When was the first programming language invented? Don't say FORTRAN. Don't say COBOL. Go back further. Go back to the Altair 8800 . Back then, you didn't \"write code.\" You flipped physical switches to enter binary machine language directly into memory. Programming was a ritual for priests in white lab coats. If you wanted to add 2 and 2, you consulted a manual, flipped eight switches, and prayed you didn't flip the wrong one. Then ",
+      "link": "https://dev.to/texinfo/we-need-to-think-about-programming-in-2026-439p",
+      "pubDate": "Fri, 10 Jul 2026 01:31:04 +0000",
+      "timestamp": 1783647064000,
+      "author": "Omid Ghayour",
+      "image": null,
+      "source": "Dev.to",
+      "sourceUrl": "https://dev.to/feed",
+      "topic": "guides",
+      "topicHe": "מדריכים",
+      "sub": "Dev.to",
+      "age": "לפני 30 דק׳",
+      "pubDateIso": "2026-07-10T01:31:04.000Z"
+    },
+    {
+      "id": "3j47mp",
+      "title": "Qualify real estate leads with an email agent",
+      "description": "A property inquiry has a half-life measured in minutes. Someone is scrolling listings at 11pm, they fill out the \"request more info\" form on the three-bedroom on Maple, and they fire the same form off to four other listings on the same street. Whichever agent replies first — with answers, not a \"thanks, I'll be in touch\" — is the one who gets the showing. By the time a human checks email at 9am, that lead has already toured two other houses in their head. Most \"AI for real estate\" tools try to f",
+      "link": "https://dev.to/mqasimca/qualify-real-estate-leads-with-an-email-agent-gio",
+      "pubDate": "Fri, 10 Jul 2026 01:27:51 +0000",
+      "timestamp": 1783646871000,
+      "author": "Qasim",
+      "image": null,
+      "source": "Dev.to",
+      "sourceUrl": "https://dev.to/feed",
+      "topic": "guides",
+      "topicHe": "מדריכים",
+      "sub": "Dev.to",
+      "age": "לפני 34 דק׳",
+      "pubDateIso": "2026-07-10T01:27:51.000Z"
+    },
+    {
+      "id": "u2klkx",
+      "title": "Build an SDR agent with its own follow-up inbox",
+      "description": "SDR automation dies when replies hit a no-reply box. The sequence engine is the easy part — anyone can fire \"step 1 of 5\" on a cron. The part that quietly breaks every outbound tool is the other direction: a prospect reads your third touch, types \"not now, circle back in Q3,\" and hits reply. That reply is the single most valuable signal in the whole campaign, and it lands in no-reply@yourcompany.com , which is to say it lands nowhere. The prospect who told you exactly when to follow up gets your",
+      "link": "https://dev.to/mqasimca/build-an-sdr-agent-with-its-own-follow-up-inbox-1ahj",
+      "pubDate": "Fri, 10 Jul 2026 01:27:45 +0000",
+      "timestamp": 1783646865000,
+      "author": "Qasim",
+      "image": null,
+      "source": "Dev.to",
+      "sourceUrl": "https://dev.to/feed",
+      "topic": "guides",
+      "topicHe": "מדריכים",
+      "sub": "Dev.to",
+      "age": "לפני 34 דק׳",
+      "pubDateIso": "2026-07-10T01:27:45.000Z"
+    },
+    {
+      "id": "mt29s6",
+      "title": "Luvesilocin: This new psychedelic drug could change how we treat postpartum depression",
+      "description": "In recent FDA Phase 2 trials, a single dose of the experimental psychedelic luvesilocin eliminated postpartum depression symptoms in 71% of patients within seven days. The breakthrough medication will enter Phase 3 trials by late 2026.",
+      "link": "https://www.psypost.org/luvesilocin-fda-trials-reveal-a-new-psychedelic-could-quickly-clear-postpartum-depression-symptoms/",
+      "pubDate": "Fri, 10 Jul 2026 00:00:18 +0000",
+      "timestamp": 1783641618000,
+      "author": "Camille Hoffman",
+      "image": "https://www.psypost.org/wp-content/uploads/2026/04/sad-woman.jpg",
+      "source": "PsyPost",
+      "sourceUrl": "https://www.psypost.org/feed/",
+      "topic": "psychology",
+      "topicHe": "פסיכולוגיה",
+      "sub": "פסיכולוגיה",
+      "age": "לפני 2 שע׳",
+      "pubDateIso": "2026-07-10T00:00:18.000Z"
+    },
+    {
+      "id": "5zsh3l",
+      "title": "AI reveals hidden San Andreas Fault movements",
+      "description": "When people think about geological faults, they usually think about earthquakes. Yet faults do not move only during earthquakes. Sometimes they slip silently, without generating noticeable shaking, releasing stress over hours or days through slow fault movements that remain largely hidden from conventional monitoring systems.",
+      "link": "https://phys.org/news/2026-07-ai-reveals-hidden-san-andreas.html",
+      "pubDate": "Thu, 09 Jul 2026 19:00:05 EDT",
+      "timestamp": 1783638005000,
+      "author": "",
+      "image": "https://scx1.b-cdn.net/csz/news/tmb/2026/san-andreas-fault-hidd.jpg",
+      "source": "Phys.org — Earth",
+      "sourceUrl": "https://phys.org/rss-feed/earth-news/",
+      "topic": "science",
+      "topicHe": "מדע",
+      "sub": "כדור הארץ",
+      "age": "לפני 3 שע׳",
+      "pubDateIso": "2026-07-09T23:00:05.000Z"
+    },
+    {
+      "id": "wbwb3h",
+      "title": "Study found evidence of partisan behavior in children aged five to nine - they frequently endorsed their own group’s claims even when evidence suggested otherwise. However, if you allow them to respond in private or give",
+      "description": "submitted by /u/mvea [link] [comments]",
+      "link": "https://www.reddit.com/r/science/comments/1us4wcd/study_found_evidence_of_partisan_behavior_in/",
+      "pubDate": "2026-07-09T22:15:49+00:00",
+      "timestamp": 1783635349000,
+      "author": "/u/mveahttps://www.reddit.com/user/mvea",
+      "image": null,
+      "source": "Reddit r/science",
+      "sourceUrl": "https://www.reddit.com/r/science/.rss",
+      "topic": "science",
+      "topicHe": "מדע",
+      "sub": "Reddit",
+      "age": "לפני 3 שע׳",
+      "pubDateIso": "2026-07-09T22:15:49.000Z"
+    },
+    {
+      "id": "rjbcnx",
+      "title": "NASA Sets Coverage for Astronaut Anil Menon Launch to Space Station",
+      "description": "NASA astronaut Anil Menon will launch aboard the Roscosmos Soyuz MS-29 spacecraft to the International Space Station on Tuesday, July 14, accompanied by cosmonauts Pyotr Dubrov and Anna Kikina, where they will join the Expedition 74 crew advancing scientific research. Menon, Dubrov, and Kikina will lift off at 10:47 a.m. EDT (7:47 p.m. Baikonur time) […]",
+      "link": "https://www.nasa.gov/news-release/nasa-sets-coverage-for-astronaut-anil-menon-launch-to-space-station/",
+      "pubDate": "Thu, 09 Jul 2026 22:09:27 +0000",
+      "timestamp": 1783634967000,
+      "author": "Jessica Taveau",
+      "image": null,
+      "source": "NASA",
+      "sourceUrl": "https://www.nasa.gov/news-release/feed/",
+      "topic": "astronomy",
+      "topicHe": "חלל",
+      "sub": "NASA",
+      "age": "לפני 3 שע׳",
+      "pubDateIso": "2026-07-09T22:09:27.000Z"
+    },
+    {
+      "id": "qg13ws",
+      "title": "Your body’s stress response before trauma may predict PTSD symptoms later",
+      "description": "Could biological markers predict PTSD risk? Scientists found that a smaller hypothalamus and low pre-trauma cortisol levels are strongly linked to persistent re-experiencing symptoms in trauma survivors, particularly those with a history of childhood adversity.",
+      "link": "https://www.psypost.org/your-bodys-stress-response-before-trauma-may-predict-ptsd-symptoms-later/",
+      "pubDate": "Thu, 09 Jul 2026 22:00:13 +0000",
+      "timestamp": 1783634413000,
+      "author": "Bianca Setionago",
+      "image": "https://www.psypost.org/wp-content/uploads/2026/06/brainimg.jpg",
+      "source": "PsyPost",
+      "sourceUrl": "https://www.psypost.org/feed/",
+      "topic": "psychology",
+      "topicHe": "פסיכולוגיה",
+      "sub": "פסיכולוגיה",
+      "age": "לפני 4 שע׳",
+      "pubDateIso": "2026-07-09T22:00:13.000Z"
+    },
+    {
+      "id": "jdqpx9",
+      "title": "Wally Funk, trailblazing pilot and astronaut, passes away at 87",
+      "description": "Wally Funk, who flew to space at 82 after a lifetime of flying and fighting for women in aviation and aerospace, has passed away at age 87.",
+      "link": "https://www.space.com/space-exploration/human-spaceflight/wally-funk-trailblazing-pilot-and-astronaut-passes-away-at-87",
+      "pubDate": "Thu, 09 Jul 2026 22:00:00 +0000",
+      "timestamp": 1783634400000,
+      "author": "chelseagohd@gmail.com (Chelsea Gohd)",
+      "image": "https://cdn.mos.cms.futurecdn.net/PnyuzypuFeWzE7TAs8qASC-1280-80.jpg",
+      "source": "Space.com",
+      "sourceUrl": "https://www.space.com/feeds.xml",
+      "topic": "astronomy",
+      "topicHe": "חלל",
+      "sub": "חלל",
+      "age": "לפני 4 שע׳",
+      "pubDateIso": "2026-07-09T22:00:00.000Z"
+    },
+    {
+      "id": "m3fc64",
+      "title": "Malaria had nearly been eliminated around a giant dam in the Amazon — but then it came roaring back. Experts just discovered why.",
+      "description": "A 15-year study suggests that long-term malaria control may depend as much on protecting environments as it does on sustaining public health programs.",
+      "link": "https://www.livescience.com/health/viruses-infections-disease/malaria-had-nearly-been-eliminated-around-a-giant-dam-in-the-amazon-but-then-it-came-roaring-back-experts-just-discovered-why",
+      "pubDate": "Thu, 09 Jul 2026 21:47:21 +0000",
+      "timestamp": 1783633641000,
+      "author": "olivia.maule@futurenet.com (Olivia Maule)",
+      "image": "https://cdn.mos.cms.futurecdn.net/9KCvCdevR8WiDz9jhE5eAe-1280-80.jpg",
+      "source": "Live Science",
+      "sourceUrl": "https://www.livescience.com/feeds.xml",
+      "topic": "science",
+      "topicHe": "מדע",
+      "sub": "מדע כללי",
+      "age": "לפני 4 שע׳",
+      "pubDateIso": "2026-07-09T21:47:21.000Z"
+    },
+    {
+      "id": "j749c8",
+      "title": "Programmable light simulates quantum matter across 300 processes without bigger circuits",
+      "description": "A team of researchers at the University of Ottawa and its Nexus for Quantum Technologies Institute, in collaboration with researchers from Federico II University in Italy, has developed a programmable quantum simulator that shapes a beam of light to replicate how particles move through complex materials, avoiding the need for ever-larger electronic hardware.",
+      "link": "https://phys.org/news/2026-07-programmable-simulates-quantum-bigger-circuits.html",
+      "pubDate": "Thu, 09 Jul 2026 17:40:06 EDT",
+      "timestamp": 1783633206000,
+      "author": "",
+      "image": "https://scx1.b-cdn.net/csz/news/tmb/2026/light-as-a-quantum-pla.jpg",
+      "source": "Phys.org — Physics",
+      "sourceUrl": "https://phys.org/rss-feed/physics-news/",
+      "topic": "physics",
+      "topicHe": "פיזיקה",
+      "sub": "פיזיקה",
+      "age": "לפני 4 שע׳",
+      "pubDateIso": "2026-07-09T21:40:06.000Z"
+    },
+    {
+      "id": "3oa88p",
+      "title": "Quantum optics may turn this rare visual phenomenon into an eye test",
+      "description": "Modern life depends on quantum physics. It makes technologies such as GPS navigation, MRI scanners and computer chips possible. Now, the same science may also lead to a new way to test the health of our eyes. A University at Buffalo-led team has used a technique from quantum optics to make a little-known visual pattern produced inside the eye easier to see—potentially opening the door to a new way to test retinal health.",
+      "link": "https://phys.org/news/2026-07-quantum-optics-rare-visual-phenomenon.html",
+      "pubDate": "Thu, 09 Jul 2026 17:40:03 EDT",
+      "timestamp": 1783633203000,
+      "author": "",
+      "image": "https://scx1.b-cdn.net/csz/news/tmb/2026/quantum-optics-may-tur.jpg",
+      "source": "Phys.org — Physics",
+      "sourceUrl": "https://phys.org/rss-feed/physics-news/",
+      "topic": "physics",
+      "topicHe": "פיזיקה",
+      "sub": "פיזיקה",
+      "age": "לפני 4 שע׳",
+      "pubDateIso": "2026-07-09T21:40:03.000Z"
+    },
+    {
+      "id": "mqke0k",
+      "title": "NFL Players Face Fourfold Increase in Neurodegenerative Mortality",
+      "description": "A retrospective cohort study of 19,824 NFL players confirms that professional football veterans face a fourfold increase in neurodegenerative mortality, including a 3.8-fold surge in all-cause dementia and Parkinson's disease.",
+      "link": "https://neurosciencenews.com/nfl-dementia-neurology-31029/",
+      "pubDate": "Thu, 09 Jul 2026 21:38:34 +0000",
+      "timestamp": 1783633114000,
+      "author": "Neuroscience News",
+      "image": null,
+      "source": "Neuroscience News",
+      "sourceUrl": "https://neurosciencenews.com/feed/",
+      "topic": "neuroscience",
+      "topicHe": "מדעי המוח",
+      "sub": "מחקר מוח",
+      "age": "לפני 4 שע׳",
+      "pubDateIso": "2026-07-09T21:38:34.000Z"
+    },
+    {
+      "id": "n8kv8y",
+      "title": "From bursts to creep: Rewriting the story of mud volcano flows",
+      "description": "Mud volcanoes are often pictured as dramatic geological phenomena featuring the sudden eruption of large volumes of fiery mud in short, powerful bursts. By examining recent activity at the Lokbatan mud volcano in Azerbaijan, an international team of researchers led by the University of Oslo has found that many eruptions are relatively small and short-lived, producing only modest amounts of material near the crater.",
+      "link": "https://phys.org/news/2026-07-rewriting-story-mud-volcano.html",
+      "pubDate": "Thu, 09 Jul 2026 17:20:08 EDT",
+      "timestamp": 1783632008000,
+      "author": "",
+      "image": "https://scx1.b-cdn.net/csz/news/tmb/2026/mud-volcano.jpg",
+      "source": "Phys.org — Earth",
+      "sourceUrl": "https://phys.org/rss-feed/earth-news/",
+      "topic": "science",
+      "topicHe": "מדע",
+      "sub": "כדור הארץ",
+      "age": "לפני 4 שע׳",
+      "pubDateIso": "2026-07-09T21:20:08.000Z"
+    },
+    {
+      "id": "px4345",
+      "title": "Eye Movements Form a Unique Gaze Fingerprint",
+      "description": "A new study combines VR eye-tracking with Large Language Models to prove that human eye movements serve as a stable identity fingerprint.",
+      "link": "https://neurosciencenews.com/gaze-fingerprint-ai-llm-eye-tracking-31028/",
+      "pubDate": "Thu, 09 Jul 2026 21:19:51 +0000",
+      "timestamp": 1783631991000,
+      "author": "Neuroscience News",
+      "image": null,
+      "source": "Neuroscience News",
+      "sourceUrl": "https://neurosciencenews.com/feed/",
+      "topic": "neuroscience",
+      "topicHe": "מדעי המוח",
+      "sub": "מחקר מוח",
+      "age": "לפני 4 שע׳",
+      "pubDateIso": "2026-07-09T21:19:51.000Z"
+    },
+    {
+      "id": "qlwx02",
+      "title": "Dirty 'button' unearthed by metal detectorist turns out to be a rare 900-year-old coin from Norway's last Viking king, Magnus Barefoot",
+      "description": "A rare coin from the reign of Magnus Barefoot — sometimes called Norway's last Viking king, was mistaken for a button before researchers realized it was the first of its kind found on Norwegian soil.",
+      "link": "https://www.livescience.com/archaeology/vikings/dirty-button-unearthed-by-metal-detectorist-turns-out-to-be-a-rare-900-year-old-coin-from-norways-last-viking-king-magnus-barefoot",
+      "pubDate": "Thu, 09 Jul 2026 21:19:16 +0000",
+      "timestamp": 1783631956000,
+      "author": "Kenna Hughes-Castleberry",
+      "image": "https://cdn.mos.cms.futurecdn.net/5PKvBiKnNUpfAe7AUFRkJd-1280-80.jpg",
+      "source": "Live Science",
+      "sourceUrl": "https://www.livescience.com/feeds.xml",
+      "topic": "science",
+      "topicHe": "מדע",
+      "sub": "מדע כללי",
+      "age": "לפני 4 שע׳",
+      "pubDateIso": "2026-07-09T21:19:16.000Z"
+    },
+    {
+      "id": "k44a6t",
+      "title": "Stress protection of Amazon trees, induced by climate warming, may alter atmosphere chemistry",
+      "description": "The Amazon rainforest is one of the largest carbon reservoirs on Earth. It is also the world's largest source of biogenic volatile organic compounds (VOCs). These carbon-based gases are naturally released by vegetation. They protect trees against various sources of stress, e.g., by mitigating oxidative stress and deterring herbivores. Once in the atmosphere, VOCs react rapidly with other gases. This influences the formation of airborne particles and clouds, which contributes to shaping the regio",
+      "link": "https://phys.org/news/2026-07-stress-amazon-trees-climate-atmosphere.html",
+      "pubDate": "Thu, 09 Jul 2026 17:00:03 EDT",
+      "timestamp": 1783630803000,
+      "author": "",
+      "image": "https://scx1.b-cdn.net/csz/news/tmb/2026/amazon-rainforest.jpg",
+      "source": "Phys.org — Earth",
+      "sourceUrl": "https://phys.org/rss-feed/earth-news/",
+      "topic": "science",
+      "topicHe": "מדע",
+      "sub": "כדור הארץ",
+      "age": "לפני 5 שע׳",
+      "pubDateIso": "2026-07-09T21:00:03.000Z"
+    },
+    {
+      "id": "za46w3",
+      "title": "Scientists have discovered the oldest quasar ever seen, and it shines with the light of a trillion suns",
+      "description": "Using the ESA's Euclid space telescope, astronomers have discovered a treasure trove of black hole-powered quasars in the early universe, including the most ancient and distant ever seen.",
+      "link": "https://www.space.com/astronomy/black-holes/scientists-have-discovered-the-oldest-quasar-ever-seen-and-it-shines-with-the-light-of-a-trillion-suns",
+      "pubDate": "Thu, 09 Jul 2026 21:00:00 +0000",
+      "timestamp": 1783630800000,
+      "author": "Robert Lea",
+      "image": "https://cdn.mos.cms.futurecdn.net/evuCHDUWsdHHwmYnFLeFjh-1280-80.png",
+      "source": "Space.com",
+      "sourceUrl": "https://www.space.com/feeds.xml",
+      "topic": "astronomy",
+      "topicHe": "חלל",
+      "sub": "חלל",
+      "age": "לפני 5 שע׳",
+      "pubDateIso": "2026-07-09T21:00:00.000Z"
+    },
+    {
+      "id": "i0ndia",
+      "title": "A new study suggests having a champion for solar power in the house is key to installing the panels. Understanding these family dynamics could help the planet by improving on the 8% adoption rate of residential solar in ",
+      "description": "submitted by /u/memorialmonorail [link] [comments]",
+      "link": "https://www.reddit.com/r/science/comments/1us2ot6/a_new_study_suggests_having_a_champion_for_solar/",
+      "pubDate": "2026-07-09T20:52:12+00:00",
+      "timestamp": 1783630332000,
+      "author": "/u/memorialmonorailhttps://www.reddit.com/user/memorialmonorail",
+      "image": "https://external-preview.redd.it/Zy27orEJ1BkjMt48WO1gJ2aXtZ7kd9s7kQQN0p0PJoM.jpeg?width=640&amp;crop=smart&amp;auto=webp&amp;s=4986a3bfaad2fb45c4962ff59fb544016592f84a",
+      "source": "Reddit r/science",
+      "sourceUrl": "https://www.reddit.com/r/science/.rss",
+      "topic": "science",
+      "topicHe": "מדע",
+      "sub": "Reddit",
+      "age": "לפני 5 שע׳",
+      "pubDateIso": "2026-07-09T20:52:12.000Z"
+    },
+    {
+      "id": "wj392u",
+      "title": "Ancient rocks reveal Earth's past warm periods were cooler than thought",
+      "description": "Earth's temperature has been much cooler in the past than previously thought, meaning it could be moving toward the warmest it's ever been.",
+      "link": "https://phys.org/news/2026-07-ancient-reveal-earth-periods-cooler.html",
+      "pubDate": "Thu, 09 Jul 2026 16:40:03 EDT",
+      "timestamp": 1783629603000,
+      "author": "",
+      "image": "https://scx1.b-cdn.net/csz/news/tmb/2026/understanding-earths-p.jpg",
+      "source": "Phys.org — Earth",
+      "sourceUrl": "https://phys.org/rss-feed/earth-news/",
+      "topic": "science",
+      "topicHe": "מדע",
+      "sub": "כדור הארץ",
+      "age": "לפני 5 שע׳",
+      "pubDateIso": "2026-07-09T20:40:03.000Z"
+    },
+    {
+      "id": "23m1rq",
+      "title": "1,000-Subject Trial Maps Brain Aging in the Real World",
+      "description": "A technologically ambitious partnership between UCSF Neuroscape and Samsung launches the TAH-DA study, a massive remote longitudinal trial utilizing consumer wearables to predict and track cognitive decline across the adult lifespan.",
+      "link": "https://neurosciencenews.com/brain-aging-cognition-neurotech-31028/",
+      "pubDate": "Thu, 09 Jul 2026 20:26:59 +0000",
+      "timestamp": 1783628819000,
+      "author": "Neuroscience News",
+      "image": null,
+      "source": "Neuroscience News",
+      "sourceUrl": "https://neurosciencenews.com/feed/",
+      "topic": "neuroscience",
+      "topicHe": "מדעי המוח",
+      "sub": "מחקר מוח",
+      "age": "לפני 5 שע׳",
+      "pubDateIso": "2026-07-09T20:26:59.000Z"
+    },
+    {
+      "id": "71p313",
+      "title": "Anthropic found a hidden space where Claude puzzles over concepts",
+      "description": "The AI firm Anthropic has developed a technique that has given it the clearest glimpse yet at what’s really going on inside large language models as they answer questions or carry out tasks. What they found ranges from the mundane to the unnerving. Researchers at the company built a tool called the Jacobian lens (or…",
+      "link": "https://www.technologyreview.com/2026/07/09/1140293/anthropic-found-a-hidden-space-where-claude-puzzles-over-concepts/",
+      "pubDate": "Thu, 09 Jul 2026 20:22:28 +0000",
+      "timestamp": 1783628548000,
+      "author": "Will Douglas Heaven",
+      "image": null,
+      "source": "MIT Tech Review",
+      "sourceUrl": "https://www.technologyreview.com/feed/",
+      "topic": "ai",
+      "topicHe": "AI",
+      "sub": "טכנולוגיה",
+      "age": "לפני 5 שע׳",
+      "pubDateIso": "2026-07-09T20:22:28.000Z"
+    },
+    {
+      "id": "kjyh9x",
+      "title": "Observing oscillations, flares and tornados on the sun",
+      "description": "For six and a half days in July 2024, the balloon-borne solar observatory Sunrise III kept its gaze fixed on the sun. The stratospheric flight, which stretched from the northernmost tip of Sweden to Canada's Northwest Territories, yielded a treasure trove of data exceeding 200 terabytes. These observations are unique. They provide insights—unprecedented in detail—into a layer of the sun approximately 2,000 kilometers thick and can continuously track its immense dynamics over several hours.",
+      "link": "https://phys.org/news/2026-07-oscillations-flares-tornados-sun.html",
+      "pubDate": "Thu, 09 Jul 2026 16:20:07 EDT",
+      "timestamp": 1783628407000,
+      "author": "",
+      "image": "https://scx1.b-cdn.net/csz/news/tmb/2026/observing-oscillations.jpg",
+      "source": "Phys.org — Space",
+      "sourceUrl": "https://phys.org/rss-feed/space-news/",
+      "topic": "astronomy",
+      "topicHe": "חלל",
+      "sub": "חלל",
+      "age": "לפני 5 שע׳",
+      "pubDateIso": "2026-07-09T20:20:07.000Z"
+    },
+    {
+      "id": "davkgb",
+      "title": "ATP Platform Adaptive Trial Speeds Up Dementia Research",
+      "description": "UCSF launches the historic ATP clinical trial, testing a combination of donanemab and the AADvac1 vaccine to treat pre-symptomatic Alzheimer's.",
+      "link": "https://neurosciencenews.com/combination-trial-amyloid-tau-alzheimers-31027/",
+      "pubDate": "Thu, 09 Jul 2026 20:17:25 +0000",
+      "timestamp": 1783628245000,
+      "author": "Neuroscience News",
+      "image": null,
+      "source": "Neuroscience News",
+      "sourceUrl": "https://neurosciencenews.com/feed/",
+      "topic": "neuroscience",
+      "topicHe": "מדעי המוח",
+      "sub": "מחקר מוח",
+      "age": "לפני 5 שע׳",
+      "pubDateIso": "2026-07-09T20:17:25.000Z"
+    },
+    {
+      "id": "33k8pw",
+      "title": "AI identifies new particle models that may explain neutrinos' tiny mass",
+      "description": "Physicists at the University of California, Irvine, have developed an artificial intelligence system that can autonomously design theoretical physics models, a task traditionally carried out by human theorists. The approach allows researchers to explore large, uncharted areas of particle physics theory, helping identify promising new explanations for the behavior of neutrinos.",
+      "link": "https://phys.org/news/2026-07-ai-particle-neutrinos-tiny-mass.html",
+      "pubDate": "Thu, 09 Jul 2026 16:09:05 EDT",
+      "timestamp": 1783627745000,
+      "author": "",
+      "image": "https://scx1.b-cdn.net/csz/news/tmb/2026/ai-system-helps-explai.jpg",
+      "source": "Phys.org — Physics",
+      "sourceUrl": "https://phys.org/rss-feed/physics-news/",
+      "topic": "physics",
+      "topicHe": "פיזיקה",
+      "sub": "פיזיקה",
+      "age": "לפני 5 שע׳",
+      "pubDateIso": "2026-07-09T20:09:05.000Z"
+    },
+    {
+      "id": "qu9c5r",
+      "title": "NASA Space Telescope Maps Magnetic Fields of ‘Lighthouse’ Pulsar",
+      "description": "For the first time, scientists have used NASA’s IXPE (Imaging X-ray Polarimetry Explorer) to directly measure the magnetic fields of PSR J1101−6101, a pulsar located within what is often referred to as the Lighthouse Nebula. The results provide new insight into the structure of some of the most extreme objects in the cosmos, as NASA […]",
+      "link": "https://science.nasa.gov/missions/ixpe/nasa-space-telescope-maps-magnetic-fields-of-lighthouse-pulsar/",
+      "pubDate": "Thu, 09 Jul 2026 20:08:35 +0000",
+      "timestamp": 1783627715000,
+      "author": "",
+      "image": null,
+      "source": "NASA",
+      "sourceUrl": "https://www.nasa.gov/news-release/feed/",
+      "topic": "astronomy",
+      "topicHe": "חלל",
+      "sub": "NASA",
+      "age": "לפני 5 שע׳",
+      "pubDateIso": "2026-07-09T20:08:35.000Z"
+    },
+    {
+      "id": "dpuyh1",
+      "title": "Modern Design Geometry Causes Visual Stress and Brain Overload",
+      "description": "A new study establishes the neurological basis for visual discomfort caused by human-made environments.",
+      "link": "https://neurosciencenews.com/neuroarchitecture-geometry-visual-stress-31026/",
+      "pubDate": "Thu, 09 Jul 2026 20:08:11 +0000",
+      "timestamp": 1783627691000,
+      "author": "Neuroscience News",
+      "image": null,
+      "source": "Neuroscience News",
+      "sourceUrl": "https://neurosciencenews.com/feed/",
+      "topic": "neuroscience",
+      "topicHe": "מדעי המוח",
+      "sub": "מחקר מוח",
+      "age": "לפני 5 שע׳",
+      "pubDateIso": "2026-07-09T20:08:11.000Z"
+    },
+    {
+      "id": "lcs2dy",
+      "title": "National rollout of a brief suicide prevention program for veterans shows high success rates",
+      "description": "A recent study suggests that a brief suicide prevention program is being successfully delivered to at-risk veterans across the Veterans Health Administration. These findings offer insights that can help healthcare systems improve their suicide prevention strategies.",
+      "link": "https://www.psypost.org/national-rollout-of-a-brief-suicide-prevention-program-for-veterans-shows-high-success-rates/",
+      "pubDate": "Thu, 09 Jul 2026 20:00:11 +0000",
+      "timestamp": 1783627211000,
+      "author": "Eric W. Dolan",
+      "image": "https://www.psypost.org/wp-content/uploads/2025/09/sad-depressed-man.jpg",
+      "source": "PsyPost",
+      "sourceUrl": "https://www.psypost.org/feed/",
+      "topic": "psychology",
+      "topicHe": "פסיכולוגיה",
+      "sub": "פסיכולוגיה",
+      "age": "לפני 6 שע׳",
+      "pubDateIso": "2026-07-09T20:00:11.000Z"
+    },
+    {
+      "id": "bllap2",
+      "title": "C1 Neurons Identified as Master Anxiety Switch",
+      "description": "A new study identifies epinephrine-producing C1 neurons in the brainstem's medulla as novel, precise modulators of long-term anxiety.",
+      "link": "https://neurosciencenews.com/c1-neurons-brainstem-anxiety-trauma-31025/",
+      "pubDate": "Thu, 09 Jul 2026 19:56:18 +0000",
+      "timestamp": 1783626978000,
+      "author": "Neuroscience News",
+      "image": null,
+      "source": "Neuroscience News",
+      "sourceUrl": "https://neurosciencenews.com/feed/",
+      "topic": "neuroscience",
+      "topicHe": "מדעי המוח",
+      "sub": "מחקר מוח",
+      "age": "לפני 6 שע׳",
+      "pubDateIso": "2026-07-09T19:56:18.000Z"
+    },
+    {
+      "id": "5kaocn",
+      "title": "'800 seconds for a sick visit': Some factors driving antibiotic resistance have nothing to do with biology, says medical sociologist Julia Szymczak",
+      "description": "Doctors' decisions around antibiotics aren't as logical as you might assume; they can be skewed by emotional and social factors, a medical sociologist explains.",
+      "link": "https://www.livescience.com/health/medicine-drugs/800-seconds-for-a-sick-visit-some-factors-driving-antibiotic-resistance-have-nothing-to-do-with-biology-says-medical-sociologist-julia-szymczak",
+      "pubDate": "Thu, 09 Jul 2026 19:50:00 +0000",
+      "timestamp": 1783626600000,
+      "author": "Nicoletta Lanese",
+      "image": "https://cdn.mos.cms.futurecdn.net/XR86j4dAbEPQ2HDBT7nrhL-1280-80.jpg",
+      "source": "Live Science",
+      "sourceUrl": "https://www.livescience.com/feeds.xml",
+      "topic": "science",
+      "topicHe": "מדע",
+      "sub": "מדע כללי",
+      "age": "לפני 6 שע׳",
+      "pubDateIso": "2026-07-09T19:50:00.000Z"
+    },
+    {
+      "id": "406vbo",
+      "title": "A diverse toy environment is linked to better infant communication skills. Study found a high number of diverse toys in the home is associated with advanced interaction abilities and early language development in infants",
+      "description": "submitted by /u/FreeHugs23 [link] [comments]",
+      "link": "https://www.reddit.com/r/science/comments/1us0wot/a_diverse_toy_environment_is_linked_to_better/",
+      "pubDate": "2026-07-09T19:46:24+00:00",
+      "timestamp": 1783626384000,
+      "author": "/u/FreeHugs23https://www.reddit.com/user/FreeHugs23",
+      "image": "https://external-preview.redd.it/8laD7TulZHcOiGPb3834hmSjXpycq1WIwUwHG4TVBvM.jpeg?width=640&amp;crop=smart&amp;auto=webp&amp;s=218711def5410a62b08c83af1df01c60c016ed78",
+      "source": "Reddit r/science",
+      "sourceUrl": "https://www.reddit.com/r/science/.rss",
+      "topic": "science",
+      "topicHe": "מדע",
+      "sub": "Reddit",
+      "age": "לפני 6 שע׳",
+      "pubDateIso": "2026-07-09T19:46:24.000Z"
+    },
+    {
+      "id": "y5u1z8",
+      "title": "'Complex numbers are not needed for quantum mechanics': Physicists develop quantum model that uses only 'real' numbers for first time ever",
+      "description": "Physicists have built a real-number version of quantum mechanics that makes all the same predictions as the standard theory, resolving a question that's simmered since the field began.",
+      "link": "https://www.livescience.com/physics-mathematics/complex-numbers-are-not-needed-for-quantum-mechanics-physicists-develop-quantum-model-that-uses-only-real-numbers-for-first-time-ever",
+      "pubDate": "Thu, 09 Jul 2026 19:44:07 +0000",
+      "timestamp": 1783626247000,
+      "author": "Larissa G. Capella",
+      "image": "https://cdn.mos.cms.futurecdn.net/oX65hpPehZaRtBsU5KsLgC-1280-80.jpg",
+      "source": "Live Science",
+      "sourceUrl": "https://www.livescience.com/feeds.xml",
+      "topic": "science",
+      "topicHe": "מדע",
+      "sub": "מדע כללי",
+      "age": "לפני 6 שע׳",
+      "pubDateIso": "2026-07-09T19:44:07.000Z"
+    },
+    {
+      "id": "agbggo",
+      "title": "A 'smart ruler' could help swarms of space telescopes image exoplanets",
+      "description": "We've talked plenty of times here about the infeasibility of launching a mirror big enough to directly image exoplanets using current rocket fairings—at least as long as we're not sending them 500-plus AU away to a gravitational lensing point. We've also talked at length about the potential solution to that problem—interferometry, where multiple smaller satellites link up precisely but are spaced far enough apart to act as one gigantic mirror. The problem is, from a technical standpoint, it's re",
+      "link": "https://phys.org/news/2026-07-smart-ruler-swarms-space-telescopes.html",
+      "pubDate": "Thu, 09 Jul 2026 15:40:05 EDT",
+      "timestamp": 1783626005000,
+      "author": "",
+      "image": "https://scx1.b-cdn.net/csz/news/tmb/2026/a-smart-ruler-could-he.jpg",
+      "source": "Phys.org — Space",
+      "sourceUrl": "https://phys.org/rss-feed/space-news/",
+      "topic": "astronomy",
+      "topicHe": "חלל",
+      "sub": "חלל",
+      "age": "לפני 6 שע׳",
+      "pubDateIso": "2026-07-09T19:40:05.000Z"
+    },
+    {
+      "id": "4wxxqd",
+      "title": "SpaceX wants to launch 100,000 Starlink satellites to orbit",
+      "description": "SpaceX has applied for approval to operate a 100,000-member megaconstellation of next-gen Starlink satellites in Earth orbit. And each of the new spacecraft will weigh about 4,400 pounds.",
+      "link": "https://www.space.com/space-exploration/satellites/spacex-wants-to-launch-100-000-starlink-satellites-to-orbit",
+      "pubDate": "Thu, 09 Jul 2026 19:28:45 +0000",
+      "timestamp": 1783625325000,
+      "author": "mwall@space.com (Mike Wall)",
+      "image": "https://cdn.mos.cms.futurecdn.net/fcJkVjXHsdxi6W6AB2ZRSg-1280-80.jpg",
+      "source": "Space.com",
+      "sourceUrl": "https://www.space.com/feeds.xml",
+      "topic": "astronomy",
+      "topicHe": "חלל",
+      "sub": "חלל",
+      "age": "לפני 6 שע׳",
+      "pubDateIso": "2026-07-09T19:28:45.000Z"
+    },
+    {
+      "id": "3zgc5n",
+      "title": "New physics-based machine-learning method speeds search for 2D quantum materials",
+      "description": "Researchers at The University of Manchester have developed a new computational approach to help identify two-dimensional materials that may host unusual quantum behavior. The work, published in Science Advances, focuses on materials with \"flat bands,\" electronic states where electrons have very little kinetic energy. In these materials, interactions between electrons can become much more important, creating conditions linked to phenomena such as magnetism, unconventional superconductivity and to",
+      "link": "https://phys.org/news/2026-07-physics-based-machine-method-2d.html",
+      "pubDate": "Thu, 09 Jul 2026 15:10:02 EDT",
+      "timestamp": 1783624202000,
+      "author": "",
+      "image": "https://scx1.b-cdn.net/csz/news/tmb/2026/new-tool-speeds-search.jpg",
+      "source": "Phys.org — Physics",
+      "sourceUrl": "https://phys.org/rss-feed/physics-news/",
+      "topic": "physics",
+      "topicHe": "פיזיקה",
+      "sub": "פיזיקה",
+      "age": "לפני 6 שע׳",
+      "pubDateIso": "2026-07-09T19:10:02.000Z"
+    },
+    {
+      "id": "osh4yd",
+      "title": "Special relativity can warp chemical bonds – now we've seen it happen",
+      "description": "An experiment with a charged molecule of bismuth and carbon reveals how effects from Albert Einstein’s special relativity reshape the standard understanding of chemical bonds",
+      "link": "https://www.newscientist.com/article/2533629-special-relativity-can-warp-chemical-bonds-now-weve-seen-it-happen/?utm_campaign=RSS%7CNSNS&utm_source=NSNS&utm_medium=RSS&utm_content=home",
+      "pubDate": "Thu, 09 Jul 2026 20:00:13 +0100",
+      "timestamp": 1783623613000,
+      "author": "",
+      "image": "https://images.newscientist.com/wp-content/uploads/2026/07/09111608/SEI_304616192.jpg",
+      "source": "New Scientist",
+      "sourceUrl": "https://www.newscientist.com/feed/home/",
+      "topic": "science",
+      "topicHe": "מדע",
+      "sub": "New Scientist",
+      "age": "לפני 7 שע׳",
+      "pubDateIso": "2026-07-09T19:00:13.000Z"
+    },
+    {
+      "id": "dfbn05",
+      "title": "Earth's deep memory is thawing with the Arctic permafrost, degrading records of our ancient world",
+      "description": "Permafrost usually hits the news as a hazard, a planetary risk. When this ice-rich ground thaws, it damages roads and building foundations. It drains lakes and tips trees into drunken forests. It releases greenhouse gases that have been locked in carbon-rich soils for thousands of years, amplifying warming and driving further thaw.",
+      "link": "https://phys.org/news/2026-07-earth-deep-memory-arctic-permafrost.html",
+      "pubDate": "Thu, 09 Jul 2026 14:40:01 EDT",
+      "timestamp": 1783622401000,
+      "author": "",
+      "image": "https://scx1.b-cdn.net/csz/news/tmb/2024/permafrost.jpg",
+      "source": "Phys.org — Earth",
+      "sourceUrl": "https://phys.org/rss-feed/earth-news/",
+      "topic": "science",
+      "topicHe": "מדע",
+      "sub": "כדור הארץ",
+      "age": "לפני 7 שע׳",
+      "pubDateIso": "2026-07-09T18:40:01.000Z"
+    },
+    {
+      "id": "71whlc",
+      "title": "Image: Curiosity rover sees Martian sulfur up close",
+      "description": "This close-up view shows fragments of sulfur crystals, the first ever seen on the Red Planet.",
+      "link": "https://phys.org/news/2026-07-image-curiosity-rover-martian-sulfur.html",
+      "pubDate": "Thu, 09 Jul 2026 14:32:20 EDT",
+      "timestamp": 1783621940000,
+      "author": "",
+      "image": "https://scx1.b-cdn.net/csz/news/tmb/2026/curiosity-sees-martian.jpg",
+      "source": "Phys.org — Space",
+      "sourceUrl": "https://phys.org/rss-feed/space-news/",
+      "topic": "astronomy",
+      "topicHe": "חלל",
+      "sub": "חלל",
+      "age": "לפני 7 שע׳",
+      "pubDateIso": "2026-07-09T18:32:20.000Z"
+    },
+    {
+      "id": "fwz2ie",
+      "title": "Principal Investigator and Quality Assessment Reports Evaluate Umbra Synthetic Aperture Radar Data",
+      "description": "The reports add to the growing documentation on commercial data’s contributions to Earth science research and applications.",
+      "link": "https://science.nasa.gov/science-research/earth-science/principal-investigator-and-quality-assessment-reports-evaluate-umbra-synthetic-aperture-radar-data/",
+      "pubDate": "Thu, 09 Jul 2026 18:14:21 +0000",
+      "timestamp": 1783620861000,
+      "author": "",
+      "image": null,
+      "source": "NASA",
+      "sourceUrl": "https://www.nasa.gov/news-release/feed/",
+      "topic": "astronomy",
+      "topicHe": "חלל",
+      "sub": "NASA",
+      "age": "לפני 7 שע׳",
+      "pubDateIso": "2026-07-09T18:14:21.000Z"
+    },
+    {
+      "id": "e624tf",
+      "title": "Quantum material opens new path for studying unusual electronic behavior",
+      "description": "By combining approaches from two rapidly growing fields of quantum physics, researchers at Penn State and Saint Louis University have demonstrated that a novel specialized material can naturally enable a new way to study unusual physical phenomena known as non-Hermitian dynamics.",
+      "link": "https://phys.org/news/2026-07-quantum-material-path-unusual-electronic.html",
+      "pubDate": "Thu, 09 Jul 2026 14:10:03 EDT",
+      "timestamp": 1783620603000,
+      "author": "",
+      "image": "https://scx1.b-cdn.net/csz/news/tmb/2026/quantum-material-opens-1.jpg",
+      "source": "Phys.org — Physics",
+      "sourceUrl": "https://phys.org/rss-feed/physics-news/",
+      "topic": "physics",
+      "topicHe": "פיזיקה",
+      "sub": "פיזיקה",
+      "age": "לפני 7 שע׳",
+      "pubDateIso": "2026-07-09T18:10:03.000Z"
+    },
+    {
+      "id": "ilpqec",
+      "title": "Strengthening El Nino likely to 'rank among largest' on record",
+      "description": "The El Nino weather pattern picked up strength over the past month and is highly likely to \"rank among the largest\" ever recorded when it peaks between October and December, U.S. forecasters said Thursday.",
+      "link": "https://phys.org/news/2026-07-el-nino-largest.html",
+      "pubDate": "Thu, 09 Jul 2026 14:10:01 EDT",
+      "timestamp": 1783620601000,
+      "author": "",
+      "image": "https://scx1.b-cdn.net/csz/news/tmb/2026/experts-linked-a-major.jpg",
+      "source": "Phys.org — Earth",
+      "sourceUrl": "https://phys.org/rss-feed/earth-news/",
+      "topic": "science",
+      "topicHe": "מדע",
+      "sub": "כדור הארץ",
+      "age": "לפני 7 שע׳",
+      "pubDateIso": "2026-07-09T18:10:01.000Z"
+    },
+    {
+      "id": "iq6axg",
+      "title": "A diverse toy environment is linked to better infant communication skills",
+      "description": "A home filled with a diverse array of toys may provide more than just entertainment. New research links household toy abundance to calmer infant temperaments, richer maternal teaching interactions, and stronger early communication skills.",
+      "link": "https://www.psypost.org/a-house-full-of-toys-might-foster-better-communication-and-play-in-infants/",
+      "pubDate": "Thu, 09 Jul 2026 18:00:09 +0000",
+      "timestamp": 1783620009000,
+      "author": "Karina Petrova",
+      "image": "https://www.psypost.org/wp-content/uploads/2026/07/infant-playing-with-toys.jpg",
+      "source": "PsyPost",
+      "sourceUrl": "https://www.psypost.org/feed/",
+      "topic": "psychology",
+      "topicHe": "פסיכולוגיה",
+      "sub": "פסיכולוגיה",
+      "age": "לפני 8 שע׳",
+      "pubDateIso": "2026-07-09T18:00:09.000Z"
+    },
+    {
+      "id": "48039x",
+      "title": "'Reckless' space-based data centers lack environmental review, drawing criticism",
+      "description": "\"Allowing a million orbiting data centers with no environmental review isn’t just irresponsible — it’s reckless.\"",
+      "link": "https://www.space.com/astronomy/earth/reckless-space-based-data-centers-lack-environmental-review-drawing-criticism",
+      "pubDate": "Thu, 09 Jul 2026 18:00:00 +0000",
+      "timestamp": 1783620000000,
+      "author": "chelseagohd@gmail.com (Chelsea Gohd)",
+      "image": "https://cdn.mos.cms.futurecdn.net/r7xrFy8BoG8BGNgSrQeZRk-1280-80.png",
+      "source": "Space.com",
+      "sourceUrl": "https://www.space.com/feeds.xml",
+      "topic": "astronomy",
+      "topicHe": "חלל",
+      "sub": "חלל",
+      "age": "לפני 8 שע׳",
+      "pubDateIso": "2026-07-09T18:00:00.000Z"
+    },
+    {
+      "id": "k4x28q",
+      "title": "Urban trees aren’t just nice, scientists say — they’re mandatory | Rethinking urban forests as essential infrastructure for resilience, equity, and biodiversity in the current climate emergency",
+      "description": "submitted by /u/Hrmbee [link] [comments]",
+      "link": "https://www.reddit.com/r/science/comments/1urwrpc/urban_trees_arent_just_nice_scientists_say_theyre/",
+      "pubDate": "2026-07-09T17:21:22+00:00",
+      "timestamp": 1783617682000,
+      "author": "/u/Hrmbeehttps://www.reddit.com/user/Hrmbee",
+      "image": "https://external-preview.redd.it/W21uEUdZYIGmpvPoHkne6lfTclP7RYsZNuPtvqDHgcU.jpeg?width=640&amp;crop=smart&amp;auto=webp&amp;s=e33d6ae9ffc627cd3877e869ac10a22c428b6911",
+      "source": "Reddit r/science",
+      "sourceUrl": "https://www.reddit.com/r/science/.rss",
+      "topic": "science",
+      "topicHe": "מדע",
+      "sub": "Reddit",
+      "age": "לפני 8 שע׳",
+      "pubDateIso": "2026-07-09T17:21:22.000Z"
+    },
+    {
+      "id": "imtfr7",
+      "title": "Product Experimentation with Uplift Modeling: Targeting Your LLM Feature Rollout to Users Who Actually Benefit (Python Implementation)",
+      "description": "Your LLM product experiment just came back positive, with a promising 8-percentage-point lift in task completion. You ship the feature and leadership celebrates. Three months later, the core metric ha",
+      "link": "https://www.freecodecamp.org/news/uplift-modeling-for-personalized-ai-rollouts-in-python/",
+      "pubDate": "Thu, 09 Jul 2026 17:06:32 +0000",
+      "timestamp": 1783616792000,
+      "author": "Rudrendu Paul",
+      "image": "https://cdn.hashnode.com/uploads/covers/5e1e335a7a1d3fcc59028c64/134c2ea7-4a99-4150-b6c8-a91aa7074e7b.png",
+      "source": "FreeCodeCamp",
+      "sourceUrl": "https://www.freecodecamp.org/news/rss/",
+      "topic": "guides",
+      "topicHe": "מדריכים",
+      "sub": "FreeCodeCamp",
+      "age": "לפני 8 שע׳",
+      "pubDateIso": "2026-07-09T17:06:32.000Z"
+    },
+    {
+      "id": "crlzql",
+      "title": "'Silo' season 3 showrunner Graham Yost explains the time jumps and turning half of the show into a political thriller (interview)",
+      "description": "'We're harkening back to 'Three Days of The Condor,' 'The Parallax View,' and things like that of the '70s.'",
+      "link": "https://www.space.com/entertainment/space-movies-shows/silo-season-3-showrunner-graham-yost-explains-the-time-jumps-and-turning-half-of-the-show-into-a-political-thriller-interview",
+      "pubDate": "Thu, 09 Jul 2026 17:00:00 +0000",
+      "timestamp": 1783616400000,
+      "author": "stingrayghost@gmail.com (Jeff Spry)",
+      "image": "https://cdn.mos.cms.futurecdn.net/im8vkiPauUHQaWkgpoBn5Z-1280-80.jpg",
+      "source": "Space.com",
+      "sourceUrl": "https://www.space.com/feeds.xml",
+      "topic": "astronomy",
+      "topicHe": "חלל",
+      "sub": "חלל",
+      "age": "לפני 9 שע׳",
+      "pubDateIso": "2026-07-09T17:00:00.000Z"
+    },
+    {
+      "id": "8yo7sl",
+      "title": "'Astronomers have to revise estimates': The Milky Way may be larger, heavier and more lopsided than we realized",
+      "description": "New measurements suggest that two of the Milky Way's spiral arms are around 10% farther away from Earth than we thought. The findings may require experts to revise estimates of the total size of our home galaxy.",
+      "link": "https://www.livescience.com/space/astronomy/astronomers-have-to-revise-estimates-the-milky-way-may-be-larger-heavier-and-more-lopsided-than-we-realized",
+      "pubDate": "Thu, 09 Jul 2026 16:55:21 +0000",
+      "timestamp": 1783616121000,
+      "author": "Harry Baker",
+      "image": "https://cdn.mos.cms.futurecdn.net/yamQS5LZrCMhXDUUa4opP9-1280-80.jpg",
+      "source": "Live Science",
+      "sourceUrl": "https://www.livescience.com/feeds.xml",
+      "topic": "science",
+      "topicHe": "מדע",
+      "sub": "מדע כללי",
+      "age": "לפני 9 שע׳",
+      "pubDateIso": "2026-07-09T16:55:21.000Z"
+    },
+    {
+      "id": "ivxldr",
+      "title": "How to Turn a Postman Collection into a Maintainable pytest Suite",
+      "description": "A Postman collection is a great place to explore an API. But it's a poor place to keep your tests. Most teams find this out the slow way. Someone exports the collection, converts the requests into tes",
+      "link": "https://www.freecodecamp.org/news/how-to-turn-a-postman-collection-into-a-maintainable-pytest-suite/",
+      "pubDate": "Thu, 09 Jul 2026 16:43:39 +0000",
+      "timestamp": 1783615419000,
+      "author": "Mikhail Golikov",
+      "image": "https://cdn.hashnode.com/uploads/covers/5e1e335a7a1d3fcc59028c64/3c6d0422-3374-4f61-9070-05d73dbbc9fa.png",
+      "source": "FreeCodeCamp",
+      "sourceUrl": "https://www.freecodecamp.org/news/rss/",
+      "topic": "guides",
+      "topicHe": "מדריכים",
+      "sub": "FreeCodeCamp",
+      "age": "לפני 9 שע׳",
+      "pubDateIso": "2026-07-09T16:43:39.000Z"
+    },
+    {
+      "id": "pjc03r",
+      "title": "How an LMS Software Helps Technical Teams Upskill Faster",
+      "description": "Technology changes faster than almost any other industry. The half-life of technical skills continues to shrink. Frameworks, cloud platforms, AI tooling, and cybersecurity practices evolve so quickly",
+      "link": "https://www.freecodecamp.org/news/how-an-lms-software-helps-technical-teams-upskill-faster/",
+      "pubDate": "Thu, 09 Jul 2026 16:41:35 +0000",
+      "timestamp": 1783615295000,
+      "author": "Manish Shivanandhan",
+      "image": "https://cdn.hashnode.com/uploads/covers/5e1e335a7a1d3fcc59028c64/1a822fd1-df33-425c-ba3a-a9f3cbddb297.png",
+      "source": "FreeCodeCamp",
+      "sourceUrl": "https://www.freecodecamp.org/news/rss/",
+      "topic": "guides",
+      "topicHe": "מדריכים",
+      "sub": "FreeCodeCamp",
+      "age": "לפני 9 שע׳",
+      "pubDateIso": "2026-07-09T16:41:35.000Z"
+    },
+    {
+      "id": "grjkl4",
+      "title": "Scientists build tiny 'diving suit' for cockroaches, turning them into search-and-rescue cyborgs",
+      "description": "Researchers in Singapore and Japan have built a waterproof shell for cyborg cockroaches that could be deployed in disaster zones to investigate flooded areas.",
+      "link": "https://www.livescience.com/technology/robotics/scientists-build-tiny-diving-suit-for-cockroaches-turning-them-into-search-and-rescue-cyborgs",
+      "pubDate": "Thu, 09 Jul 2026 16:33:59 +0000",
+      "timestamp": 1783614839000,
+      "author": "sascha.pare@futurenet.com (Sascha Pare)",
+      "image": "https://cdn.mos.cms.futurecdn.net/FHX6ckozmkkGxbdxbfL9SN-1280-80.jpg",
+      "source": "Live Science",
+      "sourceUrl": "https://www.livescience.com/feeds.xml",
+      "topic": "science",
+      "topicHe": "מדע",
+      "sub": "מדע כללי",
+      "age": "לפני 9 שע׳",
+      "pubDateIso": "2026-07-09T16:33:59.000Z"
+    },
+    {
+      "id": "em1mmz",
+      "title": "Curiosity Sees Martian Sulfur Up Close",
+      "description": "This close-up view shows fragments of sulfur crystals — the first ever seen on the Red Planet. The crystals were found after NASA’s Curiosity Mars rover happened to drive over a rock and crush it on May 30, 2024. Several days later, Curiosity used a camera on the end of its robotic arm to take […]",
+      "link": "https://www.nasa.gov/image-article/curiosity-sees-martian-sulfur-up-close/",
+      "pubDate": "Thu, 09 Jul 2026 16:33:50 +0000",
+      "timestamp": 1783614830000,
+      "author": "HQ Web Team",
+      "image": null,
+      "source": "NASA",
+      "sourceUrl": "https://www.nasa.gov/news-release/feed/",
+      "topic": "astronomy",
+      "topicHe": "חלל",
+      "sub": "NASA",
+      "age": "לפני 9 שע׳",
+      "pubDateIso": "2026-07-09T16:33:50.000Z"
+    },
+    {
+      "id": "u8tide",
+      "title": "The ghost in Orion's shell: Hydrogen maps show repeated stellar feedback sculpted around Orion Nebula",
+      "description": "An international team led by Juan Diego Soler at the University of Vienna used two of the world's most powerful radio telescopes to uncover previously hidden structures within the Orion Nebula. The project produced the sharpest maps ever made of neutral hydrogen in that region of massive star formation. The findings expose the complex relationship of star-forming regions with their environment and suggest that the Orion Nebula has been shaped by multiple episodes of stellar feedback rather than ",
+      "link": "https://phys.org/news/2026-07-ghost-orion-shell-hydrogen-stellar.html",
+      "pubDate": "Thu, 09 Jul 2026 12:20:01 EDT",
+      "timestamp": 1783614001000,
+      "author": "",
+      "image": "https://scx1.b-cdn.net/csz/news/tmb/2026/the-ghost-in-orions-sh.jpg",
+      "source": "Phys.org — Space",
+      "sourceUrl": "https://phys.org/rss-feed/space-news/",
+      "topic": "astronomy",
+      "topicHe": "חלל",
+      "sub": "חלל",
+      "age": "לפני 9 שע׳",
+      "pubDateIso": "2026-07-09T16:20:01.000Z"
+    },
+    {
+      "id": "tvrtyo",
+      "title": "How to Build Your Own MCP Server and Publish Your ChatGPT App with Supabase Auth and DigitalOcean",
+      "description": "A new type of app is emerging with the development of LLMs and AI-native apps. It lives inside an AI chat (like ChatGPT) rather than being a fully native web or mobile app. In this tutorial, you'll le",
+      "link": "https://www.freecodecamp.org/news/how-to-build-your-own-mcp-server-and-publish-your-chatgpt-app/",
+      "pubDate": "Thu, 09 Jul 2026 16:04:02 +0000",
+      "timestamp": 1783613042000,
+      "author": "Abdurrahman Rajab",
+      "image": "https://cdn.hashnode.com/uploads/covers/5e1e335a7a1d3fcc59028c64/f7fdd4f8-d0c0-44ee-aaf5-f3277522e32c.png",
+      "source": "FreeCodeCamp",
+      "sourceUrl": "https://www.freecodecamp.org/news/rss/",
+      "topic": "guides",
+      "topicHe": "מדריכים",
+      "sub": "FreeCodeCamp",
+      "age": "לפני 9 שע׳",
+      "pubDateIso": "2026-07-09T16:04:02.000Z"
+    },
+    {
+      "id": "mczwv",
+      "title": "Resuscitated human retinas respond to light 10 hours after death",
+      "description": "Perfusing donor human retinas with blood and oxygen meant they continued to respond to light for up to 10 hours after death, marking a significant step towards eye transplants that restore vision",
+      "link": "https://www.newscientist.com/article/2533673-resuscitated-human-retinas-respond-to-light-10-hours-after-death/?utm_campaign=RSS%7CNSNS&utm_source=NSNS&utm_medium=RSS&utm_content=home",
+      "pubDate": "Thu, 09 Jul 2026 17:00:55 +0100",
+      "timestamp": 1783612855000,
+      "author": "",
+      "image": "https://images.newscientist.com/wp-content/uploads/2026/07/09110653/SEI_304522985.jpg",
+      "source": "New Scientist",
+      "sourceUrl": "https://www.newscientist.com/feed/home/",
+      "topic": "science",
+      "topicHe": "מדע",
+      "sub": "New Scientist",
+      "age": "לפני 10 שע׳",
+      "pubDateIso": "2026-07-09T16:00:55.000Z"
+    },
+    {
+      "id": "xon08u",
+      "title": "Resuscitated human retinas respond to light 10 hours after death",
+      "description": "Perfusing donor human retinas with blood and oxygen meant they continued to respond to light for up to 10 hours after death, marking a significant step towards eye transplants that restore vision",
+      "link": "https://www.newscientist.com/article/2533673-resuscitated-human-retinas-respond-to-light-10-hours-after-death/?utm_campaign=RSS%7CNSNS&utm_source=NSNS&utm_medium=RSS&utm_content=health",
+      "pubDate": "Thu, 09 Jul 2026 17:00:55 +0100",
+      "timestamp": 1783612855000,
+      "author": "",
+      "image": "https://images.newscientist.com/wp-content/uploads/2026/07/09110653/SEI_304522985.jpg",
+      "source": "New Scientist Health",
+      "sourceUrl": "https://www.newscientist.com/subject/health/feed/",
+      "topic": "health",
+      "topicHe": "בריאות",
+      "sub": "בריאות",
+      "age": "לפני 10 שע׳",
+      "pubDateIso": "2026-07-09T16:00:55.000Z"
+    },
+    {
+      "id": "4vddni",
+      "title": "Chronic alcohol use alters Alzheimer’s brain circuits differently based on underlying pathology",
+      "description": "New research reveals that chronic alcohol consumption rewires a key decision-making brain circuit in opposite ways, depending on whether the brain is burdened by Alzheimer's-related amyloid plaques or tau tangles.",
+      "link": "https://www.psypost.org/chronic-alcohol-use-alters-alzheimers-brain-circuits-differently-based-on-underlying-pathology/",
+      "pubDate": "Thu, 09 Jul 2026 16:00:05 +0000",
+      "timestamp": 1783612805000,
+      "author": "Eric W. Dolan",
+      "image": "https://www.psypost.org/wp-content/uploads/2026/02/toxic-protein-chains-tau.jpg",
+      "source": "PsyPost",
+      "sourceUrl": "https://www.psypost.org/feed/",
+      "topic": "psychology",
+      "topicHe": "פסיכולוגיה",
+      "sub": "פסיכולוגיה",
+      "age": "לפני 10 שע׳",
+      "pubDateIso": "2026-07-09T16:00:05.000Z"
+    }
+  ],
+  "total": 60,
+  "totalRaw": 157,
+  "updated": "2026-07-10T02:02:01.047Z",
+  "updatedTs": 1783648921047,
+  "fetchMs": 10535,
+  "topics": [
+    "astronomy",
+    "guides",
+    "psychology",
+    "science",
+    "physics",
+    "neuroscience",
+    "ai",
+    "health",
+    "education"
+  ],
+  "topicsHe": {
+    "astronomy": "חלל",
+    "guides": "מדריכים",
+    "psychology": "פסיכולוגיה",
+    "science": "מדע",
+    "physics": "פיזיקה",
+    "neuroscience": "מדעי המוח",
+    "ai": "AI",
+    "health": "בריאות",
+    "education": "חינוך"
+  },
+  "subs": {
+    "astronomy": [
+      "תמונת יום",
+      "NASA",
+      "חלל",
+      "אסטרונומיה"
+    ],
+    "guides": [
+      "Dev.to",
+      "FreeCodeCamp"
+    ],
+    "psychology": [
+      "פסיכולוגיה"
+    ],
+    "science": [
+      "כדור הארץ",
+      "Reddit",
+      "מדע כללי",
+      "New Scientist",
+      "Quanta",
+      "חדשות מדע",
+      "אקלים",
+      "Nature",
+      "גנטיקה"
+    ],
+    "physics": [
+      "פיזיקה"
+    ],
+    "neuroscience": [
+      "מחקר מוח"
+    ],
+    "ai": [
+      "טכנולוגיה",
+      "Google",
+      "HuggingFace",
+      "Gemini",
+      "Google AI"
+    ],
+    "health": [
+      "בריאות",
+      "WHO"
+    ],
+    "education": [
+      "OECD"
+    ]
+  },
+  "sources": [
+    {
+      "name": "MIT Tech Review",
+      "topic": "ai",
+      "topicHe": "AI",
+      "sub": "טכנולוגיה",
+      "url": "https://www.technologyreview.com/feed/",
+      "status": {
+        "ok": true,
+        "count": 6
+      }
+    },
+    {
+      "name": "Google AI Blog",
+      "topic": "ai",
+      "topicHe": "AI",
+      "sub": "Google AI",
+      "url": "https://blog.google/technology/ai/rss/",
+      "status": {
+        "ok": true,
+        "count": 6
+      }
+    },
+    {
+      "name": "Google Gemini",
+      "topic": "ai",
+      "topicHe": "AI",
+      "sub": "Gemini",
+      "url": "https://blog.google/products/gemini/rss/",
+      "status": {
+        "ok": true,
+        "count": 6
+      }
+    },
+    {
+      "name": "Google Blog",
+      "topic": "ai",
+      "topicHe": "AI",
+      "sub": "Google",
+      "url": "https://blog.google/rss/",
+      "status": {
+        "ok": true,
+        "count": 6
+      }
+    },
+    {
+      "name": "Neuroscience News",
+      "topic": "neuroscience",
+      "topicHe": "מדעי המוח",
+      "sub": "מחקר מוח",
+      "url": "https://neurosciencenews.com/feed/",
+      "status": {
+        "ok": true,
+        "count": 6
+      }
+    },
+    {
+      "name": "PsyPost",
+      "topic": "psychology",
+      "topicHe": "פסיכולוגיה",
+      "sub": "פסיכולוגיה",
+      "url": "https://www.psypost.org/feed/",
+      "status": {
+        "ok": true,
+        "count": 6
+      }
+    },
+    {
+      "name": "Phys.org — Physics",
+      "topic": "physics",
+      "topicHe": "פיזיקה",
+      "sub": "פיזיקה",
+      "url": "https://phys.org/rss-feed/physics-news/",
+      "status": {
+        "ok": true,
+        "count": 6
+      }
+    },
+    {
+      "name": "ScienceDaily Physics",
+      "topic": "physics",
+      "topicHe": "פיזיקה",
+      "sub": "פיזיקה",
+      "url": "https://www.sciencedaily.com/rss/matter_energy/physics.xml",
+      "status": {
+        "ok": true,
+        "count": 6
+      }
+    },
+    {
+      "name": "NASA",
+      "topic": "astronomy",
+      "topicHe": "חלל",
+      "sub": "NASA",
+      "url": "https://www.nasa.gov/news-release/feed/",
+      "status": {
+        "ok": true,
+        "count": 6
+      }
+    },
+    {
+      "name": "APOD",
+      "topic": "astronomy",
+      "topicHe": "חלל",
+      "sub": "תמונת יום",
+      "url": "https://apod.nasa.gov/apod.rss",
+      "status": {
+        "ok": true,
+        "count": 1
+      }
+    },
+    {
+      "name": "Phys.org — Space",
+      "topic": "astronomy",
+      "topicHe": "חלל",
+      "sub": "חלל",
+      "url": "https://phys.org/rss-feed/space-news/",
+      "status": {
+        "ok": true,
+        "count": 6
+      }
+    },
+    {
+      "name": "Space.com",
+      "topic": "astronomy",
+      "topicHe": "חלל",
+      "sub": "חלל",
+      "url": "https://www.space.com/feeds.xml",
+      "status": {
+        "ok": true,
+        "count": 6
+      }
+    },
+    {
+      "name": "ScienceDaily Space",
+      "topic": "astronomy",
+      "topicHe": "חלל",
+      "sub": "אסטרונומיה",
+      "url": "https://www.sciencedaily.com/rss/space_time/astronomy.xml",
+      "status": {
+        "ok": true,
+        "count": 6
+      }
+    },
+    {
+      "name": "Live Science",
+      "topic": "science",
+      "topicHe": "מדע",
+      "sub": "מדע כללי",
+      "url": "https://www.livescience.com/feeds.xml",
+      "status": {
+        "ok": true,
+        "count": 6
+      }
+    },
+    {
+      "name": "Phys.org — Earth",
+      "topic": "science",
+      "topicHe": "מדע",
+      "sub": "כדור הארץ",
+      "url": "https://phys.org/rss-feed/earth-news/",
+      "status": {
+        "ok": true,
+        "count": 6
+      }
+    },
+    {
+      "name": "ScienceDaily Top",
+      "topic": "science",
+      "topicHe": "מדע",
+      "sub": "חדשות מדע",
+      "url": "https://www.sciencedaily.com/rss/top/science.xml",
+      "status": {
+        "ok": true,
+        "count": 6
+      }
+    },
+    {
+      "name": "ScienceDaily Genetics",
+      "topic": "science",
+      "topicHe": "מדע",
+      "sub": "גנטיקה",
+      "url": "https://www.sciencedaily.com/rss/plants_animals/genetics.xml",
+      "status": {
+        "ok": true,
+        "count": 6
+      }
+    },
+    {
+      "name": "ScienceDaily Climate",
+      "topic": "science",
+      "topicHe": "מדע",
+      "sub": "אקלים",
+      "url": "https://www.sciencedaily.com/rss/earth_climate/climate.xml",
+      "status": {
+        "ok": true,
+        "count": 6
+      }
+    },
+    {
+      "name": "Nature",
+      "topic": "science",
+      "topicHe": "מדע",
+      "sub": "Nature",
+      "url": "https://www.nature.com/nature.rss",
+      "status": {
+        "ok": true,
+        "count": 6
+      }
+    },
+    {
+      "name": "New Scientist",
+      "topic": "science",
+      "topicHe": "מדע",
+      "sub": "New Scientist",
+      "url": "https://www.newscientist.com/feed/home/",
+      "status": {
+        "ok": true,
+        "count": 6
+      }
+    },
+    {
+      "name": "Quanta Magazine",
+      "topic": "science",
+      "topicHe": "מדע",
+      "sub": "Quanta",
+      "url": "https://api.quantamagazine.org/feed/",
+      "status": {
+        "ok": true,
+        "count": 5
+      }
+    },
+    {
+      "name": "Reddit r/science",
+      "topic": "science",
+      "topicHe": "מדע",
+      "sub": "Reddit",
+      "url": "https://www.reddit.com/r/science/.rss",
+      "status": {
+        "ok": true,
+        "count": 6
+      }
+    },
+    {
+      "name": "Edutopia",
+      "topic": "education",
+      "topicHe": "חינוך",
+      "sub": "Edutopia",
+      "url": "https://www.edutopia.org/rss.xml",
+      "status": {
+        "ok": false,
+        "count": 0,
+        "error": "No items in feed"
+      }
+    },
+    {
+      "name": "OECD Education",
+      "topic": "education",
+      "topicHe": "חינוך",
+      "sub": "OECD",
+      "url": "https://oecdedutoday.com/feed/",
+      "status": {
+        "ok": true,
+        "count": 6
+      }
+    },
+    {
+      "name": "EdWeek",
+      "topic": "education",
+      "topicHe": "חינוך",
+      "sub": "Education Week",
+      "url": "https://www.edweek.org/feed",
+      "status": {
+        "ok": false,
+        "count": 0,
+        "error": "No items in feed"
+      }
+    },
+    {
+      "name": "WHO News",
+      "topic": "health",
+      "topicHe": "בריאות",
+      "sub": "WHO",
+      "url": "https://www.who.int/rss-feeds/news-english.xml",
+      "status": {
+        "ok": true,
+        "count": 6
+      }
+    },
+    {
+      "name": "New Scientist Health",
+      "topic": "health",
+      "topicHe": "בריאות",
+      "sub": "בריאות",
+      "url": "https://www.newscientist.com/subject/health/feed/",
+      "status": {
+        "ok": true,
+        "count": 6
+      }
+    },
+    {
+      "name": "FreeCodeCamp",
+      "topic": "guides",
+      "topicHe": "מדריכים",
+      "sub": "FreeCodeCamp",
+      "url": "https://www.freecodecamp.org/news/rss/",
+      "status": {
+        "ok": true,
+        "count": 6
+      }
+    },
+    {
+      "name": "Dev.to",
+      "topic": "guides",
+      "topicHe": "מדריכים",
+      "sub": "Dev.to",
+      "url": "https://dev.to/feed",
+      "status": {
+        "ok": true,
+        "count": 6
+      }
+    },
+    {
+      "name": "HackerNews",
+      "topic": "guides",
+      "topicHe": "מדריכים",
+      "sub": "HN",
+      "url": "https://hnrss.org/frontpage",
+      "status": {
+        "ok": false,
+        "count": 0,
+        "error": "fetch failed"
+      }
+    },
+    {
+      "name": "Hugging Face Blog",
+      "topic": "ai",
+      "topicHe": "AI",
+      "sub": "HuggingFace",
+      "url": "https://huggingface.co/blog/feed.xml",
+      "status": {
+        "ok": true,
+        "count": 6
+      }
+    },
+    {
+      "name": "LangChain Blog",
+      "topic": "ai",
+      "topicHe": "AI",
+      "sub": "LangChain",
+      "url": "https://blog.langchain.dev/rss/",
+      "status": {
+        "ok": false,
+        "count": 0,
+        "error": "No items in feed"
+      }
+    },
+    {
+      "name": "Anthropic Blog",
+      "topic": "ai",
+      "topicHe": "AI",
+      "sub": "Anthropic",
+      "url": "https://www.anthropic.com/feed.xml",
+      "status": {
+        "ok": false,
+        "count": 0,
+        "error": "HTTP 404"
+      }
+    },
+    {
+      "name": "MLOps.community",
+      "topic": "guides",
+      "topicHe": "MLOps",
+      "sub": "MLOps",
+      "url": "https://mlops.community/feed/",
+      "status": {
+        "ok": false,
+        "count": 0,
+        "error": "HTTP 404"
+      }
+    },
+    {
+      "name": "Weights & Biases",
+      "topic": "guides",
+      "topicHe": "MLOps",
+      "sub": "W&B",
+      "url": "https://wandb.ai/company/blog/feed.xml",
+      "status": {
+        "ok": false,
+        "count": 0,
+        "error": "No items in feed"
+      }
+    }
+  ],
+  "errors": [
+    {
+      "source": "Edutopia",
+      "message": "No items in feed"
+    },
+    {
+      "source": "EdWeek",
+      "message": "No items in feed"
+    },
+    {
+      "source": "HackerNews",
+      "message": "fetch failed"
+    },
+    {
+      "source": "LangChain Blog",
+      "message": "No items in feed"
+    },
+    {
+      "source": "Anthropic Blog",
+      "message": "HTTP 404"
+    },
+    {
+      "source": "MLOps.community",
+      "message": "HTTP 404"
+    },
+    {
+      "source": "Weights & Biases",
+      "message": "No items in feed"
+    }
+  ]
+}

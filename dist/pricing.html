@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="he">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>דופמין — תמחור ומנויים</title>
+<script src="https://www.paypal.com/sdk/js?client-id=YOUR_PAYPAL_CLIENT_ID&vault=true&intent=subscription" data-sdk-integration-source="button-factory"></script>
+<style>
+  :root {
+    --bg:#000;--bg2:#0d0d0d;--bg3:#141414;--bg4:#1a1a1a;
+    --border:#1e1e1e;--border2:#2a2a2a;--border3:#333;
+    --green:#00ff88;--green-dim:#00cc6a;
+    --white:#fff;--gray1:#ccc;--gray2:#888;--gray3:#444;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,'Segoe UI',Arial,sans-serif;background:var(--bg);color:var(--white);direction:rtl;min-height:100vh}
+  header{background:var(--bg);border-bottom:1px solid var(--border2);padding:0 20px;position:sticky;top:0;z-index:200;display:flex;align-items:center;justify-content:space-between;height:52px}
+  .logo{display:flex;align-items:center;gap:8px;text-decoration:none}
+  .logo-icon{width:26px;height:26px;background:var(--green);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:900;color:#000}
+  .logo-name{font-size:15px;font-weight:700;color:var(--white)}
+  .back{color:var(--gray2);text-decoration:none;font-size:13px;padding:6px 12px;border:1px solid var(--border2);border-radius:6px;transition:all .15s}
+  .back:hover{color:var(--green);border-color:var(--green)}
+  
+  .pricing-hero{text-align:center;padding:60px 20px 40px}
+  .pricing-hero h1{font-size:32px;font-weight:900;margin-bottom:12px}
+  .pricing-hero p{color:var(--gray2);font-size:15px;max-width:500px;margin:0 auto}
+  
+  .toggle-wrap{display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:40px}
+  .toggle-label{font-size:13px;color:var(--gray2)}
+  .toggle-label.active{color:var(--white);font-weight:600}
+  .toggle{position:relative;width:44px;height:24px;background:var(--bg4);border-radius:12px;cursor:pointer;border:1px solid var(--border2);transition:all .15s}
+  .toggle.on{background:var(--green);border-color:var(--green)}
+  .toggle::after{content:'';position:absolute;top:2px;right:2px;width:18px;height:18px;border-radius:50%;background:var(--white);transition:all .2s}
+  .toggle.on::after{right:22px}
+  .savings-badge{background:rgba(0,255,136,.12);color:var(--green);font-size:11px;padding:2px 8px;border-radius:4px;font-weight:600}
+  
+  .plans{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;max-width:900px;margin:0 auto;padding:0 20px 60px}
+  .plan{background:var(--bg2);border:1px solid var(--border2);border-radius:12px;padding:32px 24px;position:relative;transition:all .2s}
+  .plan:hover{border-color:var(--gray2);transform:translateY(-2px)}
+  .plan.featured{border-color:var(--green);box-shadow:0 0 0 1px var(--green),0 0 30px rgba(0,255,136,.1)}
+  .plan.featured .badge-popular{position:absolute;top:-12px;right:50%;transform:translateX(50%);background:var(--green);color:#000;font-size:11px;font-weight:700;padding:4px 16px;border-radius:20px}
+  .plan-name{font-size:14px;font-weight:700;color:var(--gray1);margin-bottom:4px}
+  .plan-price{font-size:36px;font-weight:900;margin-bottom:4px}
+  .plan-price span{font-size:14px;color:var(--gray2);font-weight:400}
+  .plan-desc{font-size:12px;color:var(--gray2);margin-bottom:20px}
+  .plan-features{list-style:none;margin-bottom:24px}
+  .plan-features li{font-size:13px;color:var(--gray1);padding:6px 0 6px 24px;position:relative}
+  .plan-features li::before{content:'✓';position:absolute;right:0;color:var(--green);font-weight:700}
+  .plan-features li.missing::before{content:'✕';color:var(--gray3)}
+  .plan-features li.missing{color:var(--gray3)}
+  .plan-btn{display:block;width:100%;padding:12px;border-radius:8px;font-size:14px;font-weight:700;cursor:pointer;border:none;transition:all .15s;text-align:center;text-decoration:none}
+  .plan-btn.primary{background:var(--green);color:#000}
+  .plan-btn.primary:hover{background:var(--green-dim)}
+  .plan-btn.secondary{background:var(--bg4);color:var(--gray1);border:1px solid var(--border2)}
+  .plan-btn.secondary:hover{border-color:var(--green);color:var(--green)}
+
+  .faq{max-width:700px;margin:0 auto;padding:0 20px 60px}
+  .faq h2{font-size:22px;font-weight:800;text-align:center;margin-bottom:24px}
+  .faq-item{border-bottom:1px solid var(--border);padding:16px 0}
+  .faq-q{font-size:14px;font-weight:600;cursor:pointer;display:flex;justify-content:space-between;align-items:center}
+  .faq-q::after{content:'+';font-size:18px;color:var(--gray3)}
+  .faq-q.open::after{content:'−'}
+  .faq-a{font-size:13px;color:var(--gray2);line-height:1.6;margin-top:10px;display:none}
+  .faq-a.open{display:block}
+
+  @media(max-width:600px){.plans{grid-template-columns:1fr}.pricing-hero h1{font-size:24px}}
+</style>
+</head>
+<body>
+
+<header>
+  <a href="/" class="logo">
+    <div class="logo-icon">D</div>
+    <span class="logo-name">דופמין</span>
+  </a>
+  <a href="/" class="back">← חזרה לפיד</a>
+</header>
+
+<div class="pricing-hero">
+  <h1>בחר את המנוי שלך</h1>
+  <p>קבל גישה לניוזלטר היומי עם מיטב המאמרים מסוכמים בעברית. בחר את התכנית שמתאימה לך.</p>
+</div>
+
+<div class="toggle-wrap">
+  <span class="toggle-label active" id="lbl-monthly">חודשי</span>
+  <div class="toggle" id="billing-toggle" onclick="toggleBilling()"></div>
+  <span class="toggle-label" id="lbl-annual">שנתי</span>
+  <span class="savings-badge" id="savings-badge" style="display:none">חיסכון של 33%</span>
+</div>
+
+<div class="plans" id="plans"></div>
+
+<div class="faq">
+  <h2>שאלות נפוצות</h2>
+  <div class="faq-item">
+    <div class="faq-q" onclick="toggleFaq(this)">מה ההבדל בין המנויים?</div>
+    <div class="faq-a">המנוי החינמי מאפשר לקרוא 3 מאמרים בשבוע. מנוי Pro נותן גישה בלתי מוגבלת לכל המאמרים, תכנים בלעדיים, ושליחת הניוזלטר ישירות למייל שלך ב-7:00 בבוקר.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q" onclick="toggleFaq(this)">האם אני יכול לבטל בכל עת?</div>
+    <div class="faq-a">בהחלט. ניתן לבטל את המנוי בכל רגע. הגישה למנוי Pro תימשך עד סוף תקופת החיוב הנוכחית.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q" onclick="toggleFaq(this)">איך התשלום עובד?</div>
+    <div class="faq-a">אנחנו משתמשים ב-Stripe לאבטחת התשלומים. הפרטים שלך מוצפנים לחלוטין. אין לנו גישה לפרטי כרטיס האשראי שלך.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q" onclick="toggleFaq(this)">האם יש החזר כספי?</div>
+    <div class="faq-a">כן! אם אינך מרוצה תוך 14 יום, נחזיר לך את מלוא הסכום.</div>
+  </div>
+</div>
+
+<script>
+const PLANS = [
+  {
+    id: 'free',
+    name: 'חינם',
+    price: { monthly: '0', annual: '0' },
+    period: '/שבוע',
+    desc: 'התחל להתנסות בניוזלטר היומי',
+    features: [
+      '3 מאמרים בשבוע',
+      'גישה לפיד המאמרים',
+      'חיפוש וסינון',
+    ],
+    missing: ['גישה מלאה', 'ניוזלטר למייל', 'תכנים בלעדיים'],
+    featured: false,
+  },
+  {
+    id: 'premium',
+    name: 'Pro',
+    price: { monthly: '29', annual: '' },
+    period: { monthly: '/חודש', annual: '' },
+    desc: 'גישה מלאה לקורסים + תוכן פרימיום',
+    features: [
+      'גישה לכל הקורסים (פילוסופיה, פיזיקה, טק, AI)',
+      'קורסים חדשים כל חודש',
+      'ניוזלטר יומי למייל',
+      'תכנים בלעדיים',
+      'ללא פרסומות',
+      'גישה לספריית הידע המלאה',
+    ],
+    missing: [],
+    featured: true,
+  },
+],
+    featured: false,
+  },
+]
+
+let isAnnual = false
+
+function toggleBilling() {
+  isAnnual = !isAnnual
+  document.getElementById('billing-toggle').classList.toggle('on', isAnnual)
+  document.getElementById('lbl-monthly').classList.toggle('active', !isAnnual)
+  document.getElementById('lbl-annual').classList.toggle('active', isAnnual)
+  document.getElementById('savings-badge').style.display = isAnnual ? 'inline-block' : 'none'
+  renderPlans()
+}
+
+function getPrice(plan) {
+  if (plan.id === 'free') return { amount: '0', period: '' }
+  return { amount: plan.price.monthly, period: '/חודש' }
+}
+
+function renderPlans() {
+  const container = document.getElementById('plans')
+  container.innerHTML = PLANS.map(p => {
+    const pr = getPrice(p)
+    const isFeatured = p.id === 'premium' || (isAnnual && p.id === 'annual')
+    const buttonText = p.id === 'free' ? 'התחל עכשיו' : 'בחר מנוי'
+    const buttonClass = p.id === 'free' ? 'secondary' : 'primary'
+    const isPaid = p.id !== 'free'
+
+    return `
+    <div class="plan ${isFeatured ? 'featured' : ''}">
+      ${p.featured ? '<div class="badge-popular">הפופולרי ביותר</div>' : ''}
+      <div class="plan-name">${p.name}</div>
+      <div class="plan-price">₪${pr.amount}<span>${pr.period}</span></div>
+      <div class="plan-desc">${p.desc}</div>
+      <ul class="plan-features">
+        ${p.features.map(f => `<li>${f}</li>`).join('')}
+        ${p.missing.map(f => `<li class="missing">${f}</li>`).join('')}
+      </ul>
+      <button class="plan-btn ${buttonClass}" onclick="${isPaid ? `subscribe('${p.id}')` : 'goHome()'}">${buttonText}</button>
+    </div>`
+  }).join('')
+}
+
+async function subscribe(tier) {
+  // Ask for email if not saved
+  const user = JSON.parse(localStorage.getItem('dupaman_user') || '{}');
+  if (!user.email) {
+    const email = prompt('הכנס אימייל לקבלת הקורסים:');
+    if (!email) return;
+    user.email = email;
+    localStorage.setItem('dupaman_user', JSON.stringify(user));
+    localStorage.setItem('dupaman_email', email);
+  }
+
+  // Show PayPal hosted button
+  const btn = event.target
+  btn.style.display = 'none'
+  
+  // Create container for PayPal button
+  const container = document.createElement('div')
+  container.id = 'paypal-container'
+  container.style.marginTop = '12px'
+  btn.parentNode.appendChild(container)
+
+  // Load PayPal hosted button
+  const script = document.createElement('script')
+  script.src = 'https://www.paypal.com/sdk/js?client-id=sb&components=hosted-buttons'
+  script.onload = () => {
+    if (window.paypal && window.paypal.HostedButtons) {
+      window.paypal.HostedButtons({
+        hostedButtonId: 'M5MH36L9TVXQJ'
+      }).render('#paypal-container')
+    }
+  }
+  document.head.appendChild(script)
+}
+
+function goHome() {
+  window.location.href = '/'
+}
+
+function toggleFaq(el) {
+  el.classList.toggle('open')
+  el.nextElementSibling.classList.toggle('open')
+}
+
+renderPlans()
+</script>
+</body>
+</html>

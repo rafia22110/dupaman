@@ -1,0 +1,13 @@
+{
+  "name": "dupaman",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vercel dev"
+  },
+  "devDependencies": {
+    "supabase": "^2.109.1",
+    "vercel": "^55.0.0"
+  }
+}
